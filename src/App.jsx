@@ -1,20 +1,18 @@
-import './index.css';
+import { Routes, Route } from 'react-router-dom';
 import { useTheme } from './hooks/useTheme';
 
 import Navigation from './components/Navigation';
-import Hero from './components/Hero';
-import StatsBar from './components/StatsBar';
-import Positioning from './components/Positioning';
-import Comparison from './components/Comparison';
-import Features from './components/Features';
-import Architecture from './components/Architecture';
-import OpenSource from './components/OpenSource';
-import Waitlist from './components/Waitlist';
 import Footer from './components/Footer';
+
+import HomePage from './pages/HomePage';
+import ProductsPage from './pages/ProductsPage';
+import OperatorPage from './pages/OperatorPage';
+import AclPage from './pages/AclPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 export default function App() {
   const { currentTheme } = useTheme();
-  
+
   return (
     <div
       style={{
@@ -28,29 +26,13 @@ export default function App() {
       <Navigation />
 
       <main>
-        <section id="home">
-          <Hero />
-        </section>
-
-        <StatsBar />
-
-        <Positioning />
-
-        <Comparison />
-
-        <section id="architecture">
-          <Architecture />
-        </section>
-
-        <section id="features">
-          <Features />
-        </section>
-
-        <section id="open-source">
-          <OpenSource />
-        </section>
-
-        <Waitlist />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/products/operator" element={<OperatorPage />} />
+          <Route path="/products/acl" element={<AclPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
       </main>
 
       <Footer />

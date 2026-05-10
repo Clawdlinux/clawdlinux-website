@@ -1,21 +1,19 @@
 import { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Menu, X, Star, ExternalLink } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Menu, X, Star } from 'lucide-react';
 import { useTheme } from '../hooks/useTheme';
 import ThemeToggle from './ThemeToggle';
 
 const NAV_LINKS = [
-  { label: 'Why Now', href: '#positioning' },
-  { label: 'Compare', href: '#comparison' },
-  { label: 'How It Works', href: '#architecture' },
-  { label: 'Features', href: '#features' },
-  { label: 'Open Source', href: '#open-source' },
+  { label: 'Home', to: '/' },
+  { label: 'Products', to: '/products' },
+  { label: 'Operator', to: '/products/operator' },
+  { label: 'ACL', to: '/products/acl' },
 ];
 
-const GITHUB_URL = 'https://github.com/Clawdlinux/agentic-operator-core';
+const GITHUB_ORG_URL = 'https://github.com/Clawdlinux';
 const DISCORD_URL = 'https://discord.gg/2yJsjhPe';
-const DEMO_EMAIL_URL = 'mailto:007ssancheti@gmail.com?subject=Agentic%20Operator%20Inquiry';
-const NAV_SCROLL_OFFSET = 88;
 
 export default function Navigation() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -31,42 +29,6 @@ export default function Navigation() {
     });
     return () => unsubscribe();
   }, [scrollY]);
-
-  const scrollToAnchor = (href) => {
-    const id = href.replace('#', '');
-    const el = document.getElementById(id) || document.querySelector(href);
-
-    if (!el) {
-      return false;
-    }
-
-    const targetTop = el.getBoundingClientRect().top + window.scrollY - NAV_SCROLL_OFFSET;
-    window.scrollTo({ top: Math.max(0, targetTop), behavior: 'smooth' });
-
-    if (window.history?.replaceState) {
-      window.history.replaceState(null, '', href);
-    }
-
-    return true;
-  };
-
-  const handleSmoothScroll = (e, href) => {
-    if (!href.startsWith('#')) {
-      return;
-    }
-
-    e.preventDefault();
-    setMenuOpen(false);
-
-    // Let mobile menu collapse first so target offsets stay accurate.
-    window.requestAnimationFrame(() => {
-      window.setTimeout(() => {
-        if (!scrollToAnchor(href)) {
-          window.location.hash = href;
-        }
-      }, 40);
-    });
-  };
 
   return (
     <motion.nav
@@ -90,17 +52,15 @@ export default function Navigation() {
         <div className="flex items-center justify-between h-16 lg:h-18">
 
           {/* Logo */}
-          <motion.a
-            href="/"
+          <Link
+            to="/"
             className="flex items-center gap-2.5 group"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+            style={{ textDecoration: 'none' }}
           >
             <div className="relative">
               <img
                 src="/ninevigil-logo.svg"
-                alt="NineVigil"
+                alt="Clawdlinux"
                 className="w-8 h-8 transition-transform duration-300 group-hover:rotate-12 rounded-lg"
               />
             </div>
@@ -108,9 +68,9 @@ export default function Navigation() {
               className="font-semibold text-lg tracking-tight transition-colors duration-300"
               style={{ fontFamily: "'Syne', sans-serif", color: currentTheme.text.primary }}
             >
-              Nine<span style={{ color: currentTheme.accent.teal }}>Vigil</span>
+              Clawd<span style={{ color: currentTheme.accent.teal }}>linux</span>
             </span>
-          </motion.a>
+          </Link>
 
           {/* Desktop Nav Links */}
           <motion.div
@@ -120,17 +80,16 @@ export default function Navigation() {
             transition={{ duration: 0.5, delay: 0.1 }}
           >
             {NAV_LINKS.map((link) => (
-              <a
+              <Link
                 key={link.label}
-                href={link.href}
-                target={link.external ? '_blank' : undefined}
-                rel={link.external ? 'noopener noreferrer' : undefined}
-                onClick={!link.external ? (e) => handleSmoothScroll(e, link.href) : undefined}
+                to={link.to}
+                onClick={() => setMenuOpen(false)}
                 className="flex items-center gap-1 px-4 py-2 text-sm rounded-lg transition-all duration-200 font-medium"
-                style={{ 
+                style={{
                   fontFamily: "'DM Sans', sans-serif",
                   color: currentTheme.text.secondary,
-                  backgroundColor: 'transparent'
+                  backgroundColor: 'transparent',
+                  textDecoration: 'none',
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.color = currentTheme.text.primary;
@@ -142,8 +101,7 @@ export default function Navigation() {
                 }}
               >
                 {link.label}
-                {link.external && <ExternalLink className="w-3 h-3 opacity-60" />}
-              </a>
+              </Link>
             ))}
           </motion.div>
 
@@ -176,7 +134,7 @@ export default function Navigation() {
               <span>Discord</span>
             </a>
             <a
-              href={GITHUB_URL}
+              href={GITHUB_ORG_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200 hover:brightness-110"
@@ -187,7 +145,7 @@ export default function Navigation() {
               }}
             >
               <Star className="w-3.5 h-3.5" />
-              <span>Star on GitHub</span>
+              <span>GitHub</span>
             </a>
             <ThemeToggle />
           </motion.div>
@@ -233,17 +191,16 @@ export default function Navigation() {
             }}
           >
           {NAV_LINKS.map((link) => (
-            <a
+            <Link
               key={link.label}
-              href={link.href}
-              target={link.external ? '_blank' : undefined}
-              rel={link.external ? 'noopener noreferrer' : undefined}
-              onClick={!link.external ? (e) => handleSmoothScroll(e, link.href) : undefined}
+              to={link.to}
+              onClick={() => setMenuOpen(false)}
                 className="flex items-center justify-between px-4 py-3 text-sm rounded-lg transition-all duration-200"
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
                   color: currentTheme.text.secondary,
-                  backgroundColor: 'transparent'
+                  backgroundColor: 'transparent',
+                  textDecoration: 'none',
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.color = currentTheme.text.primary;
@@ -255,13 +212,12 @@ export default function Navigation() {
                 }}
             >
               <span>{link.label}</span>
-              {link.external && <ExternalLink className="w-3.5 h-3.5 opacity-60" />}
-            </a>
+            </Link>
           ))}
 
           <div className="mt-3 pt-3 flex flex-col gap-2" style={{ borderTopWidth: '1px', borderTopColor: currentTheme.border.light }}>
             <a
-              href={GITHUB_URL}
+              href={GITHUB_ORG_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 px-4 py-3 text-sm font-semibold rounded-lg transition-all duration-200 hover:brightness-110"
@@ -272,7 +228,7 @@ export default function Navigation() {
               }}
             >
               <Star className="w-4 h-4" />
-              <span>Star on GitHub</span>
+              <span>GitHub</span>
             </a>
           </div>
         </div>
