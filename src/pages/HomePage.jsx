@@ -1,8 +1,6 @@
-import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Github, Boxes, Code2, Shield, Lock, Mail, Sparkles } from 'lucide-react';
-import ParticleNetwork from '../utils/particleNetwork';
 import { useTheme } from '../hooks/useTheme';
 
 const GITHUB_ORG = 'https://github.com/Clawdlinux';
@@ -80,21 +78,6 @@ const withAlpha = (hex, alpha) => `${hex}${alpha}`;
 export default function HomePage() {
   const { currentTheme, theme } = useTheme();
   const t = currentTheme;
-  const canvasRef = useRef(null);
-  const networkRef = useRef(null);
-
-  // Particle canvas (same as Hero.jsx)
-  useEffect(() => {
-    if (!canvasRef.current) return;
-    const network = new ParticleNetwork(canvasRef.current, {
-      count: 80,
-      maxDistance: 150,
-      speed: 0.3,
-    });
-    networkRef.current = network;
-    network.start();
-    return () => network.stop();
-  }, []);
 
   return (
     <>
@@ -106,44 +89,110 @@ export default function HomePage() {
         className="relative min-h-screen overflow-hidden flex flex-col items-center justify-center"
         style={{ background: t.bg.primary, padding: '168px 24px 86px' }}
       >
-        {/* Particle canvas (same as Hero.jsx) */}
-        <canvas
-          ref={canvasRef}
-          className="absolute inset-0 w-full h-full pointer-events-none"
-          style={{ zIndex: 0 }}
-        />
+        {/* ── Aurora gradient mesh (homepage-exclusive, not particles) ── */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ zIndex: 0 }}>
+          {/* Central beam */}
+          <motion.div
+            className="absolute top-0 left-1/2 -translate-x-1/2"
+            initial={{ opacity: 0, scaleY: 0 }}
+            animate={{ opacity: 1, scaleY: 1 }}
+            transition={{ duration: 1.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+            style={{
+              width: 2,
+              height: '60%',
+              background: `linear-gradient(to bottom, ${withAlpha(t.accent.teal, '60')}, ${withAlpha(t.accent.indigo, '30')}, transparent)`,
+              transformOrigin: 'top center',
+            }}
+          />
+          {/* Beam glow spread */}
+          <motion.div
+            className="absolute top-0 left-1/2 -translate-x-1/2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: theme === 'dark' ? 0.4 : 0.25 }}
+            transition={{ duration: 2, delay: 0.6 }}
+            style={{
+              width: 600,
+              height: '50%',
+              background: `radial-gradient(ellipse 300px 400px at center top, ${withAlpha(t.accent.teal, '22')}, ${withAlpha(t.accent.indigo, '10')} 50%, transparent 100%)`,
+            }}
+          />
 
-        {/* Animated grid background (matches Hero.jsx orb pattern) */}
-        <motion.div
-          aria-hidden="true"
-          animate={{ backgroundPosition: ['0px 0px', '42px 42px'] }}
-          transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            opacity: theme === 'dark' ? 0.28 : 0.18,
-            backgroundImage: `linear-gradient(${withAlpha(t.accent.teal, '18')} 1px, transparent 1px), linear-gradient(90deg, ${withAlpha(t.accent.indigo, '14')} 1px, transparent 1px)`,
-            backgroundSize: '42px 42px',
-            maskImage: 'linear-gradient(to bottom, black 0%, black 58%, transparent 100%)',
-          }}
-        />
+          {/* Drifting aurora blob 1 — teal */}
+          <motion.div
+            className="absolute rounded-full"
+            animate={{
+              x: ['-5%', '8%', '-3%'],
+              y: ['0%', '-6%', '2%'],
+              scale: [1, 1.15, 1],
+            }}
+            transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
+            style={{
+              top: '15%',
+              left: '20%',
+              width: 500,
+              height: 500,
+              background: `radial-gradient(circle, ${withAlpha(t.accent.teal, theme === 'dark' ? '18' : '10')} 0%, transparent 70%)`,
+              filter: 'blur(60px)',
+            }}
+          />
+          {/* Drifting aurora blob 2 — indigo */}
+          <motion.div
+            className="absolute rounded-full"
+            animate={{
+              x: ['3%', '-7%', '5%'],
+              y: ['-2%', '5%', '-4%'],
+              scale: [1.05, 0.95, 1.05],
+            }}
+            transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+            style={{
+              top: '25%',
+              right: '15%',
+              width: 600,
+              height: 600,
+              background: `radial-gradient(circle, ${withAlpha(t.accent.indigo, theme === 'dark' ? '14' : '0C')} 0%, transparent 70%)`,
+              filter: 'blur(80px)',
+            }}
+          />
+          {/* Drifting aurora blob 3 — purple accent */}
+          <motion.div
+            className="absolute rounded-full"
+            animate={{
+              x: ['-4%', '6%', '-2%'],
+              y: ['3%', '-3%', '5%'],
+              scale: [0.95, 1.1, 0.95],
+            }}
+            transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+            style={{
+              bottom: '20%',
+              left: '35%',
+              width: 450,
+              height: 450,
+              background: `radial-gradient(circle, ${theme === 'dark' ? 'rgba(124,58,237,0.10)' : 'rgba(124,58,237,0.06)'} 0%, transparent 70%)`,
+              filter: 'blur(70px)',
+            }}
+          />
 
-        {/* Decorative gradient orbs (from Hero.jsx) */}
-        <div
-          className="absolute top-1/4 -left-32 w-96 h-96 rounded-full pointer-events-none"
-          style={{
-            background: `radial-gradient(circle, ${withAlpha(t.accent.teal, theme === 'dark' ? '1F' : '14')} 0%, transparent 70%)`,
-            animation: 'orbFloat 8s ease-in-out infinite',
-            zIndex: 1,
-          }}
-        />
-        <div
-          className="absolute bottom-1/4 -right-32 w-[500px] h-[500px] rounded-full pointer-events-none"
-          style={{
-            background: `radial-gradient(circle, ${withAlpha(t.accent.indigo, theme === 'dark' ? '1A' : '12')} 0%, transparent 70%)`,
-            animation: 'orbFloat 10s ease-in-out infinite reverse',
-            zIndex: 1,
-          }}
-        />
+          {/* Subtle dot grid that fades in */}
+          <motion.div
+            className="absolute inset-0"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: theme === 'dark' ? 0.15 : 0.08 }}
+            transition={{ duration: 2, delay: 1 }}
+            style={{
+              backgroundImage: `radial-gradient(circle, ${withAlpha(t.accent.teal, '30')} 1px, transparent 1px)`,
+              backgroundSize: '32px 32px',
+              maskImage: 'radial-gradient(ellipse 70% 60% at 50% 40%, black 0%, transparent 100%)',
+            }}
+          />
+
+          {/* Bottom fade to content — dissolve transition */}
+          <div
+            className="absolute bottom-0 left-0 right-0 h-48"
+            style={{
+              background: `linear-gradient(to bottom, transparent, ${t.bg.primary})`,
+            }}
+          />
+        </div>
 
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           {/* Eyebrow chip */}
@@ -277,12 +326,8 @@ export default function HomePage() {
           </motion.div>
         </div>
 
-        {/* Keyframe for orb animation (same as Hero.jsx) */}
+        {/* Homepage-only styles */}
         <style>{`
-          @keyframes orbFloat {
-            0%, 100% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(-30px) scale(1.05); }
-          }
           .text-gradient {
             background: linear-gradient(135deg, #3B82F6 0%, #2563EB 50%, #7c3aed 100%);
             -webkit-background-clip: text;
