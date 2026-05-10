@@ -9,6 +9,7 @@ import {
   Terminal,
 } from 'lucide-react';
 import { useTheme } from '../hooks/useTheme';
+import AclHero from '../components/AclHero';
 
 const ACL_GITHUB = 'https://github.com/Clawdlinux/ninevigil-acp';
 const ACL_SPEC = 'https://github.com/Clawdlinux/ninevigil-acp/blob/main/docs/acl-spec.md';
@@ -86,122 +87,7 @@ export default function AclPage() {
         </Link>
       </div>
 
-      {/* Hero */}
-      <section style={{ padding: '60px 24px 80px', maxWidth: 1100, margin: '0 auto' }}>
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <span
-            style={{
-              display: 'inline-block',
-              padding: '4px 10px',
-              borderRadius: 6,
-              background: `${t.accent.teal}15`,
-              color: t.accent.teal,
-              fontSize: 11,
-              fontWeight: 600,
-              fontFamily: 'IBM Plex Mono, monospace',
-              letterSpacing: 0.5,
-              marginBottom: 20,
-            }}
-          >
-            PRODUCT 02 · NEW · v0.1
-          </span>
-          <h1
-            style={{
-              fontFamily: 'Space Grotesk, sans-serif',
-              fontSize: 'clamp(36px, 5.5vw, 60px)',
-              fontWeight: 700,
-              color: t.text.primary,
-              margin: '0 0 20px',
-              lineHeight: 1.1,
-            }}
-          >
-            ACL — <span style={{ color: t.accent.teal }}>Agent Context Language</span>
-          </h1>
-          <p
-            style={{
-              fontSize: 'clamp(16px, 1.8vw, 20px)',
-              color: t.text.secondary,
-              maxWidth: 760,
-              lineHeight: 1.55,
-              margin: '0 0 32px',
-            }}
-          >
-            A compact, machine-native representation of structured data,
-            designed for LLM agents instead of humans. 90% fewer tokens,
-            same fact-extraction accuracy, on a 1,620-trial Anthropic
-            benchmark you can re-run for $1.
-          </p>
-
-          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-            <a
-              href={ACL_GITHUB}
-              target="_blank"
-              rel="noreferrer"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 8,
-                padding: '12px 20px',
-                borderRadius: 10,
-                background: `linear-gradient(135deg, ${t.accent.teal} 0%, #2563EB 100%)`,
-                color: '#03231d',
-                fontSize: 14,
-                fontWeight: 700,
-                fontFamily: 'DM Sans, sans-serif',
-                textDecoration: 'none',
-              }}
-            >
-              <Github size={16} /> Code on GitHub
-            </a>
-            <a
-              href={ACL_SPEC}
-              target="_blank"
-              rel="noreferrer"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 8,
-                padding: '12px 20px',
-                borderRadius: 10,
-                background: t.bg.card,
-                border: `1px solid ${t.border.default}`,
-                color: t.text.primary,
-                fontSize: 14,
-                fontWeight: 600,
-                fontFamily: 'DM Sans, sans-serif',
-                textDecoration: 'none',
-              }}
-            >
-              Read the ACL spec
-            </a>
-            <a
-              href={ACL_QUICKSTART}
-              target="_blank"
-              rel="noreferrer"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 8,
-                padding: '12px 20px',
-                borderRadius: 10,
-                background: t.bg.card,
-                border: `1px solid ${t.border.default}`,
-                color: t.text.primary,
-                fontSize: 14,
-                fontWeight: 600,
-                fontFamily: 'DM Sans, sans-serif',
-                textDecoration: 'none',
-              }}
-            >
-              Quickstart
-            </a>
-          </div>
-        </motion.div>
-      </section>
+      <AclHero />
 
       {/* Compression table */}
       <section style={{ padding: '20px 24px 80px', maxWidth: 1100, margin: '0 auto' }}>
