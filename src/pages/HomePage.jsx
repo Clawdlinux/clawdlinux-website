@@ -1,6 +1,8 @@
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Github, Boxes, Code2, Shield, Lock, Mail, Sparkles } from 'lucide-react';
+import ParticleNetwork from '../utils/particleNetwork';
 import { useTheme } from '../hooks/useTheme';
 
 const GITHUB_ORG = 'https://github.com/Clawdlinux';
@@ -78,6 +80,21 @@ const withAlpha = (hex, alpha) => `${hex}${alpha}`;
 export default function HomePage() {
   const { currentTheme, theme } = useTheme();
   const t = currentTheme;
+  const canvasRef = useRef(null);
+  const networkRef = useRef(null);
+
+  // Particle canvas (same as Hero.jsx)
+  useEffect(() => {
+    if (!canvasRef.current) return;
+    const network = new ParticleNetwork(canvasRef.current, {
+      count: 80,
+      maxDistance: 150,
+      speed: 0.3,
+    });
+    networkRef.current = network;
+    network.start();
+    return () => network.stop();
+  }, []);
 
   return (
     <>
@@ -86,9 +103,16 @@ export default function HomePage() {
         initial="hidden"
         animate="visible"
         variants={containerVariants}
-        className="relative min-h-[92vh] overflow-hidden flex flex-col items-center justify-center"
+        className="relative min-h-screen overflow-hidden flex flex-col items-center justify-center"
         style={{ background: t.bg.primary, padding: '168px 24px 86px' }}
       >
+        {/* Particle canvas (same as Hero.jsx) */}
+        <canvas
+          ref={canvasRef}
+          className="absolute inset-0 w-full h-full pointer-events-none"
+          style={{ zIndex: 0 }}
+        />
+
         {/* Animated grid background (matches Hero.jsx orb pattern) */}
         <motion.div
           aria-hidden="true"
@@ -266,6 +290,27 @@ export default function HomePage() {
             background-clip: text;
           }
         `}</style>
+
+        {/* Scroll indicator (from Hero.jsx) */}
+        <motion.div
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 2 }}
+          style={{ color: t.text.muted }}
+        >
+          <span className="text-xs" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+            scroll to explore
+          </span>
+          <motion.div
+            className="w-px h-8"
+            style={{
+              background: `linear-gradient(to bottom, ${t.text.muted}, transparent)`,
+            }}
+            animate={{ scaleY: [1, 0.4, 1], opacity: [0.6, 1, 0.6] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+          />
+        </motion.div>
       </motion.section>
 
       {/* ─── Value Props ─── */}
