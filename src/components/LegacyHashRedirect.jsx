@@ -23,5 +23,24 @@ export default function LegacyHashRedirect() {
     }
   }, [pathname, hash, navigate]);
 
+  useEffect(() => {
+    if (!hash || (pathname === '/' && LEGACY_OPERATOR_HASHES.has(hash))) {
+      return undefined;
+    }
+
+    const id = decodeURIComponent(hash.slice(1));
+    const scrollToHash = () => {
+      document.getElementById(id)?.scrollIntoView({ block: 'start' });
+    };
+
+    const frame = window.requestAnimationFrame(scrollToHash);
+    const timeout = window.setTimeout(scrollToHash, 100);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.clearTimeout(timeout);
+    };
+  }, [pathname, hash]);
+
   return null;
 }
