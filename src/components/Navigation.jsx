@@ -66,7 +66,7 @@ export default function Navigation() {
             </div>
             <span
               className="font-semibold text-lg tracking-tight transition-colors duration-300"
-              style={{ fontFamily: "'Syne', sans-serif", color: currentTheme.text.primary }}
+              style={{ fontFamily: "'Space Grotesk', sans-serif", color: currentTheme.text.primary }}
             >
               Clawd<span style={{ color: currentTheme.accent.teal }}>linux</span>
             </span>

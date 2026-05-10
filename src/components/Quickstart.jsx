@@ -106,7 +106,7 @@ function StepCard({ step, currentTheme }) {
 
         <h4
           className="text-sm font-semibold mb-1.5"
-          style={{ fontFamily: "'Syne', sans-serif", color: currentTheme.text.primary }}
+          style={{ fontFamily: "'Space Grotesk', sans-serif", color: currentTheme.text.primary }}
         >
           {step.title}
         </h4>
@@ -190,7 +190,7 @@ export default function Quickstart() {
 
           <h2
             className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4"
-            style={{ fontFamily: "'Syne', sans-serif", color: currentTheme.text.primary }}
+            style={{ fontFamily: "'Space Grotesk', sans-serif", color: currentTheme.text.primary }}
           >
             From Repo to{' '}
             <span

@@ -121,7 +121,7 @@ export default function OpenSource() {
           <h2
             className="text-4xl md:text-5xl font-bold"
             style={{
-              fontFamily: "'Syne', sans-serif",
+              fontFamily: "'Space Grotesk', sans-serif",
               color: currentTheme.text.primary,
             }}
           >
@@ -345,7 +345,7 @@ export default function OpenSource() {
               >
                 <h4
                   className="text-sm font-semibold mb-2"
-                  style={{ color: currentTheme.text.primary, fontFamily: "'Syne', sans-serif" }}
+                  style={{ color: currentTheme.text.primary, fontFamily: "'Space Grotesk', sans-serif" }}
                 >
                   {template.name}
                 </h4>
@@ -381,7 +381,7 @@ export default function OpenSource() {
                 className="text-2xl font-bold mb-1"
                 style={{
                   color: currentTheme.accent.teal,
-                  fontFamily: "'Syne', sans-serif",
+                  fontFamily: "'Space Grotesk', sans-serif",
                 }}
               >
                 {stat.value}

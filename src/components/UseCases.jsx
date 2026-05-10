@@ -132,7 +132,7 @@ function MetricCard({ label, value, sublabel, highlight, highlightColor, current
       <div
         className="text-2xl font-bold mb-1"
         style={{
-          fontFamily: "'Syne', sans-serif",
+          fontFamily: "'Space Grotesk', sans-serif",
           color: highlight ? highlightColor : currentTheme.text.primary,
         }}
       >
@@ -246,7 +246,7 @@ export default function UseCases() {
           <h2
             className="text-3xl sm:text-4xl lg:text-5xl font-bold"
             style={{
-              fontFamily: "'Syne', sans-serif",
+              fontFamily: "'Space Grotesk', sans-serif",
               color: currentTheme.text.primary,
             }}
           >

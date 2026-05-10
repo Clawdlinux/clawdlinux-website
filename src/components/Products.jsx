@@ -108,7 +108,7 @@ function BenefitRow({ benefit, currentTheme }) {
       <div>
         <h4
           className="text-sm font-semibold mb-0.5"
-          style={{ fontFamily: "'Syne', sans-serif", color: currentTheme.text.primary }}
+          style={{ fontFamily: "'Space Grotesk', sans-serif", color: currentTheme.text.primary }}
         >
           {benefit.title}
         </h4>
@@ -162,7 +162,7 @@ function AddOnCard({ product, currentTheme }) {
         </div>
         <h4
           className="text-base font-semibold mb-1.5"
-          style={{ fontFamily: "'Syne', sans-serif", color: currentTheme.text.primary }}
+          style={{ fontFamily: "'Space Grotesk', sans-serif", color: currentTheme.text.primary }}
         >
           {product.title}
         </h4>
@@ -228,7 +228,7 @@ export default function Products() {
           </div>
           <h2
             className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4"
-            style={{ fontFamily: "'Syne', sans-serif", color: currentTheme.text.primary }}
+            style={{ fontFamily: "'Space Grotesk', sans-serif", color: currentTheme.text.primary }}
           >
             <span
               style={{
@@ -285,7 +285,7 @@ export default function Products() {
                 <Boxes size={20} color={currentTheme.accent.teal} strokeWidth={1.5} />
               </div>
               <div>
-                <h3 className="text-xl font-bold" style={{ fontFamily: "'Syne', sans-serif", color: currentTheme.text.primary }}>
+                <h3 className="text-xl font-bold" style={{ fontFamily: "'Space Grotesk', sans-serif", color: currentTheme.text.primary }}>
                   Community
                 </h3>
                 <span
@@ -353,7 +353,7 @@ export default function Products() {
                   <Shield size={20} color={currentTheme.accent.teal} strokeWidth={1.5} />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold" style={{ fontFamily: "'Syne', sans-serif", color: currentTheme.text.primary }}>
+                  <h3 className="text-xl font-bold" style={{ fontFamily: "'Space Grotesk', sans-serif", color: currentTheme.text.primary }}>
                     Enterprise
                   </h3>
                   <span

@@ -21,7 +21,7 @@ export default function NotFoundPage() {
       </p>
       <h1
         style={{
-          fontFamily: 'Syne, sans-serif',
+          fontFamily: 'Space Grotesk, sans-serif',
           fontSize: 'clamp(32px, 5vw, 56px)',
           color: t.text.primary,
           margin: '0 0 16px',

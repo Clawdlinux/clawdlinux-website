@@ -151,7 +151,7 @@ export default function Waitlist() {
           <h2
             className="text-4xl md:text-5xl font-bold"
             style={{
-              fontFamily: "'Syne', sans-serif",
+              fontFamily: "'Space Grotesk', sans-serif",
               color: currentTheme.text.primary,
             }}
           >
@@ -302,7 +302,7 @@ export default function Waitlist() {
               <Github className="w-6 h-6 mb-4" style={{ color: currentTheme.accent.teal }} />
               <h3
                 className="text-lg font-semibold mb-2"
-                style={{ fontFamily: "'Syne', sans-serif", color: currentTheme.text.primary }}
+                style={{ fontFamily: "'Space Grotesk', sans-serif", color: currentTheme.text.primary }}
               >
                 Explore the Repo
               </h3>
@@ -321,7 +321,7 @@ export default function Waitlist() {
               <BookOpen className="w-6 h-6 mb-4" style={{ color: currentTheme.accent.teal }} />
               <h3
                 className="text-lg font-semibold mb-2"
-                style={{ fontFamily: "'Syne', sans-serif", color: currentTheme.text.primary }}
+                style={{ fontFamily: "'Space Grotesk', sans-serif", color: currentTheme.text.primary }}
               >
                 Read the Docs
               </h3>

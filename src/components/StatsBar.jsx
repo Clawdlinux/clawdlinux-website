@@ -70,7 +70,7 @@ function StatItem({ stat, active, index, currentTheme }) {
         <div
           className="font-bold leading-none mb-2 tracking-tight transition-all duration-300 group-hover:scale-105"
           style={{
-            fontFamily: "'Syne', sans-serif",
+            fontFamily: "'Space Grotesk', sans-serif",
             fontSize: "clamp(2rem, 4vw, 3rem)",
             color: stat.color,
             textShadow: `0 0 32px ${stat.color}55`,

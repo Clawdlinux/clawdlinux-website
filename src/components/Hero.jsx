@@ -287,7 +287,7 @@ export default function Hero() {
           {/* Line 1 */}
           <h1
             className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight tracking-tight"
-            style={{ fontFamily: "'Syne', sans-serif" }}
+            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
             <div className="flex flex-wrap justify-center gap-x-3 mb-2">
               {['Zero-Egress', 'Agent'].map((word) => (

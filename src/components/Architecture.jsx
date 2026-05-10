@@ -165,7 +165,7 @@ function StepCard({ step, index, currentTheme, theme }) {
           <h3
             className="text-base font-bold mb-2"
             style={{
-              fontFamily: "'Syne', sans-serif",
+              fontFamily: "'Space Grotesk', sans-serif",
               color: currentTheme.text.primary,
             }}
           >
@@ -243,7 +243,7 @@ export default function Architecture() {
           <h2
             className="text-3xl sm:text-4xl lg:text-5xl font-bold"
             style={{
-              fontFamily: "'Syne', sans-serif",
+              fontFamily: "'Space Grotesk', sans-serif",
               color: currentTheme.text.primary,
             }}
           >

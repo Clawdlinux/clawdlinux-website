@@ -90,7 +90,7 @@ export default function Features() {
             <h2
               className="text-4xl sm:text-5xl font-bold mb-4"
               style={{
-                fontFamily: "'Syne', sans-serif",
+                fontFamily: "'Space Grotesk', sans-serif",
                 color: currentTheme.text.primary,
               }}
             >

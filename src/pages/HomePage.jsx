@@ -150,7 +150,7 @@ export default function HomePage() {
           <motion.h1
             variants={headingVariants}
             className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight tracking-tight mb-6"
-            style={{ fontFamily: "'Syne', sans-serif" }}
+            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
             <div className="flex flex-wrap justify-center gap-x-3 mb-2">
               {['Open-source', 'rails'].map((word) => (
@@ -305,7 +305,7 @@ export default function HomePage() {
                 </div>
                 <h3
                   className="text-lg font-bold mb-2"
-                  style={{ fontFamily: "'Syne', sans-serif", color: t.text.primary }}
+                  style={{ fontFamily: "'Space Grotesk', sans-serif", color: t.text.primary }}
                 >
                   {v.title}
                 </h3>
@@ -347,7 +347,7 @@ export default function HomePage() {
           <motion.h2
             variants={itemVariants}
             className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight"
-            style={{ fontFamily: "'Syne', sans-serif", color: t.text.primary }}
+            style={{ fontFamily: "'Space Grotesk', sans-serif", color: t.text.primary }}
           >
             Two{' '}
             <span
@@ -425,7 +425,7 @@ export default function HomePage() {
                     </div>
                     <h3
                       className="text-xl font-bold mb-2"
-                      style={{ fontFamily: "'Syne', sans-serif", color: t.text.primary, lineHeight: 1.2 }}
+                      style={{ fontFamily: "'Space Grotesk', sans-serif", color: t.text.primary, lineHeight: 1.2 }}
                     >
                       {p.title}
                     </h3>
@@ -504,7 +504,7 @@ export default function HomePage() {
               variants={itemVariants}
               className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4"
               style={{
-                fontFamily: "'Syne', sans-serif",
+                fontFamily: "'Space Grotesk', sans-serif",
                 color: t.text.primary,
                 maxWidth: 760,
               }}

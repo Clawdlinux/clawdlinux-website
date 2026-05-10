@@ -111,9 +111,9 @@ export default function AclPage() {
           </span>
           <h1
             style={{
-              fontFamily: 'Syne, sans-serif',
+              fontFamily: 'Space Grotesk, sans-serif',
               fontSize: 'clamp(36px, 5.5vw, 60px)',
-              fontWeight: 800,
+              fontWeight: 700,
               color: t.text.primary,
               margin: '0 0 20px',
               lineHeight: 1.1,
@@ -206,7 +206,7 @@ export default function AclPage() {
       {/* Compression table */}
       <section style={{ padding: '20px 24px 80px', maxWidth: 1100, margin: '0 auto' }}>
         <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
-          <h2 style={{ fontFamily: 'Syne, sans-serif', fontSize: 28, fontWeight: 800, color: t.text.primary, margin: '0 0 20px' }}>
+          <h2 style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 28, fontWeight: 700, color: t.text.primary, margin: '0 0 20px' }}>
             Compression on real fixtures
           </h2>
           <div style={{ overflow: 'auto', borderRadius: 12, border: `1px solid ${t.border.default}` }}>
@@ -244,7 +244,7 @@ export default function AclPage() {
       {/* Accuracy table */}
       <section style={{ padding: '20px 24px 80px', maxWidth: 1100, margin: '0 auto' }}>
         <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
-          <h2 style={{ fontFamily: 'Syne, sans-serif', fontSize: 28, fontWeight: 800, color: t.text.primary, margin: '0 0 8px' }}>
+          <h2 style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 28, fontWeight: 700, color: t.text.primary, margin: '0 0 8px' }}>
             Agent accuracy preserved
           </h2>
           <p style={{ fontSize: 14, color: t.text.secondary, margin: '0 0 20px' }}>
@@ -289,7 +289,7 @@ export default function AclPage() {
       {/* What an ACL document looks like */}
       <section style={{ padding: '20px 24px 80px', maxWidth: 1100, margin: '0 auto' }}>
         <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
-          <h2 style={{ fontFamily: 'Syne, sans-serif', fontSize: 28, fontWeight: 800, color: t.text.primary, margin: '0 0 8px' }}>
+          <h2 style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 28, fontWeight: 700, color: t.text.primary, margin: '0 0 8px' }}>
             What the agent actually sees
           </h2>
           <p style={{ fontSize: 14, color: t.text.secondary, margin: '0 0 20px' }}>
@@ -317,7 +317,7 @@ export default function AclPage() {
       {/* Try it CLI */}
       <section style={{ padding: '20px 24px 80px', maxWidth: 1100, margin: '0 auto' }}>
         <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
-          <h2 style={{ fontFamily: 'Syne, sans-serif', fontSize: 28, fontWeight: 800, color: t.text.primary, margin: '0 0 8px' }}>
+          <h2 style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 28, fontWeight: 700, color: t.text.primary, margin: '0 0 8px' }}>
             <Terminal size={24} style={{ display: 'inline', verticalAlign: '-3px', marginRight: 8, color: t.accent.teal }} />
             Try it in 30 seconds
           </h2>
@@ -352,7 +352,7 @@ bin/acl encode openapi pkg/aclhttp/testdata/petstore.json | bin/acl tokens -
       {/* What ships today */}
       <section style={{ padding: '20px 24px 120px', maxWidth: 1100, margin: '0 auto' }}>
         <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
-          <h2 style={{ fontFamily: 'Syne, sans-serif', fontSize: 28, fontWeight: 800, color: t.text.primary, margin: '0 0 20px' }}>
+          <h2 style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 28, fontWeight: 700, color: t.text.primary, margin: '0 0 20px' }}>
             <Code2 size={24} style={{ display: 'inline', verticalAlign: '-3px', marginRight: 8, color: t.accent.teal }} />
             What ships today
           </h2>

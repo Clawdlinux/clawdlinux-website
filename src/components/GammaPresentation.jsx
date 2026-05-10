@@ -48,7 +48,7 @@ export default function GammaPresentation() {
           <h2
             className="text-4xl md:text-5xl font-bold"
             style={{
-              fontFamily: "'Syne', sans-serif",
+              fontFamily: "'Space Grotesk', sans-serif",
               color: currentTheme.text.primary,
             }}
           >

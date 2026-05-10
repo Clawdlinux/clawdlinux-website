@@ -116,7 +116,7 @@ function LegalModal({ open, onClose, title, content, currentTheme, theme }) {
         >
           <span
             className="text-base font-bold"
-            style={{ fontFamily: "'Syne', sans-serif", color: currentTheme.text.primary }}
+            style={{ fontFamily: "'Space Grotesk', sans-serif", color: currentTheme.text.primary }}
           >
             {title}
           </span>
@@ -221,7 +221,7 @@ export default function Footer() {
                 <HexLogo accent={currentTheme.accent.teal} />
                 <span
                   className="text-lg font-bold"
-                  style={{ fontFamily: "'Syne', sans-serif", color: currentTheme.text.primary }}
+                  style={{ fontFamily: "'Space Grotesk', sans-serif", color: currentTheme.text.primary }}
                 >
                   NineVigil
                 </span>

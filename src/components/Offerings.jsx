@@ -120,7 +120,7 @@ function FeatureCard({ feature, currentTheme, theme }) {
         <h3
           className="text-base font-semibold mb-2"
           style={{
-            fontFamily: "'Syne', sans-serif",
+            fontFamily: "'Space Grotesk', sans-serif",
             color: currentTheme.text.primary,
           }}
         >
@@ -171,7 +171,7 @@ export default function Offerings() {
           <h2
             className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight"
             style={{
-              fontFamily: "'Syne', sans-serif",
+              fontFamily: "'Space Grotesk', sans-serif",
               color: currentTheme.text.primary,
             }}
           >

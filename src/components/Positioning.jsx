@@ -92,9 +92,9 @@ export default function Positioning() {
         </div>
         <h2
           style={{
-            fontFamily: 'Syne, sans-serif',
+            fontFamily: 'Space Grotesk, sans-serif',
             fontSize: 'clamp(28px, 4vw, 44px)',
-            fontWeight: 800,
+            fontWeight: 700,
             color: t.text.primary,
             margin: '0 0 16px',
             lineHeight: 1.15,
@@ -169,7 +169,7 @@ export default function Positioning() {
             </div>
             <h3
               style={{
-                fontFamily: 'Syne, sans-serif',
+                fontFamily: 'Space Grotesk, sans-serif',
                 fontSize: 19,
                 fontWeight: 700,
                 color: t.text.primary,
@@ -202,7 +202,7 @@ export default function Positioning() {
       >
         <h3
           style={{
-            fontFamily: 'Syne, sans-serif',
+            fontFamily: 'Space Grotesk, sans-serif',
             fontSize: 'clamp(22px, 3vw, 30px)',
             fontWeight: 700,
             color: t.text.primary,
@@ -265,7 +265,7 @@ export default function Positioning() {
                 </div>
                 <h4
                   style={{
-                    fontFamily: 'Syne, sans-serif',
+                    fontFamily: 'Space Grotesk, sans-serif',
                     fontSize: 17,
                     fontWeight: 700,
                     color: t.text.primary,
