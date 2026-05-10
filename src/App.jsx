@@ -3,6 +3,7 @@ import { useTheme } from './hooks/useTheme';
 
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
+import LegacyHashRedirect from './components/LegacyHashRedirect';
 
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
@@ -24,6 +25,7 @@ export default function App() {
       }}
     >
       <Navigation />
+      <LegacyHashRedirect />
 
       <main>
         <Routes>

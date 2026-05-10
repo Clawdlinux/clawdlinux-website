@@ -13,7 +13,7 @@ const NAV_LINKS = [
 ];
 
 const GITHUB_ORG_URL = 'https://github.com/Clawdlinux';
-const DISCORD_URL = 'https://discord.gg/2yJsjhPe';
+const DISCORD_URL = 'https://discord.gg/XtxRdBzZcK';
 
 export default function Navigation() {
   const [menuOpen, setMenuOpen] = useState(false);
