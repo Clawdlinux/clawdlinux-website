@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { useTheme } from './hooks/useTheme';
+import { Analytics } from '@vercel/analytics/react';
 
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
@@ -38,6 +39,7 @@ export default function App() {
       </main>
 
       <Footer />
+      <Analytics />
     </div>
   );
 }
