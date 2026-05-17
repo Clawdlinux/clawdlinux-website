@@ -9,6 +9,7 @@ import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
 import OperatorPage from './pages/OperatorPage';
 import AclPage from './pages/AclPage';
+import AuditPage from './pages/AuditPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 export default function App() {
@@ -33,6 +34,7 @@ export default function App() {
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/products/operator" element={<OperatorPage />} />
           <Route path="/products/acl" element={<AclPage />} />
+          <Route path="/products/audit" element={<AuditPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>

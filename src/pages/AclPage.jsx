@@ -7,6 +7,7 @@ import {
   CheckCircle2,
   Code2,
   Terminal,
+  Gauge,
 } from 'lucide-react';
 import { useTheme } from '../hooks/useTheme';
 import AclHero from '../components/AclHero';
@@ -15,6 +16,8 @@ const ACL_GITHUB = 'https://github.com/Clawdlinux/ninevigil-acp';
 const ACL_SPEC = 'https://github.com/Clawdlinux/ninevigil-acp/blob/main/docs/acl-spec.md';
 const ACL_QUICKSTART = 'https://github.com/Clawdlinux/ninevigil-acp/blob/main/docs/quickstart.md';
 const ACL_BENCH = 'https://github.com/Clawdlinux/ninevigil-acp/blob/main/benchmark/agent_accuracy/results/2026-05-09-094833/summary.md';
+const ACP_FRONTIER_BENCH = 'https://github.com/Clawdlinux/ninevigil-acp/tree/main/benchmark/frontier';
+const BFCL_URL = 'https://gorilla.cs.berkeley.edu/leaderboard.html';
 
 const COMPRESSION_ROWS = [
   { src: 'Kubernetes', fixture: 'live kind cluster (5 pods, 2 deploys, 2 svcs)', raw: '19,043', acl: '145', x: '132×' },
@@ -38,6 +41,13 @@ const SHIPPED = [
   'acl CLI — encode / decode / tokens / version (15MB distroless)',
   'Pure-Python acp-acl decoder, optional tiktoken extra',
   '1,620-trial agent-accuracy benchmark, fully reproducible',
+];
+
+const FRONTIER_ROWS = [
+  { tier: 'Open standard', plan: 'BFCL function-calling tasks mapped into MCP tools/list and ACP manifests' },
+  { tier: '1M+ context', plan: 'Long-context model family to test whether bigger windows remove or only hide tool overhead' },
+  { tier: 'Medium frontier', plan: 'Sonnet and available GPT-5.x medium-class IDs, pinned per run' },
+  { tier: 'Heavy frontier', plan: 'Opus and strongest available GPT-5.x / Gemini-class IDs, pinned per run' },
 ];
 
 const ACL_DOC_EXAMPLE = `@ns payments
@@ -236,7 +246,7 @@ bin/acl encode openapi pkg/aclhttp/testdata/petstore.json | bin/acl tokens -
       </section>
 
       {/* What ships today */}
-      <section style={{ padding: '20px 24px 120px', maxWidth: 1100, margin: '0 auto' }}>
+      <section style={{ padding: '20px 24px 80px', maxWidth: 1100, margin: '0 auto' }}>
         <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
           <h2 style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 28, fontWeight: 700, color: t.text.primary, margin: '0 0 20px' }}>
             <Code2 size={24} style={{ display: 'inline', verticalAlign: '-3px', marginRight: 8, color: t.accent.teal }} />
@@ -264,6 +274,47 @@ bin/acl encode openapi pkg/aclhttp/testdata/petstore.json | bin/acl tokens -
               </li>
             ))}
           </ul>
+        </motion.div>
+      </section>
+
+      {/* Frontier benchmark plan */}
+      <section style={{ padding: '20px 24px 120px', maxWidth: 1100, margin: '0 auto' }}>
+        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
+          <h2 style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 28, fontWeight: 700, color: t.text.primary, margin: '0 0 8px' }}>
+            <Gauge size={24} style={{ display: 'inline', verticalAlign: '-3px', marginRight: 8, color: t.accent.teal }} />
+            Frontier benchmark track
+          </h2>
+          <p style={{ fontSize: 14, color: t.text.secondary, margin: '0 0 20px', lineHeight: 1.6 }}>
+            The current published numbers are deterministic token-overhead measurements. The next public run uses{' '}
+            <a href={BFCL_URL} target="_blank" rel="noreferrer" style={{ color: t.accent.teal }}>
+              BFCL
+            </a>{' '}
+            as the open function-calling standard and pins exact frontier model IDs before any model-specific claims are made.
+          </p>
+          <div style={{ overflow: 'auto', borderRadius: 12, border: `1px solid ${t.border.default}` }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14, fontFamily: 'IBM Plex Mono, monospace' }}>
+              <thead>
+                <tr style={{ background: t.bg.card }}>
+                  <th style={th(t)}>Track</th>
+                  <th style={th(t)}>What it tests</th>
+                </tr>
+              </thead>
+              <tbody>
+                {FRONTIER_ROWS.map((r) => (
+                  <tr key={r.tier} style={{ borderTop: `1px solid ${t.border.default}` }}>
+                    <td style={{ ...td(t), color: t.accent.teal, fontWeight: 700 }}>{r.tier}</td>
+                    <td style={{ ...td(t), color: t.text.secondary }}>{r.plan}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p style={{ fontSize: 13, color: t.text.secondary, margin: '14px 0 0', lineHeight: 1.6 }}>
+            Benchmark plan and result artifact rules live in{' '}
+            <a href={ACP_FRONTIER_BENCH} target="_blank" rel="noreferrer" style={{ color: t.accent.teal }}>
+              benchmark/frontier
+            </a>. Model aliases are not normalized into claims; each run records the exact provider ID used.
+          </p>
         </motion.div>
       </section>
     </div>

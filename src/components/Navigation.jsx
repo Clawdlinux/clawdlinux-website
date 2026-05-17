@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { label: 'Products', to: '/products' },
   { label: 'Operator', to: '/products/operator' },
   { label: 'ACL', to: '/products/acl' },
+  { label: 'Audit', to: '/products/audit' },
 ];
 
 const GITHUB_ORG_URL = 'https://github.com/Clawdlinux';
