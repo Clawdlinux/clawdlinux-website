@@ -61,7 +61,7 @@ export default function Navigation() {
             <div className="relative">
               <img
                 src="/ninevigil-logo.svg"
-                alt="Clawdlinux"
+                alt="NineVigil"
                 className="w-8 h-8 transition-transform duration-300 group-hover:rotate-12 rounded-lg"
               />
             </div>
