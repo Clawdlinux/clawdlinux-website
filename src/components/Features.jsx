@@ -94,10 +94,10 @@ export default function Features() {
                 color: currentTheme.text.primary,
               }}
             >
-              Who Deploys Clawdlinux
+              Who Deploys NineVigil
             </h2>
             <p className="text-lg max-w-2xl mx-auto" style={{ color: currentTheme.text.tertiary }}>
-              From platform engineering to security review, Clawdlinux fits teams standardizing how autonomous agents run on Kubernetes.
+              From platform engineering to security review, NineVigil fits teams standardizing how autonomous agents run on Kubernetes.
             </p>
           </motion.div>
         </div>

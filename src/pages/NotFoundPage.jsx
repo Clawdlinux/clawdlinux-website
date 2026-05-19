@@ -45,7 +45,7 @@ export default function NotFoundPage() {
           fontFamily: 'DM Sans, sans-serif',
         }}
       >
-        Back to clawdlinux.org
+        Back to NineVigil
       </Link>
     </section>
   );

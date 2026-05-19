@@ -2,7 +2,7 @@ import { useRef, useEffect } from 'react';
 
 /**
  * WebGL2 animated shader background — adapted from 21st.dev animated-shader-hero.
- * Blue/teal/indigo palette to match the Clawdlinux brand.
+ * Blue/teal/indigo palette to match the NineVigil brand.
  * Used as a full-screen background layer on the homepage.
  */
 

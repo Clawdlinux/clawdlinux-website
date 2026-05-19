@@ -83,7 +83,7 @@ export default function HomePage() {
               whileHover={{ y: -1 }}
             >
               <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: theme === 'dark' ? '#60a5fa' : '#2563eb' }} />
-              Clawdlinux -- Production AI Agent Infrastructure
+              NineVigil -- Production AI Agent Infrastructure
             </motion.div>
           </motion.div>
 
@@ -246,7 +246,7 @@ export default function HomePage() {
             </motion.p>
             <motion.div variants={itemVariants} className="flex gap-3 flex-wrap">
               <motion.div whileHover={{ y: -2, scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                <a href="mailto:007ssancheti@gmail.com?subject=Clawdlinux%20production%20pilot" className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold" style={{ background: `linear-gradient(135deg, ${t.accent.teal} 0%, #2563EB 100%)`, color: '#03231d', fontFamily: "'DM Sans', sans-serif", textDecoration: 'none' }}>
+                <a href="mailto:007ssancheti@gmail.com?subject=NineVigil%20production%20pilot" className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold" style={{ background: `linear-gradient(135deg, ${t.accent.teal} 0%, #2563EB 100%)`, color: '#03231d', fontFamily: "'DM Sans', sans-serif", textDecoration: 'none' }}>
                   <Mail size={16} /> Contact
                 </a>
               </motion.div>

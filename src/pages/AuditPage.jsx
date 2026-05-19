@@ -136,7 +136,7 @@ export default function AuditPage() {
               maxWidth: 760,
             }}
           >
-            Clawdlinux Audit is the compliance-native observability layer for AI agents
+            NineVigil Audit is the compliance-native observability layer for AI agents
             running in regulated environments. OpenTelemetry GenAI traces, a tamper-evident
             ledger of every consequential action, deterministic replay, and an autonomous
             failure-clustering analyzer — all running entirely inside your cluster, zero
