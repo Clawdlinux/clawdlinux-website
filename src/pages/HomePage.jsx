@@ -71,7 +71,7 @@ export default function HomePage() {
         <div className="absolute inset-0" style={{ zIndex: 0 }}>
           <ShaderCanvas />
           {/* Fade overlay so text is readable + dissolve into next section */}
-          <div className="absolute inset-0" style={{ background: theme === 'dark' ? 'rgba(5,8,15,0.45)' : 'rgba(255,255,255,0.55)' }} />
+          <div className="absolute inset-0" style={{ background: theme === 'dark' ? 'rgba(5,8,15,0.45)' : 'rgba(255,255,255,0.75)' }} />
           <div className="absolute bottom-0 left-0 right-0 h-56" style={{ background: `linear-gradient(to bottom, transparent, ${t.bg.primary})` }} />
         </div>
 
@@ -79,26 +79,26 @@ export default function HomePage() {
           <motion.div variants={itemVariants} className="flex justify-center mb-8">
             <motion.div
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full"
-              style={{ background: 'rgba(59,130,246,0.15)', border: '1px solid rgba(59,130,246,0.35)', color: '#93c5fd', fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, fontWeight: 600, letterSpacing: '0.04em', textTransform: 'uppercase' }}
+              style={{ background: theme === 'dark' ? 'rgba(59,130,246,0.15)' : 'rgba(59,130,246,0.1)', border: `1px solid ${theme === 'dark' ? 'rgba(59,130,246,0.35)' : 'rgba(59,130,246,0.3)'}`, color: theme === 'dark' ? '#93c5fd' : '#1e40af', fontFamily: "'IBM Plex Mono', monospace", fontSize: 12, fontWeight: 600, letterSpacing: '0.04em', textTransform: 'uppercase' }}
               whileHover={{ y: -1 }}
             >
-              <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: '#60a5fa' }} />
-              Clawdlinux · Production AI Agent Infrastructure
+              <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: theme === 'dark' ? '#60a5fa' : '#2563eb' }} />
+              Clawdlinux -- Production AI Agent Infrastructure
             </motion.div>
           </motion.div>
 
           <motion.h1 variants={headingVariants} className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight tracking-tight mb-6" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
             <div className="flex flex-wrap justify-center gap-x-3 mb-2">
-              {['Open-source', 'rails'].map((w) => (<motion.span key={w} variants={wordVariant} style={{ color: '#e2e8f0' }}>{w}</motion.span>))}
+              {['Run', 'AI', 'agents'].map((w) => (<motion.span key={w} variants={wordVariant} style={{ color: t.text.primary }}>{w}</motion.span>))}
             </div>
             <div className="flex flex-wrap justify-center gap-x-3">
-              {['for', 'agents', 'that'].map((w) => (<motion.span key={w} variants={wordVariant} style={{ color: '#e2e8f0' }}>{w}</motion.span>))}
-              <motion.span variants={wordVariant} className="text-gradient">ship.</motion.span>
+              {['securely', 'on'].map((w) => (<motion.span key={w} variants={wordVariant} style={{ color: t.text.primary }}>{w}</motion.span>))}
+              <motion.span variants={wordVariant} className="text-gradient">Kubernetes.</motion.span>
             </div>
           </motion.h1>
 
-          <motion.p variants={itemVariants} className="text-lg sm:text-xl max-w-2xl mx-auto mb-10" style={{ color: 'rgba(203,213,225,0.9)', lineHeight: 1.65, fontFamily: "'DM Sans', sans-serif" }}>
-            Open-source infrastructure for AI agents in regulated environments. One operator to run them on Kubernetes. One language to feed them 90% fewer tokens. Both Apache 2.0, both production today.
+          <motion.p variants={itemVariants} className="text-lg sm:text-xl max-w-2xl mx-auto mb-10" style={{ color: t.text.secondary, lineHeight: 1.65, fontFamily: "'DM Sans', sans-serif" }}>
+            Zero-egress deployment. Per-workload cost attribution. Full audit trail. One Helm chart, Apache 2.0, production-ready for regulated environments.
           </motion.p>
 
           <motion.div variants={itemVariants} className="flex gap-3 justify-center flex-wrap mb-10">
@@ -108,14 +108,14 @@ export default function HomePage() {
               </Link>
             </motion.div>
             <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
-              <a href={GITHUB_ORG} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold" style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', color: '#e2e8f0', fontFamily: "'DM Sans', sans-serif", textDecoration: 'none', backdropFilter: 'blur(8px)' }}>
+              <a href={GITHUB_ORG} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold" style={{ background: theme === 'dark' ? 'rgba(255,255,255,0.08)' : 'rgba(15,23,42,0.05)', border: `1px solid ${theme === 'dark' ? 'rgba(255,255,255,0.15)' : 'rgba(15,23,42,0.15)'}`, color: t.text.primary, fontFamily: "'DM Sans', sans-serif", textDecoration: 'none', backdropFilter: 'blur(8px)' }}>
                 <Github size={16} /> GitHub
               </a>
             </motion.div>
           </motion.div>
 
           <motion.div variants={containerVariants} className="flex justify-center flex-wrap gap-2.5">
-            {SIGNALS.map((s) => (<motion.span key={s} variants={itemVariants} className="px-3.5 py-1.5 rounded-full text-xs font-medium" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', color: 'rgba(203,213,225,0.8)', fontFamily: "'IBM Plex Mono', monospace" }}>{s}</motion.span>))}
+            {SIGNALS.map((s) => (<motion.span key={s} variants={itemVariants} className="px-3.5 py-1.5 rounded-full text-xs font-medium" style={{ background: theme === 'dark' ? 'rgba(255,255,255,0.06)' : 'rgba(15,23,42,0.04)', border: `1px solid ${theme === 'dark' ? 'rgba(255,255,255,0.12)' : 'rgba(15,23,42,0.1)'}`, color: t.text.tertiary, fontFamily: "'IBM Plex Mono', monospace" }}>{s}</motion.span>))}
           </motion.div>
         </div>
 
@@ -123,9 +123,9 @@ export default function HomePage() {
           .text-gradient { background: linear-gradient(135deg, #3B82F6 0%, #2563EB 50%, #7c3aed 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         `}</style>
 
-        <motion.div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 2 }} style={{ color: 'rgba(148,163,184,0.7)' }}>
+        <motion.div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 2 }} style={{ color: t.text.muted }}>
           <span className="text-xs" style={{ fontFamily: "'DM Sans', sans-serif" }}>scroll to explore</span>
-          <motion.div className="w-px h-8" style={{ background: 'linear-gradient(to bottom, rgba(148,163,184,0.5), transparent)' }} animate={{ scaleY: [1, 0.4, 1], opacity: [0.6, 1, 0.6] }} transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }} />
+          <motion.div className="w-px h-8" style={{ background: `linear-gradient(to bottom, ${t.text.muted}, transparent)` }} animate={{ scaleY: [1, 0.4, 1], opacity: [0.6, 1, 0.6] }} transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }} />
         </motion.div>
       </motion.section>
 

@@ -5,11 +5,11 @@ import ParticleNetwork from '../utils/particleNetwork';
 import { useTheme } from '../hooks/useTheme';
 
 const USE_CASES = [
-  'The Kubernetes runtime API that AI agents call to provision their own air-gapped execution environments.',
-  'Air-gapped capable — can run with zero cloud egress, no telemetry, no licensing callbacks.',
-  'Argo Workflows executes agent steps as observable DAGs with retries.',
-  'Per-tenant cost attribution with OpenMeter — chargeback to any business unit.',
-  'FedRAMP, HIPAA, and sovereign cloud deployments supported out of the box.',
+  'Deploy agents on your cluster with zero cloud egress -- data never leaves your network.',
+  'Know exactly what every agent costs per team, per workload, per month.',
+  'Argo DAGs orchestrate multi-step agent workflows with retries and checkpoints.',
+  'Ship to FedRAMP, HIPAA, and sovereign cloud environments on day one.',
+  'One Helm chart. One CRD. Full audit trail. Apache 2.0.',
 ];
 
 const QUICKSTART_URL = 'https://github.com/Clawdlinux/agentic-operator-core/blob/main/docs/01-quickstart.md';
@@ -290,12 +290,11 @@ export default function Hero() {
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
             <div className="flex flex-wrap justify-center gap-x-3 mb-2">
-              {['Zero-Egress', 'Agent'].map((word) => (
+              {['Run', 'AI', 'Agents'].map((word) => (
                 <motion.span
                   key={word}
                   variants={wordVariant}
-                  className={word === 'Zero-Egress' ? 'text-gradient' : ''}
-                  style={word === 'Zero-Egress' ? undefined : { color: currentTheme.text.primary }}
+                  style={{ color: currentTheme.text.primary }}
                 >
                   {word}
                 </motion.span>
@@ -303,11 +302,12 @@ export default function Hero() {
             </div>
             {/* Line 2 */}
             <div className="flex flex-wrap justify-center gap-x-3">
-              {['Platform', 'for', 'Kubernetes.'].map((word) => (
+              {['Securely', 'on'].map((word) => (
                 <motion.span key={word} variants={wordVariant} style={{ color: currentTheme.text.primary }}>
                   {word}
                 </motion.span>
               ))}
+              <motion.span variants={wordVariant} className="text-gradient">Kubernetes.</motion.span>
             </div>
           </h1>
         </motion.div>
