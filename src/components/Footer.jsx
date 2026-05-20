@@ -25,7 +25,7 @@ Do not use the project, examples, or website materials to violate law, abuse thi
 The project and site content are provided "as is", without warranty of any kind, express or implied, including merchantability, fitness for a particular purpose, or non-infringement.
 
 6. Limitation of Liability
-To the maximum extent permitted by law, Nine Rewards Solutions Pvt. Ltd. shall not be liable for any indirect, incidental, special, exemplary, or consequential damages arising from use of the site, project, or related materials.
+To the maximum extent permitted by law, the project maintainers shall not be liable for any indirect, incidental, special, exemplary, or consequential damages arising from use of the site, project, or related materials.
 
 7. Changes
 We may update these terms from time to time. Continued use after publication of changes constitutes acceptance of the revised terms.
@@ -56,7 +56,6 @@ Links to GitHub and other external services are governed by those services' own 
 You may request deletion of support correspondence by emailing: 007ssancheti@gmail.com
 
 6. Contact
-Nine Rewards Solutions Pvt. Ltd.
 Email: 007ssancheti@gmail.com`,
   },
   conduct: {
@@ -236,12 +235,6 @@ export default function Footer() {
                 className="text-xs"
                 style={{ color: currentTheme.text.muted, fontFamily: "'DM Sans', sans-serif" }}
               >
-                Nine Rewards Solutions Pvt. Ltd. · Bangalore
-              </p>
-              <p
-                className="text-xs mt-1"
-                style={{ color: currentTheme.text.muted, fontFamily: "'DM Sans', sans-serif" }}
-              >
                 NineVigil · Apache 2.0 · Clawdlinux
               </p>
 
@@ -398,7 +391,7 @@ export default function Footer() {
               className="text-xs text-center sm:text-left"
               style={{ color: currentTheme.text.muted, fontFamily: "'DM Sans', sans-serif" }}
             >
-              &copy; {new Date().getFullYear()} Nine Rewards Solutions Pvt. Ltd. · Bangalore · Apache 2.0
+              &copy; {new Date().getFullYear()} NineVigil · Clawdlinux · Apache 2.0
             </p>
             <div className="flex items-center gap-5">
               {[
