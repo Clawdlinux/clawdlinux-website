@@ -134,7 +134,7 @@ export default function OpenSource() {
           className="text-center text-lg mb-12"
           style={{ color: currentTheme.text.tertiary, fontFamily: "'DM Sans', sans-serif" }}
         >
-          NineVigil is open source for policy-aware AI workloads on Kubernetes. Inspect, extend, and self-host.
+          NineVigil is open source for regulated agent controls on Kubernetes. Inspect, extend, and self-host.
         </motion.p>
 
         {/* Repo card */}
@@ -177,7 +177,7 @@ export default function OpenSource() {
                   fontFamily: "'DM Sans', sans-serif",
                 }}
               >
-                Open-source Kubernetes operator for running and orchestrating autonomous AI workloads.
+                Open-source controls for sandboxing, auditing, and metering AI agent workloads.
               </p>
             </div>
 

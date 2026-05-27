@@ -16,14 +16,14 @@ const PRODUCTS = [
   {
     badge: 'PRODUCT 01',
     icon: Boxes,
-    name: 'Agentic Operator',
-    tag: 'Run agents in Kubernetes',
+    name: 'NineVigil Operator',
+    tag: 'Control agents in Kubernetes',
     summary:
-      'Zero-egress, FedRAMP-ready operator that turns kubectl apply into a sandboxed, observable, cost-attributed agent workload. Argo DAGs, Cilium policy, OPA guardrails, per-tenant budgets — production from day one.',
+      'Regulated control layer for agent workloads. gVisor injection, Cilium policy, OPA guardrails, audit trails, and per-tenant budgets.',
     highlights: [
-      { icon: CheckCircle2, text: 'AgentWorkload, AgentCard, Tenant CRDs' },
+      { icon: CheckCircle2, text: 'AgentWorkload path plus kagent pod compatibility' },
       { icon: CheckCircle2, text: 'Cilium FQDN egress + OPA admission' },
-      { icon: CheckCircle2, text: 'Argo Workflows DAG orchestration' },
+      { icon: CheckCircle2, text: 'Tamper-evident audit chain' },
       { icon: CheckCircle2, text: 'Per-workload OpenMeter cost attribution' },
     ],
     cta: { label: 'Operator on GitHub', href: OPERATOR_GITHUB },
@@ -56,12 +56,12 @@ const SHARED_THESIS = [
   {
     title: 'Same thesis',
     detail:
-      'Agents need infrastructure that was designed for them, not retrofitted from human-shaped tooling.',
+      'Agents need controls existing platform tools were not built to prove.',
   },
   {
     title: 'Same control plane',
     detail:
-      'ACL is the data layer the Operator pre-injects into every Execution Manifest. Two products, one stack.',
+      'ACL compresses tool and system context. The Operator enforces runtime controls around it.',
   },
 ];
 
@@ -132,8 +132,7 @@ export default function ProductsAcl() {
             lineHeight: 1.6,
           }}
         >
-          NineVigil ships the operational layer (Kubernetes operator) and the
-          data layer (compact agent-native representation format) for
+          NineVigil ships the controls layer and the data compression layer for
           production AI agents in regulated environments.
         </p>
       </motion.div>

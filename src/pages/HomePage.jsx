@@ -7,17 +7,17 @@ import ShaderCanvas from '../components/ShaderCanvas';
 const GITHUB_ORG = 'https://github.com/Clawdlinux';
 
 const VALUE_PROPS = [
-  { icon: Shield, title: 'Air-gapped by default', text: 'Built for FedRAMP, HIPAA, and sovereign-cloud environments. Zero egress unless you allow it.' },
+  { icon: Shield, title: 'Regulated controls', text: 'gVisor isolation, audit trails, and policy gates for agents that touch private data.' },
   { icon: Lock, title: 'Open source first', text: 'Apache 2.0 cores. CC BY 4.0 specs. Self-host, fork, audit. No surprise vendor lock-in.' },
-  { icon: Boxes, title: 'Two products, one stack', text: 'The operational layer (Operator) and the data layer (ACL) for production agents.' },
+  { icon: Boxes, title: 'Runtime compatible', text: 'Use the built-in AgentWorkload path or add controls around kagent-managed pods.' },
 ];
 
 const PRODUCT_PREVIEWS = [
-  { to: '/products/operator', icon: Boxes, tag: 'Operator', title: 'Run agents in Kubernetes', text: 'Zero-egress, FedRAMP-ready operator. AgentWorkload CRDs, Cilium policy, Argo DAGs, per-tenant cost attribution.' },
+  { to: '/products/operator', icon: Boxes, tag: 'Operator', title: 'Control agents in Kubernetes', text: 'gVisor injection, Cilium policy, OPA guardrails, audit trails, and per-workload cost attribution.' },
   { to: '/products/acl', icon: Code2, tag: 'ACL', title: 'Feed agents 90% fewer tokens', text: 'Compact agent-native representation format. Three translators ship today: Kubernetes (132\u00d7), OpenAPI (68\u00d7), Postgres (3.5\u00d7).' },
 ];
 
-const SIGNALS = ['Apache 2.0', 'Zero egress', 'Kubernetes CRDs', 'Agent-native data'];
+const SIGNALS = ['Apache 2.0', 'gVisor', 'kagent-compatible', 'Agent-native data'];
 
 const containerVariants = { hidden: {}, visible: { transition: { staggerChildren: 0.12 } } };
 const itemVariants = {
@@ -83,22 +83,22 @@ export default function HomePage() {
               whileHover={{ y: -1 }}
             >
               <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: theme === 'dark' ? '#60a5fa' : '#2563eb' }} />
-              NineVigil -- Production AI Agent Infrastructure
+              NineVigil · Regulated AI Agent Controls
             </motion.div>
           </motion.div>
 
           <motion.h1 variants={headingVariants} className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight tracking-tight mb-6" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
             <div className="flex flex-wrap justify-center gap-x-3 mb-2">
-              {['Run', 'AI', 'agents'].map((w) => (<motion.span key={w} variants={wordVariant} style={{ color: t.text.primary }}>{w}</motion.span>))}
+              {['Control', 'AI', 'agents'].map((w) => (<motion.span key={w} variants={wordVariant} style={{ color: t.text.primary }}>{w}</motion.span>))}
             </div>
             <div className="flex flex-wrap justify-center gap-x-3">
-              {['securely', 'on'].map((w) => (<motion.span key={w} variants={wordVariant} style={{ color: t.text.primary }}>{w}</motion.span>))}
+              {['inside'].map((w) => (<motion.span key={w} variants={wordVariant} style={{ color: t.text.primary }}>{w}</motion.span>))}
               <motion.span variants={wordVariant} className="text-gradient">Kubernetes.</motion.span>
             </div>
           </motion.h1>
 
           <motion.p variants={itemVariants} className="text-lg sm:text-xl max-w-2xl mx-auto mb-10" style={{ color: t.text.secondary, lineHeight: 1.65, fontFamily: "'DM Sans', sans-serif" }}>
-            Zero-egress deployment. Per-workload cost attribution. Full audit trail. One Helm chart, Apache 2.0, production-ready for regulated environments.
+            Add isolation, audit, and cost controls to agents in your cluster. Works with NineVigil AgentWorkload or kagent pods.
           </motion.p>
 
           <motion.div variants={itemVariants} className="flex gap-3 justify-center flex-wrap mb-10">
@@ -239,10 +239,10 @@ export default function HomePage() {
               </div>
             </motion.div>
             <motion.h2 variants={itemVariants} className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4" style={{ fontFamily: "'Space Grotesk', sans-serif", color: t.text.primary, maxWidth: 760 }}>
-              Put agent infrastructure in your cluster.
+              Put regulated controls around your agents.
             </motion.h2>
             <motion.p variants={itemVariants} className="text-base sm:text-lg mb-8" style={{ fontFamily: "'DM Sans', sans-serif", color: t.text.tertiary, lineHeight: 1.65, maxWidth: 760 }}>
-              Evaluate NineVigil Operator, ACL, or both against a real regulated workload. We will help you pick the smallest useful pilot and keep it self-hosted from day one.
+              Evaluate NineVigil controls, ACL, or both against a real regulated workload. Start with the smallest useful pilot.
             </motion.p>
             <motion.div variants={itemVariants} className="flex gap-3 flex-wrap">
               <motion.div whileHover={{ y: -2, scale: 1.02 }} whileTap={{ scale: 0.98 }}>
