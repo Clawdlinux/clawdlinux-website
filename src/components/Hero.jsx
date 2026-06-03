@@ -401,6 +401,21 @@ export default function Hero() {
           </a>
         </motion.div>
 
+        {/* Pilot CTA */}
+        <motion.p
+          className="text-center text-sm mb-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.85 }}
+          style={{
+            fontFamily: "'DM Sans', sans-serif",
+            color: currentTheme.accent.teal,
+            fontWeight: 500,
+          }}
+        >
+          First 3 regulated enterprises get a free assisted pilot deployment.
+        </motion.p>
+
         {/* Technical capability ticker */}
         <motion.div
           className="flex items-center justify-center gap-2 mb-14"
