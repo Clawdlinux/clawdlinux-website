@@ -5,11 +5,11 @@ import ParticleNetwork from '../utils/particleNetwork';
 import { useTheme } from '../hooks/useTheme';
 
 const USE_CASES = [
-  'Deploy agents on your cluster with zero cloud egress -- data never leaves your network.',
+  'Add gVisor isolation to agent pods without forking the runtime.',
   'Know exactly what every agent costs per team, per workload, per month.',
-  'Argo DAGs orchestrate multi-step agent workflows with retries and checkpoints.',
-  'Ship to FedRAMP, HIPAA, and sovereign cloud environments on day one.',
-  'One Helm chart. One CRD. Full audit trail. Apache 2.0.',
+  'Keep audit trails for every action, approval, and model call.',
+  'Use built-in AgentWorkload or wrap kagent-managed pods with controls.',
+  'One Helm chart. Policy, sandbox, audit, and FinOps. Apache 2.0.',
 ];
 
 const QUICKSTART_URL = 'https://github.com/Clawdlinux/agentic-operator-core/blob/main/docs/01-quickstart.md';
@@ -125,7 +125,7 @@ function TerminalWindow({ currentTheme, theme }) {
             color: currentTheme.text.muted,
           }}
         >
-          agentic-operator-core — kubernetes operator
+          agentic-operator-core · regulated controls
         </span>
       </div>
 
@@ -273,7 +273,7 @@ export default function Hero() {
             }}
           >
             <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: currentTheme.accent.teal }} />
-            Zero-Egress Ready · Air-Gapped · Apache 2.0
+            gVisor · Audit · FinOps · Apache 2.0
           </div>
         </motion.div>
 
@@ -290,7 +290,7 @@ export default function Hero() {
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
             <div className="flex flex-wrap justify-center gap-x-3 mb-2">
-              {['Run', 'AI', 'Agents'].map((word) => (
+              {['Control', 'AI', 'Agents'].map((word) => (
                 <motion.span
                   key={word}
                   variants={wordVariant}
@@ -302,7 +302,7 @@ export default function Hero() {
             </div>
             {/* Line 2 */}
             <div className="flex flex-wrap justify-center gap-x-3">
-              {['Securely', 'on'].map((word) => (
+              {['Inside'].map((word) => (
                 <motion.span key={word} variants={wordVariant} style={{ color: currentTheme.text.primary }}>
                   {word}
                 </motion.span>
@@ -401,6 +401,21 @@ export default function Hero() {
           </a>
         </motion.div>
 
+        {/* Pilot CTA */}
+        <motion.p
+          className="text-center text-sm mb-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.85 }}
+          style={{
+            fontFamily: "'DM Sans', sans-serif",
+            color: currentTheme.accent.teal,
+            fontWeight: 500,
+          }}
+        >
+          First 3 regulated enterprises get a free assisted pilot deployment.
+        </motion.p>
+
         {/* Technical capability ticker */}
         <motion.div
           className="flex items-center justify-center gap-2 mb-14"
@@ -419,7 +434,7 @@ export default function Hero() {
               color: currentTheme.text.muted,
             }}
           >
-            Apache 2.0 · Air-gapped · Argo DAG orchestration · Cilium egress guardrails
+            Apache 2.0 · kagent-compatible · gVisor injection · Cilium egress guardrails
           </span>
         </motion.div>
 

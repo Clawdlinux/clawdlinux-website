@@ -322,6 +322,17 @@ export default function Positioning() {
         >
           Explore on GitHub <ArrowRight size={16} />
         </a>
+        <p
+          style={{
+            marginTop: 12,
+            fontFamily: 'DM Sans, sans-serif',
+            fontSize: 14,
+            fontWeight: 500,
+            color: t.accent.teal,
+          }}
+        >
+          First 3 regulated enterprises get a free assisted pilot deployment.
+        </p>
       </motion.div>
     </section>
   );
