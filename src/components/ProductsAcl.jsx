@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 import { useTheme } from '../hooks/useTheme';
 
-const ACL_GITHUB = 'https://github.com/Clawdlinux/ninevigil-acp';
+const ACL_GITHUB = 'https://github.com/Clawdlinux/agent-contract-protocol';
 const OPERATOR_GITHUB = 'https://github.com/Clawdlinux/agentic-operator-core';
 
 const PRODUCTS = [
@@ -21,7 +21,7 @@ const PRODUCTS = [
     summary:
       'Regulated control layer for agent workloads. gVisor injection, Cilium policy, OPA guardrails, audit trails, and per-tenant budgets.',
     highlights: [
-      { icon: CheckCircle2, text: 'AgentWorkload path plus kagent pod compatibility' },
+      { icon: CheckCircle2, text: 'AgentWorkload path plus external pod compatibility' },
       { icon: CheckCircle2, text: 'Cilium FQDN egress + OPA admission' },
       { icon: CheckCircle2, text: 'Tamper-evident audit chain' },
       { icon: CheckCircle2, text: 'Per-workload OpenMeter cost attribution' },
@@ -32,17 +32,17 @@ const PRODUCTS = [
   {
     badge: 'PRODUCT 02 · NEW',
     icon: Code2,
-    name: 'ACL — Agent Context Language',
+    name: 'ANF — Agent Native Format',
     tag: 'Feed agents 90% fewer tokens',
     summary:
-      'A compact, machine-native representation of structured data, designed for LLM agents instead of humans. Three translators ship today (Kubernetes, OpenAPI, Postgres). Same fact-extraction accuracy at one-tenth the prompt tokens, validated on a 1,620-trial Anthropic benchmark.',
+      'A compact, machine-native representation of structured data, designed for LLM agents instead of humans. Kubernetes translator ships today; OpenAPI and Postgres compression measured in benchmark, translators in progress. Same fact-extraction accuracy at one-tenth the prompt tokens, validated on a 1,620-trial Anthropic benchmark.',
     highlights: [
-      { icon: TrendingDown, text: '132× on live K8s namespace' },
-      { icon: TrendingDown, text: '68× on the GitHub OpenAPI spec' },
-      { icon: TrendingDown, text: '3.5× on realistic pg_dump output' },
-      { icon: CheckCircle2, text: 'Spec CC BY 4.0 · SDKs Apache 2.0 · CLI + Python decoder' },
+      { icon: TrendingDown, text: '132× on live K8s namespace (shipped translator)' },
+      { icon: TrendingDown, text: '68× on the GitHub OpenAPI spec (benchmarked)' },
+      { icon: TrendingDown, text: '3.5× on realistic pg_dump output (benchmarked)' },
+      { icon: CheckCircle2, text: 'Spec CC BY 4.0 · Go library Apache 2.0' },
     ],
-    cta: { label: 'ACL on GitHub', href: ACL_GITHUB },
+    cta: { label: 'ANF on GitHub', href: ACL_GITHUB },
     accentKey: 'teal',
   },
 ];

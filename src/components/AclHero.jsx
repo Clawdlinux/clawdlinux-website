@@ -3,9 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Github, ArrowRight, BookOpen, TrendingDown } from 'lucide-react';
 import { useTheme } from '../hooks/useTheme';
 
-const ACL_GITHUB = 'https://github.com/Clawdlinux/ninevigil-acp';
-const ACL_SPEC = 'https://github.com/Clawdlinux/ninevigil-acp/blob/main/docs/acl-spec.md';
-const ACL_QUICKSTART = 'https://github.com/Clawdlinux/ninevigil-acp/blob/main/docs/quickstart.md';
+const ACL_GITHUB = 'https://github.com/Clawdlinux/agent-contract-protocol';
+const ACL_SPEC = 'https://github.com/Clawdlinux/agent-contract-protocol/blob/main/FORMAT.md';
 
 /* ── The raw → ACL compression demo ── */
 const RAW_JSON = `{
@@ -26,7 +25,7 @@ const RAW_JSON = `{
 }`;
 
 const ACL_OUTPUT = `@ns payments
-@source aclk8s/v0.1
+@source ninevigil/k8s-translator:0.1.0
 
 pods 5
   api-7f4b8c-x7w9  ready=1/1 node=node-2
@@ -40,7 +39,7 @@ actions
 
 const STATS = [
   { label: 'Raw tokens', value: '19,043', sub: 'kubectl JSON' },
-  { label: 'ACL tokens', value: '145', sub: 'same namespace' },
+  { label: 'ANF tokens', value: '145', sub: 'same namespace' },
   { label: 'Reduction', value: '132×', sub: 'smaller' },
 ];
 
@@ -162,7 +161,7 @@ export default function AclHero() {
           }}
         >
           <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: t.accent.teal }} />
-          Agent Context Language · v0.1
+          Agent Native Format · v0.1
         </motion.div>
 
         {/* Animated heading */}

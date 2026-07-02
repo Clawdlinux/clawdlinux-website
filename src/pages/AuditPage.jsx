@@ -466,7 +466,7 @@ open http://localhost:3000`}</pre>
           </p>
         </div>
         <a
-          href="mailto:hello@clawdlinux.org?subject=Audit%20pilot"
+          href="mailto:team@clawdlinux.org?subject=Audit%20pilot"
           style={{
             display: 'inline-flex',
             alignItems: 'center',

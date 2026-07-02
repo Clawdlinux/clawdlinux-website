@@ -8,8 +8,8 @@ const GITHUB_ORG = 'https://github.com/Clawdlinux';
 
 const VALUE_PROPS = [
   { icon: Shield, title: 'Regulated controls', text: 'gVisor isolation, audit trails, and policy gates for agents that touch private data.' },
-  { icon: Lock, title: 'Open source first', text: 'Apache 2.0 cores. CC BY 4.0 specs. Self-host, fork, audit. No surprise vendor lock-in.' },
-  { icon: Boxes, title: 'Runtime compatible', text: 'Use the built-in AgentWorkload path or add controls around kagent-managed pods.' },
+  { icon: Lock, title: 'Open source first', text: 'Apache 2.0 operator core. Open specs (CC BY 4.0) and SDKs. Self-host, fork, audit. No surprise vendor lock-in.' },
+  { icon: Boxes, title: 'Runtime compatible', text: 'Use the built-in AgentWorkload path or add controls around any labeled agent pods.' },
 ];
 
 const PRODUCT_PREVIEWS = [
@@ -17,7 +17,7 @@ const PRODUCT_PREVIEWS = [
   { to: '/products/acl', icon: Code2, tag: 'ACL', title: 'Feed agents 90% fewer tokens', text: 'Compact agent-native representation format. Three translators ship today: Kubernetes (132\u00d7), OpenAPI (68\u00d7), Postgres (3.5\u00d7).' },
 ];
 
-const SIGNALS = ['Apache 2.0', 'gVisor', 'kagent-compatible', 'Agent-native data'];
+const SIGNALS = ['Self-hostable', 'gVisor', 'Runtime-neutral', 'Agent-native data'];
 
 const containerVariants = { hidden: {}, visible: { transition: { staggerChildren: 0.12 } } };
 const itemVariants = {
@@ -98,7 +98,7 @@ export default function HomePage() {
           </motion.h1>
 
           <motion.p variants={itemVariants} className="text-lg sm:text-xl max-w-2xl mx-auto mb-10" style={{ color: t.text.secondary, lineHeight: 1.65, fontFamily: "'DM Sans', sans-serif" }}>
-            Add isolation, audit, and cost controls to agents in your cluster. Works with NineVigil AgentWorkload or kagent pods.
+            Add isolation, audit, and cost controls to agents in your cluster. Works with any Kubernetes-native agent runtime.
           </motion.p>
 
           <motion.div variants={itemVariants} className="flex gap-3 justify-center flex-wrap mb-10">
@@ -242,7 +242,7 @@ export default function HomePage() {
               Put regulated controls around your agents.
             </motion.h2>
             <motion.p variants={itemVariants} className="text-base sm:text-lg mb-8" style={{ fontFamily: "'DM Sans', sans-serif", color: t.text.tertiary, lineHeight: 1.65, maxWidth: 760 }}>
-              Evaluate NineVigil controls, ACL, or both against a real regulated workload. Start with the smallest useful pilot.
+              Evaluate NineVigil controls, ANF, or both against a real regulated workload. Start with the smallest useful pilot.
             </motion.p>
             <motion.div variants={itemVariants} className="flex gap-3 flex-wrap">
               <motion.div whileHover={{ y: -2, scale: 1.02 }} whileTap={{ scale: 0.98 }}>
