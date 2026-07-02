@@ -12,11 +12,10 @@ import {
 import { useTheme } from '../hooks/useTheme';
 import AclHero from '../components/AclHero';
 
-const ACL_GITHUB = 'https://github.com/Clawdlinux/ninevigil-acp';
-const ACL_SPEC = 'https://github.com/Clawdlinux/ninevigil-acp/blob/main/docs/acl-spec.md';
-const ACL_QUICKSTART = 'https://github.com/Clawdlinux/ninevigil-acp/blob/main/docs/quickstart.md';
-const ACL_BENCH = 'https://github.com/Clawdlinux/ninevigil-acp/blob/main/benchmark/agent_accuracy/results/2026-05-09-094833/summary.md';
-const ACP_FRONTIER_BENCH = 'https://github.com/Clawdlinux/ninevigil-acp/tree/main/benchmark/frontier';
+const ACL_GITHUB = 'https://github.com/Clawdlinux/agent-contract-protocol';
+const ACL_SPEC = 'https://github.com/Clawdlinux/agent-contract-protocol/blob/main/FORMAT.md';
+const ACL_BENCH = 'https://github.com/Clawdlinux/agent-contract-protocol/blob/main/benchmark/agent_accuracy/results/2026-05-09-094833/summary.md';
+const ACP_FRONTIER_BENCH = 'https://github.com/Clawdlinux/agent-contract-protocol/tree/main/benchmark/frontier';
 const BFCL_URL = 'https://gorilla.cs.berkeley.edu/leaderboard.html';
 
 const COMPRESSION_ROWS = [
@@ -35,11 +34,9 @@ const ACCURACY_ROWS = [
 ];
 
 const SHIPPED = [
-  'ACL v0.1 wire-format spec (CC BY 4.0)',
-  'Go reference encoder/decoder, round-trip stable + fuzzed',
-  'Three translators: Kubernetes, OpenAPI, Postgres',
-  'acl CLI — encode / decode / tokens / version (15MB distroless)',
-  'Pure-Python acp-acl decoder, optional tiktoken extra',
+  'ANF v0.1 wire-format spec (CC BY 4.0)',
+  'Go ANF encoder library (pkg/anf), consumed by the Kubernetes translator',
+  'Kubernetes translator ships today; OpenAPI and Postgres compression measured in benchmark, translators in progress',
   '1,620-trial agent-accuracy benchmark, fully reproducible',
 ];
 
@@ -51,7 +48,7 @@ const FRONTIER_ROWS = [
 ];
 
 const ACL_DOC_EXAMPLE = `@ns payments
-@source aclk8s/v0.1
+@source ninevigil/k8s-translator:0.1.0
 
 pods 5
   api-7f4b8c-x7w9 ready=1/1 node=node-2
@@ -93,7 +90,7 @@ export default function AclPage() {
           onMouseLeave={(e) => (e.currentTarget.style.color = t.text.secondary)}
         >
           <ArrowLeft size={14} />
-          Products / ACL — Agent Context Language
+          Products / ANF — Agent Native Format
         </Link>
       </div>
 
@@ -112,7 +109,7 @@ export default function AclPage() {
                   <th style={th(t)}>Source</th>
                   <th style={th(t)}>Fixture</th>
                   <th style={{ ...th(t), textAlign: 'right' }}>Raw</th>
-                  <th style={{ ...th(t), textAlign: 'right' }}>ACL</th>
+                  <th style={{ ...th(t), textAlign: 'right' }}>ANF</th>
                   <th style={{ ...th(t), textAlign: 'right' }}>Reduction</th>
                 </tr>
               </thead>
@@ -131,8 +128,8 @@ export default function AclPage() {
           </div>
           <p style={{ fontSize: 12, color: t.text.secondary, margin: '12px 0 0' }}>
             Token counts via tiktoken/cl100k_base. Live K8s number from{' '}
-            <code style={{ color: t.text.primary }}>scripts/test-aclk8s-kind.sh</code>; OpenAPI fixtures and{' '}
-            <code style={{ color: t.text.primary }}>acl</code> CLI in the repo.
+            <code style={{ color: t.text.primary }}>translators/kubernetes</code>; OpenAPI and Postgres fixtures in{' '}
+            <code style={{ color: t.text.primary }}>benchmark/agent_accuracy</code>.
           </p>
         </motion.div>
       </section>
@@ -152,7 +149,7 @@ export default function AclPage() {
                 <tr style={{ background: t.bg.card }}>
                   <th style={th(t)}>Metric</th>
                   <th style={th(t)}>Raw kubectl JSON</th>
-                  <th style={th(t)}>ACL</th>
+                  <th style={th(t)}>ANF</th>
                   <th style={{ ...th(t), textAlign: 'right' }}>Δ</th>
                 </tr>
               </thead>
@@ -172,7 +169,7 @@ export default function AclPage() {
           </div>
           <p style={{ fontSize: 13, color: t.text.secondary, margin: '14px 0 0', lineHeight: 1.6 }}>
             Same fact-extraction accuracy at one-tenth the prompt tokens.
-            Decision accuracy is 8.3pp lower at n=360 each — attributable to ACL
+            Decision accuracy is 8.3pp lower at n=360 each — attributable to ANF
             surfacing different signals more prominently, a design tradeoff
             documented in the{' '}
             <a href={ACL_BENCH} target="_blank" rel="noreferrer" style={{ color: t.accent.teal }}>
@@ -182,14 +179,14 @@ export default function AclPage() {
         </motion.div>
       </section>
 
-      {/* What an ACL document looks like */}
+      {/* What an ANF document looks like */}
       <section style={{ padding: '20px 24px 80px', maxWidth: 1100, margin: '0 auto' }}>
         <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
           <h2 style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 28, fontWeight: 700, color: t.text.primary, margin: '0 0 8px' }}>
             What the agent actually sees
           </h2>
           <p style={{ fontSize: 14, color: t.text.secondary, margin: '0 0 20px' }}>
-            A real ACL document for a 5-pod K8s namespace — 145 tokens, 132× smaller than the kubectl JSON equivalent.
+            A real ANF document for a 5-pod K8s namespace — 145 tokens, 132× smaller than the kubectl JSON equivalent.
           </p>
           <pre
             style={{
@@ -215,7 +212,7 @@ export default function AclPage() {
         <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
           <h2 style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 28, fontWeight: 700, color: t.text.primary, margin: '0 0 8px' }}>
             <Terminal size={24} style={{ display: 'inline', verticalAlign: '-3px', marginRight: 8, color: t.accent.teal }} />
-            Try it in 30 seconds
+            How it's used today
           </h2>
           <pre
             style={{
@@ -231,16 +228,14 @@ export default function AclPage() {
               margin: 0,
             }}
           >
-            <code>{`git clone https://github.com/Clawdlinux/ninevigil-acp
-cd ninevigil-acp
-make build-acl
+            <code>{`import (
+    "github.com/Clawdlinux/agent-contract-protocol/pkg/anf"
+    k8stranslator "github.com/Clawdlinux/agent-contract-protocol/translators/kubernetes"
+)
 
-# Compress a real OpenAPI spec
-bin/acl tokens pkg/aclhttp/testdata/petstore.json
-# tokens:   1492  (cl100k_base)
-
-bin/acl encode openapi pkg/aclhttp/testdata/petstore.json | bin/acl tokens -
-# tokens:   201   (cl100k_base)`}</code>
+doc := k8stranslator.Translate(namespaceView, time.Now())
+anf.Encode(os.Stdout, doc)
+// -> ANF document, ~145 tokens for a 5-pod namespace`}</code>
           </pre>
         </motion.div>
       </section>

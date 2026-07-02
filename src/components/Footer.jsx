@@ -235,7 +235,7 @@ export default function Footer() {
                 className="text-xs"
                 style={{ color: currentTheme.text.muted, fontFamily: "'DM Sans', sans-serif" }}
               >
-                NineVigil · Apache 2.0 · Clawdlinux
+                NineVigil · Open Source · Clawdlinux
               </p>
 
               {/* GitHub only */}
@@ -391,7 +391,7 @@ export default function Footer() {
               className="text-xs text-center sm:text-left"
               style={{ color: currentTheme.text.muted, fontFamily: "'DM Sans', sans-serif" }}
             >
-              &copy; {new Date().getFullYear()} NineVigil · Clawdlinux · Apache 2.0
+              &copy; {new Date().getFullYear()} NineVigil · Clawdlinux
             </p>
             <div className="flex items-center gap-5">
               {[
