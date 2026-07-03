@@ -466,7 +466,9 @@ open http://localhost:3000`}</pre>
           </p>
         </div>
         <a
-          href="mailto:team@clawdlinux.org?subject=Audit%20pilot"
+          href="https://github.com/Clawdlinux/agentic-operator-core/issues"
+          target="_blank"
+          rel="noreferrer"
           style={{
             display: 'inline-flex',
             alignItems: 'center',
