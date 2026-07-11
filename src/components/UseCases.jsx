@@ -259,7 +259,7 @@ export default function UseCases() {
                 backgroundClip: "text",
               }}
             >
-              NineVigil Operator
+              Clawdlinux Operator
             </span>
           </h2>
         </motion.div>
