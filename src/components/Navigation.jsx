@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Menu, X, Star } from 'lucide-react';
 import { useTheme } from '../hooks/useTheme';
 import ThemeToggle from './ThemeToggle';
+import ClawdlinuxLogo from '../brand/ClawdlinuxLogo';
 
 const NAV_LINKS = [
   { label: 'Home', to: '/' },
@@ -20,7 +21,7 @@ export default function Navigation() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { scrollY } = useScroll();
-  const { currentTheme } = useTheme();
+  const { currentTheme, theme } = useTheme();
 
   const bgOpacity = useTransform(scrollY, [0, 50], [0, 1]);
 
@@ -58,12 +59,8 @@ export default function Navigation() {
             className="flex items-center gap-2.5 group"
             style={{ textDecoration: 'none' }}
           >
-            <div className="relative">
-              <img
-                src="/ninevigil-logo.svg"
-                alt="NineVigil"
-                className="w-8 h-8 transition-transform duration-300 group-hover:rotate-12 rounded-lg"
-              />
+            <div className="relative transition-transform duration-300 group-hover:rotate-6">
+              <ClawdlinuxLogo variant="mark" mode={theme === 'light' ? 'light' : 'dark'} height={30} title="Clawdlinux" />
             </div>
             <span
               className="font-semibold text-lg tracking-tight transition-colors duration-300"

@@ -83,7 +83,7 @@ export default function HomePage() {
               whileHover={{ y: -1 }}
             >
               <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: theme === 'dark' ? '#60a5fa' : '#2563eb' }} />
-              NineVigil · Regulated AI Agent Controls
+              Clawdlinux · Regulated AI Agent Controls
             </motion.div>
           </motion.div>
 
@@ -242,11 +242,11 @@ export default function HomePage() {
               Put regulated controls around your agents.
             </motion.h2>
             <motion.p variants={itemVariants} className="text-base sm:text-lg mb-8" style={{ fontFamily: "'DM Sans', sans-serif", color: t.text.tertiary, lineHeight: 1.65, maxWidth: 760 }}>
-              Evaluate NineVigil controls, ANF, or both against a real regulated workload. Start with the smallest useful pilot.
+              Evaluate Clawdlinux controls, ANF, or both against a real regulated workload. Start with the smallest useful pilot.
             </motion.p>
             <motion.div variants={itemVariants} className="flex gap-3 flex-wrap">
               <motion.div whileHover={{ y: -2, scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                <a href="mailto:007ssancheti@gmail.com?subject=NineVigil%20production%20pilot" className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold" style={{ background: `linear-gradient(135deg, ${t.accent.teal} 0%, #2563EB 100%)`, color: '#03231d', fontFamily: "'DM Sans', sans-serif", textDecoration: 'none' }}>
+                <a href="mailto:007ssancheti@gmail.com?subject=Clawdlinux%20production%20pilot" className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold" style={{ background: `linear-gradient(135deg, ${t.accent.teal} 0%, #2563EB 100%)`, color: '#03231d', fontFamily: "'DM Sans', sans-serif", textDecoration: 'none' }}>
                   <Mail size={16} /> Contact
                 </a>
               </motion.div>

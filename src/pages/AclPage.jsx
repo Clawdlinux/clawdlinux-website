@@ -48,7 +48,7 @@ const FRONTIER_ROWS = [
 ];
 
 const ACL_DOC_EXAMPLE = `@ns payments
-@source ninevigil/k8s-translator:0.1.0
+@source clawdlinux/k8s-translator:0.1.0
 
 pods 5
   api-7f4b8c-x7w9 ready=1/1 node=node-2
@@ -212,7 +212,7 @@ export default function AclPage() {
         <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
           <h2 style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 28, fontWeight: 700, color: t.text.primary, margin: '0 0 8px' }}>
             <Terminal size={24} style={{ display: 'inline', verticalAlign: '-3px', marginRight: 8, color: t.accent.teal }} />
-            How it's used today
+            How it&apos;s used today
           </h2>
           <pre
             style={{

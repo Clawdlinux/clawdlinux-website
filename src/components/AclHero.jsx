@@ -25,7 +25,7 @@ const RAW_JSON = `{
 }`;
 
 const ACL_OUTPUT = `@ns payments
-@source ninevigil/k8s-translator:0.1.0
+@source clawdlinux/k8s-translator:0.1.0
 
 pods 5
   api-7f4b8c-x7w9  ready=1/1 node=node-2

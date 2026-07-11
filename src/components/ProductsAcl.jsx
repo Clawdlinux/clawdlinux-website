@@ -16,7 +16,7 @@ const PRODUCTS = [
   {
     badge: 'PRODUCT 01',
     icon: Boxes,
-    name: 'NineVigil Operator',
+    name: 'Clawdlinux Operator',
     tag: 'Control agents in Kubernetes',
     summary:
       'Regulated control layer for agent workloads. gVisor injection, Cilium policy, OPA guardrails, audit trails, and per-tenant budgets.',
@@ -132,7 +132,7 @@ export default function ProductsAcl() {
             lineHeight: 1.6,
           }}
         >
-          NineVigil ships the controls layer and the data compression layer for
+          Clawdlinux ships the controls layer and the data compression layer for
           production AI agents in regulated environments.
         </p>
       </motion.div>
