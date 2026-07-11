@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle2, XCircle, Zap, AlertTriangle } from 'lucide-react';
+import { CheckCircle2, Zap, Layers } from 'lucide-react';
 import { useTheme } from '../hooks/useTheme';
 
 const Comparison = () => {
@@ -34,42 +34,39 @@ const Comparison = () => {
     },
   };
 
-  const features = [
+  const capabilities = [
     {
       name: 'Runtime Isolation',
-      agentic: 'gVisor RuntimeClass injection for labeled pods',
-      kagent: 'Base runtime and tool orchestration',
-      agenticWins: true,
       description: 'Syscall-level boundary for regulated workloads',
+      clawdlinux: 'gVisor RuntimeClass injection for labeled pods',
     },
     {
       name: 'Cost Attribution',
-      agentic: 'Per-workload cost tracking and budget controls',
-      kagent: 'Runtime-level usage visibility',
-      agenticWins: true,
       description: 'Chargeback to business units',
+      clawdlinux: 'Per-workload cost tracking and budget controls',
     },
     {
       name: 'Audit Evidence',
-      agentic: 'Tamper-evident action ledger',
-      kagent: 'OpenTelemetry hooks',
-      agenticWins: true,
       description: 'SOC 2 and regulator response',
+      clawdlinux: 'Tamper-evident action ledger',
     },
     {
       name: 'Context Compression',
-      agentic: 'ACP wrapper for MCP tool discovery',
-      kagent: 'Native MCP support',
-      agenticWins: true,
       description: 'Lower prompt cost for tool-heavy installs',
+      clawdlinux: 'ACP wrapper for MCP tool discovery',
     },
     {
       name: 'Deployment Model',
-      agentic: 'Self-hosted controls and air-gapped path',
-      kagent: 'CNCF base runtime',
-      agenticWins: true,
-      description: 'Use both where it makes sense',
+      description: 'Air-gapped and offline-first',
+      clawdlinux: 'Self-hosted controls with zero-egress path',
     },
+  ];
+
+  const runtimes = [
+    { name: 'Clawdlinux AgentWorkload', supported: true },
+    { name: 'CNCF agent runtimes (kagent, etc.)', supported: true },
+    { name: 'Custom agent pods', supported: true },
+    { name: 'Kubeflow pipelines', supported: true },
   ];
 
   return (
@@ -96,9 +93,9 @@ const Comparison = () => {
               border: `1px solid ${currentTheme.accent.teal}66`,
             }}
           >
-            <Zap size={16} style={{ color: currentTheme.accent.teal }} />
+            <Layers size={16} style={{ color: currentTheme.accent.teal }} />
             <span className="text-sm font-semibold" style={{ color: currentTheme.accent.teal }}>
-              NineVigil with kagent
+              Runtime + Controls
             </span>
           </div>
           <h2
@@ -118,11 +115,11 @@ const Comparison = () => {
             </span>
           </h2>
           <p className="text-lg max-w-2xl mx-auto" style={{ color: currentTheme.text.tertiary }}>
-            kagent is a strong base runtime. NineVigil adds the regulated controls around it.
+            Clawdlinux is a governance plane. It adds regulated controls around any Kubernetes agent runtime.
           </p>
         </motion.div>
 
-        {/* Comparison Table */}
+        {/* Capabilities */}
         <motion.div
           className="space-y-4 mb-12"
           initial="hidden"
@@ -130,85 +127,44 @@ const Comparison = () => {
           viewport={{ once: true, amount: 0.2 }}
           variants={containerVariants}
         >
-          {/* Header Row */}
-          <motion.div
-            className="grid grid-cols-[1fr_1fr_1fr] gap-6 mb-6 px-6 py-4 rounded-lg"
-            style={{
-              backgroundColor: `${currentTheme.bg.secondary}CC`,
-              border: `1px solid ${currentTheme.border.light}`,
-            }}
+          <motion.h3
+            className="text-xl font-bold mb-6 px-2"
+            style={{ color: currentTheme.text.primary }}
             variants={itemVariants}
           >
-            <div className="font-semibold text-sm" style={{ color: currentTheme.text.tertiary }}>
-              Capability
-            </div>
-            <div className="text-center">
-              <div className="font-bold text-base" style={{ color: currentTheme.accent.teal }}>
-                NineVigil
-              </div>
-              <div className="text-xs mt-1" style={{ color: currentTheme.text.muted }}>
-                Apache 2.0 · Zero-egress
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="font-bold text-base" style={{ color: currentTheme.text.tertiary }}>
-                kagent
-              </div>
-              <div className="text-xs mt-1" style={{ color: currentTheme.text.muted }}>
-                CNCF Sandbox · Base runtime
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Feature Rows */}
-          {features.map((feature, idx) => (
+            What Clawdlinux adds
+          </motion.h3>
+          {capabilities.map((cap, idx) => (
             <motion.div
               key={idx}
-              className="grid grid-cols-[1fr_1fr_1fr] gap-6 px-6 py-5 rounded-lg transition-colors duration-200"
+              className="flex items-start gap-4 px-6 py-5 rounded-lg transition-colors duration-200"
               style={{
                 background: `linear-gradient(to right, ${currentTheme.bg.secondary}99, ${currentTheme.bg.secondary}66)`,
                 border: `1px solid ${currentTheme.border.light}`,
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = currentTheme.border.medium;
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = currentTheme.border.light;
-              }}
+              onMouseEnter={(e) => { e.currentTarget.style.borderColor = currentTheme.border.medium; }}
+              onMouseLeave={(e) => { e.currentTarget.style.borderColor = currentTheme.border.light; }}
               variants={itemVariants}
             >
-              {/* Feature Name */}
+              <CheckCircle2 size={20} className="flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent.teal }} />
               <div>
                 <div className="font-semibold text-sm" style={{ color: currentTheme.text.primary }}>
-                  {feature.name}
+                  {cap.name}
                 </div>
-                <div className="text-xs mt-1.5" style={{ color: currentTheme.text.muted }}>
-                  {feature.description}
+                <div className="text-sm mt-1" style={{ color: currentTheme.text.secondary }}>
+                  {cap.clawdlinux}
                 </div>
-              </div>
-
-              {/* Agentic Column */}
-              <div className="flex items-center gap-3">
-                <CheckCircle2 size={20} className="flex-shrink-0" style={{ color: currentTheme.accent.teal }} />
-                <span className="text-sm" style={{ color: currentTheme.text.primary }}>
-                  {feature.agentic}
-                </span>
-              </div>
-
-              {/* kagent Column */}
-              <div className="flex items-center gap-3">
-                <XCircle size={20} className="flex-shrink-0" style={{ color: currentTheme.text.tertiary }} />
-                <span className="text-sm" style={{ color: currentTheme.text.tertiary }}>
-                  {feature.kagent}
-                </span>
+                <div className="text-xs mt-1" style={{ color: currentTheme.text.muted }}>
+                  {cap.description}
+                </div>
               </div>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Context callout */}
+        {/* Compatible runtimes */}
         <motion.div
-          className="mb-12 px-6 py-5 rounded-xl"
+          className="mb-12 px-6 py-6 rounded-xl"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
@@ -221,14 +177,23 @@ const Comparison = () => {
             border: `1px solid ${currentTheme.accent.teal}33`,
           }}
         >
-          <div className="flex items-start gap-3">
-            <AlertTriangle size={18} className="flex-shrink-0 mt-0.5" style={{ color: currentTheme.accent.teal }} />
-            <p className="text-sm leading-relaxed" style={{ color: currentTheme.text.tertiary }}>
-              <span className="font-semibold" style={{ color: currentTheme.text.primary }}>kagent validates the base layer.</span>{' '}
-              NineVigil moves up the stack. We focus on sandboxing, audit, spend controls, and ACP for regulated installs.{' '}
-              <span className="font-semibold" style={{ color: currentTheme.accent.teal }}>Use the CNCF runtime. Own the controls.</span>
-            </p>
+          <div className="flex items-center gap-2 mb-4">
+            <Zap size={16} style={{ color: currentTheme.accent.teal }} />
+            <span className="font-semibold text-sm" style={{ color: currentTheme.text.primary }}>
+              Compatible agent runtimes
+            </span>
           </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {runtimes.map((rt, idx) => (
+              <div key={idx} className="flex items-center gap-2">
+                <CheckCircle2 size={16} style={{ color: currentTheme.accent.teal }} />
+                <span className="text-sm" style={{ color: currentTheme.text.secondary }}>{rt.name}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-xs mt-4" style={{ color: currentTheme.text.muted }}>
+            The runtime handles agent lifecycle and tools. Clawdlinux handles multi-tenancy, audit, spend, and air-gapped compliance. Use both.
+          </p>
         </motion.div>
 
         {/* CTA Section */}

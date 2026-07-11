@@ -8,7 +8,7 @@ const USE_CASES = [
   'Add gVisor isolation to agent pods without forking the runtime.',
   'Know exactly what every agent costs per team, per workload, per month.',
   'Keep audit trails for every action, approval, and model call.',
-  'Use built-in AgentWorkload or wrap kagent-managed pods with controls.',
+  'Label any agent pod for gVisor injection, egress policy, and audit controls.',
   'One Helm chart. Policy, sandbox, audit, and FinOps. Apache 2.0.',
 ];
 
@@ -434,7 +434,7 @@ export default function Hero() {
               color: currentTheme.text.muted,
             }}
           >
-            Apache 2.0 · kagent-compatible · gVisor injection · Cilium egress guardrails
+            Apache 2.0 · Runtime-neutral · gVisor injection · Cilium egress guardrails
           </span>
         </motion.div>
 
