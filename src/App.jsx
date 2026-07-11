@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useTheme } from './hooks/useTheme';
 
 import Navigation from './components/Navigation';
@@ -10,10 +11,13 @@ import ProductsPage from './pages/ProductsPage';
 import OperatorPage from './pages/OperatorPage';
 import AclPage from './pages/AclPage';
 import AuditPage from './pages/AuditPage';
+import BrandStudioPage from './pages/BrandStudioPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 export default function App() {
   const { currentTheme } = useTheme();
+  const location = useLocation();
+  const isBrandStudio = import.meta.env.DEV && location.pathname === '/brand-studio';
 
   return (
     <div
@@ -25,8 +29,8 @@ export default function App() {
         transition: 'background-color 300ms ease-in-out',
       }}
     >
-      <Navigation />
-      <LegacyHashRedirect />
+      {!isBrandStudio && <Navigation />}
+      {!isBrandStudio && <LegacyHashRedirect />}
 
       <main>
         <Routes>
@@ -35,11 +39,12 @@ export default function App() {
           <Route path="/products/operator" element={<OperatorPage />} />
           <Route path="/products/acl" element={<AclPage />} />
           <Route path="/products/audit" element={<AuditPage />} />
+          {import.meta.env.DEV && <Route path="/brand-studio" element={<BrandStudioPage />} />}
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
 
-      <Footer />
+      {!isBrandStudio && <Footer />}
     </div>
   );
 }
