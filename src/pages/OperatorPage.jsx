@@ -46,7 +46,7 @@ export default function OperatorPage() {
             onMouseLeave={(e) => (e.currentTarget.style.color = t.text.secondary)}
           >
             <ArrowLeft size={14} />
-            Products / Agentic Operator
+            Products / Operator
           </Link>
         </motion.div>
       </div>
