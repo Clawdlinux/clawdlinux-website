@@ -246,6 +246,76 @@ function standeeSVG(w, h) {
 </svg>`;
 }
 
+// ── Community sticker scene: a dev running a governed agent ──
+// Flat vector illustration: a running developer holds a policy leash on an
+// agent robot that stays inside a dashed governance zone. Wordmark bottom-right.
+function personRunning(tx, ty, s, color) {
+  const limbs = [
+    'M0 0 L18 -70', // torso, leaning into the run
+    'M18 -62 L-16 -72', // back arm pumping
+    'M18 -62 L48 -50 L74 -60', // front arm to leash hand
+    'M0 0 L32 38 L58 64', // front leg planted
+    'M0 0 L-24 32 L-26 68', // back leg lifting
+  ]
+    .map((d) => `<path d="${d}" />`)
+    .join('');
+  const svg = `<g transform="translate(${tx} ${ty}) scale(${s})" fill="none" stroke="${color}" stroke-width="13" stroke-linecap="round" stroke-linejoin="round">${limbs}<circle cx="26" cy="-90" r="20" fill="${color}" stroke="none" /></g>`;
+  return { svg, hand: { x: tx + 74 * s, y: ty - 60 * s } };
+}
+
+function agentRobot(tx, ty, s, body, accent) {
+  const svg = `<g transform="translate(${tx} ${ty}) scale(${s})">
+    <line x1="0" y1="-104" x2="0" y2="-126" stroke="${accent}" stroke-width="6" stroke-linecap="round" />
+    <circle cx="0" cy="-130" r="7" fill="${accent}" />
+    <rect x="-38" y="-104" width="76" height="58" rx="16" fill="${body}" />
+    <circle cx="-14" cy="-76" r="8" fill="${accent}" />
+    <circle cx="14" cy="-76" r="8" fill="${accent}" />
+    <rect x="-44" y="-44" width="88" height="68" rx="18" fill="${body}" />
+    <path d="M26 -24 A15 15 0 1 0 26 6" fill="none" stroke="${accent}" stroke-width="7" stroke-linecap="round" />
+    <path d="M-18 24 L-22 50" stroke="${body}" stroke-width="15" stroke-linecap="round" />
+    <path d="M18 24 L26 48" stroke="${body}" stroke-width="15" stroke-linecap="round" />
+  </g>`;
+  return { svg, collar: { x: tx, y: ty - 104 * s } };
+}
+
+function devStickerSVG(size, opts) {
+  const p = PALETTES.dark;
+  const rx = Math.round(size * 0.16);
+  const capFs = Math.round(size * 0.072);
+  const cap1 = glyphRun(spaceGrotesk, opts.l1, capFs, -1);
+  const cap2 = glyphRun(spaceGrotesk, opts.l2, capFs, -1);
+  const ground = size * 0.73;
+  const ds = size / 600;
+  const rs = size / 560;
+  const dev = personRunning(size * 0.3, ground - 64 * ds, ds, p.primary);
+  const botX = size * 0.66;
+  const botTy = ground - 46 * rs;
+  const bot = agentRobot(botX, botTy, rs, '#334155', p.accent);
+  // Governance zone around the agent
+  const zx = botX - 62 * rs;
+  const zy = botTy - 140 * rs;
+  const zw = 124 * rs;
+  const zh = 196 * rs;
+  const leash = `<path d="M${dev.hand.x.toFixed(1)} ${dev.hand.y.toFixed(1)} Q ${((dev.hand.x + bot.collar.x) / 2).toFixed(1)} ${(Math.min(dev.hand.y, bot.collar.y) - 46).toFixed(1)} ${bot.collar.x.toFixed(1)} ${bot.collar.y.toFixed(1)}" fill="none" stroke="${p.accent}" stroke-width="4" stroke-dasharray="1 9" stroke-linecap="round" />`;
+  const tag = glyphRun(spaceGrotesk, 'policy', Math.round(size * 0.026), 0);
+  const wmScale = (size * 0.34) / 360;
+  const wmX = size - size * 0.04 - 360 * wmScale;
+  const wmY = size - size * 0.04 - 96 * wmScale;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}">
+  <rect width="${size}" height="${size}" rx="${rx}" fill="${p.background}" />
+  <rect x="7" y="7" width="${size - 14}" height="${size - 14}" rx="${rx - 7}" fill="none" stroke="${p.accent}" stroke-opacity="0.22" stroke-width="4" />
+  ${textGroup(cap1, p.primary, (size - cap1.width) / 2, size * 0.17)}
+  ${textGroup(cap2, p.accent, (size - cap2.width) / 2, size * 0.265)}
+  <rect x="${zx.toFixed(1)}" y="${zy.toFixed(1)}" width="${zw.toFixed(1)}" height="${zh.toFixed(1)}" rx="22" fill="${p.accent}" fill-opacity="0.05" stroke="${p.accent}" stroke-opacity="0.55" stroke-width="3" stroke-dasharray="10 10" />
+  ${textGroup(tag, p.accent, zx + 14, zy - 10)}
+  <line x1="${(size * 0.14).toFixed(1)}" y1="${ground.toFixed(1)}" x2="${(size * 0.86).toFixed(1)}" y2="${ground.toFixed(1)}" stroke="${p.primary}" stroke-opacity="0.18" stroke-width="4" stroke-linecap="round" />
+  ${dev.svg}
+  ${leash}
+  ${bot.svg}
+  <g transform="translate(${wmX.toFixed(1)} ${wmY.toFixed(1)}) scale(${wmScale})">${wordmarkInner('dark')}</g>
+</svg>`;
+}
+
 // ── Emit ──
 async function png(svg, out, width) {
   const buf = Buffer.from(svg);
@@ -285,6 +355,16 @@ async function main() {
 
   // Standee (portrait, print-friendly resolution)
   await png(standeeSVG(1200, 2400), join(brandDir, 'standee-1200x2400.png'), 1200);
+
+  // Community stickers (sarcastic, dev-friendly scenes)
+  const devStickers = [
+    { name: 'sticker-ship-agents', l1: 'SHIP AGENTS,', l2: 'NOT INCIDENTS' },
+    { name: 'sticker-curfew', l1: 'MY AGENT HAS', l2: 'A CURFEW' },
+    { name: 'sticker-sandbox', l1: 'IT WORKED IN', l2: 'THE SANDBOX' },
+  ];
+  for (const s of devStickers) {
+    await png(devStickerSVG(1024, s), join(brandDir, `${s.name}-1024.png`), 1024);
+  }
 
   console.log('\ndone');
 }
