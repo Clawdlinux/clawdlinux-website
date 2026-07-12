@@ -13,10 +13,14 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import opentype from 'opentype.js';
 import sharp from 'sharp';
+import QRCode from 'qrcode';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const pub = join(root, 'public');
 const brandDir = join(pub, 'brand');
+
+// Waitlist / early-access signup embedded as a QR on print assets.
+const WAITLIST_URL = 'https://forms.gle/hPQwrtin2gYCeNDy5';
 
 const loadFont = (p) => {
   const b = readFileSync(join(root, p));
@@ -74,6 +78,48 @@ function textGroup(run, fill, tx, ty) {
   return `<g fill="${fill}" transform="translate(${tx} ${ty})">${inner}</g>`;
 }
 
+// Horizontally centred line of outlined text.
+function centerText(font, text, fontSize, letterSpacing, fill, w, y) {
+  const run = glyphRun(font, text, fontSize, letterSpacing);
+  return textGroup(run, fill, (w - run.width) / 2, y);
+}
+
+// Centred bullet line: accent dot + label.
+function bulletLine(text, fontSize, fill, dotColor, w, y) {
+  const run = glyphRun(dmSans, text, fontSize, 0);
+  const r = fontSize * 0.16;
+  const gap = fontSize * 0.7;
+  const total = r * 2 + gap + run.width;
+  const startX = (w - total) / 2;
+  return `<circle cx="${(startX + r).toFixed(2)}" cy="${(y - fontSize * 0.32).toFixed(2)}" r="${r.toFixed(2)}" fill="${dotColor}" />${textGroup(run, fill, startX + r * 2 + gap, y)}`;
+}
+
+// QR code rendered as crisp vector modules on a rounded light card.
+function qrCard(text, x, y, size, opts = {}) {
+  const qr = QRCode.create(text, { errorCorrectionLevel: 'M' });
+  const n = qr.modules.size;
+  const data = qr.modules.data;
+  const quiet = opts.quiet ?? 3;
+  const total = n + quiet * 2;
+  const cell = size / total;
+  const fg = opts.fg ?? '#05080f';
+  const bg = opts.bg ?? '#ffffff';
+  const pad = opts.pad ?? size * 0.06;
+  const cardSize = size + pad * 2;
+  const radius = opts.radius ?? cardSize * 0.08;
+  let rects = '';
+  for (let r = 0; r < n; r++) {
+    for (let c = 0; c < n; c++) {
+      if (data[r * n + c]) {
+        const mx = x + pad + (c + quiet) * cell;
+        const my = y + pad + (r + quiet) * cell;
+        rects += `<rect x="${mx.toFixed(2)}" y="${my.toFixed(2)}" width="${(cell + 0.4).toFixed(2)}" height="${(cell + 0.4).toFixed(2)}" fill="${fg}" />`;
+      }
+    }
+  }
+  return `<rect x="${x.toFixed(2)}" y="${y.toFixed(2)}" width="${cardSize.toFixed(2)}" height="${cardSize.toFixed(2)}" rx="${radius.toFixed(2)}" fill="${bg}" />${rects}`;
+}
+
 // ── Wordmark lockup: mark + "clawd"(primary) + "linux"(accent) ──
 // Matches the component: baseline y=68, clawd@88, linux@226, 54px, tracking -2.4
 function wordmarkInner(mode) {
@@ -121,6 +167,7 @@ function canvasSVG(w, h) {
   const tag = glyphRun(dmSans, 'governance for AI agents on Kubernetes', Math.round(h * 0.045), 0);
   const tagX = (w - tag.width) / 2;
   const tagY = ty + lockH + h * 0.11;
+  const featY = tagY + h * 0.135;
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
   <defs>
     <radialGradient id="glow" cx="50%" cy="42%" r="60%">
@@ -132,6 +179,7 @@ function canvasSVG(w, h) {
   <rect width="${w}" height="${h}" fill="url(#glow)" />
   <g transform="translate(${tx} ${ty}) scale(${scale})">${inner}</g>
   ${textGroup(tag, '#94a3b8', tagX, tagY)}
+  ${centerText(dmSans, 'Auditable events  \u00b7  One brain for your company  \u00b7  Single shareable context soon', Math.round(h * 0.03), 0, '#64748b', w, featY)}
 </svg>`;
 }
 
@@ -162,32 +210,40 @@ function stickerMarkSVG(size) {
 </svg>`;
 }
 
-// ── Portrait standee: mark + wordmark + tagline + url ──
+// ── Portrait standee: mark + wordmark + tagline + features + QR + url ──
 function standeeSVG(w, h) {
   const p = PALETTES.dark;
-  const wordScale = (w * 0.72) / 360;
+  const wordScale = (w * 0.64) / 360;
   const lockW = 360 * wordScale;
   const wtx = (w - lockW) / 2;
-  const wty = h * 0.44;
-  const tag = glyphRun(dmSans, 'governance for AI agents on Kubernetes', Math.round(w * 0.045), 0);
-  const tagX = (w - tag.width) / 2;
-  const tagY = wty + 96 * wordScale + h * 0.06;
-  const url = glyphRun(spaceGrotesk, 'clawdlinux.org', Math.round(w * 0.05), -1);
-  const urlX = (w - url.width) / 2;
-  const urlY = h * 0.9;
+  const wty = h * 0.27;
+  const fFs = Math.round(w * 0.033);
+  const qrModule = w * 0.34;
+  const qrPad = qrModule * 0.06;
+  const qrCardW = qrModule + qrPad * 2;
+  const qrX = (w - qrCardW) / 2;
+  const qrY = h * 0.63;
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
   <defs>
-    <radialGradient id="g2" cx="50%" cy="30%" r="55%">
+    <radialGradient id="g2" cx="50%" cy="22%" r="55%">
       <stop offset="0%" stop-color="${p.accent}" stop-opacity="0.2" />
       <stop offset="100%" stop-color="${p.accent}" stop-opacity="0" />
     </radialGradient>
   </defs>
   <rect width="${w}" height="${h}" fill="${p.background}" />
   <rect width="${w}" height="${h}" fill="url(#g2)" />
-  ${placeMark(p.accent, w / 2, h * 0.24, (w * 0.4) / 96)}
+  ${centerText(spaceGrotesk, 'OPEN SOURCE   \u00b7   APACHE 2.0', Math.round(w * 0.024), 6, p.accent, w, h * 0.085)}
+  ${placeMark(p.accent, w / 2, h * 0.185, (w * 0.26) / 96)}
   <g transform="translate(${wtx} ${wty}) scale(${wordScale})">${wordmarkInner('dark')}</g>
-  ${textGroup(tag, '#94a3b8', tagX, tagY)}
-  ${textGroup(url, p.accent, urlX, urlY)}
+  ${centerText(dmSans, 'governance for AI agents on Kubernetes', Math.round(w * 0.038), 0, '#94a3b8', w, h * 0.365)}
+  <rect x="${(w / 2 - 150).toFixed(2)}" y="${(h * 0.4).toFixed(2)}" width="300" height="2" fill="${p.accent}" opacity="0.35" />
+  ${bulletLine('Auditable events for every agent action', fFs, '#cbd5e1', p.accent, w, h * 0.455)}
+  ${bulletLine('One brain for your entire company', fFs, '#cbd5e1', p.accent, w, h * 0.485)}
+  ${bulletLine('Coming soon: single shareable context', fFs, '#cbd5e1', p.accent, w, h * 0.515)}
+  ${centerText(spaceGrotesk, 'Scan to join the waitlist', Math.round(w * 0.036), -0.5, p.accent, w, h * 0.6)}
+  ${qrCard(WAITLIST_URL, qrX, qrY, qrModule)}
+  ${centerText(dmSans, 'Early access to Clawdlinux', Math.round(w * 0.026), 0, '#94a3b8', w, h * 0.865)}
+  ${centerText(spaceGrotesk, 'clawdlinux.org', Math.round(w * 0.05), -1, p.accent, w, h * 0.93)}
 </svg>`;
 }
 
