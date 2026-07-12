@@ -252,19 +252,52 @@ function standeeSVG(w, h) {
 // ── Community stickers: distinct sarcastic scenes ──
 // Each scene matches its slogan (ship it, curfew, sandbox). Shared frame:
 // dark badge, two-line caption, wordmark bottom-right.
-function agentRobot(tx, ty, s, body, accent) {
+function softHalo(id, cx, cy, r, color) {
+  return `<radialGradient id="${id}" cx="${cx}" cy="${cy}" r="${r}" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="${color}" stop-opacity="0.28" /><stop offset="100%" stop-color="${color}" stop-opacity="0" /></radialGradient>`;
+}
+
+function groundShadow(cx, cy, rx) {
+  return `<ellipse cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" rx="${rx.toFixed(1)}" ry="${(rx * 0.22).toFixed(1)}" fill="#000000" opacity="0.28" />`;
+}
+
+// Mascot robot with a screen-visor face, expression, and posable arms.
+function agentRobot(tx, ty, s, body, accent, opts = {}) {
+  const belly = '#a7b3c6';
+  const visor = '#0e1a30';
+  const ink = '#12203a';
+  const expr = opts.expr || 'smile';
+  const arms = opts.arms || 'rest';
+  const mouths = {
+    smile: `<path d="M-9 -57 Q0 -49 9 -57" fill="none" stroke="${ink}" stroke-width="4" stroke-linecap="round" />`,
+    grin: `<path d="M-11 -59 Q0 -47 11 -59 Z" fill="${ink}" />`,
+    flat: `<path d="M-8 -55 L8 -55" stroke="${ink}" stroke-width="4" stroke-linecap="round" />`,
+    sleepy: `<path d="M-7 -55 Q0 -51 7 -55" fill="none" stroke="${ink}" stroke-width="4" stroke-linecap="round" />`,
+  };
+  const armSets = {
+    rest: `<path d="M-46 -16 q-18 6 -20 24" fill="none" stroke="${body}" stroke-width="16" stroke-linecap="round" /><path d="M46 -16 q18 6 20 24" fill="none" stroke="${body}" stroke-width="16" stroke-linecap="round" />`,
+    up: `<path d="M-44 -20 q-22 -8 -28 -30" fill="none" stroke="${body}" stroke-width="16" stroke-linecap="round" /><path d="M44 -20 q22 -8 28 -30" fill="none" stroke="${body}" stroke-width="16" stroke-linecap="round" />`,
+    grip: `<path d="M-40 -22 q-10 -20 -8 -42" fill="none" stroke="${body}" stroke-width="16" stroke-linecap="round" /><path d="M40 -22 q10 -20 8 -42" fill="none" stroke="${body}" stroke-width="16" stroke-linecap="round" />`,
+  };
+  const eyeOpen = expr === 'sleepy'
+    ? `<path d="M-20 -83 q5 4 10 0" fill="none" stroke="${accent}" stroke-width="4" stroke-linecap="round" /><path d="M10 -83 q5 4 10 0" fill="none" stroke="${accent}" stroke-width="4" stroke-linecap="round" />`
+    : `<circle cx="-15" cy="-83" r="6.5" fill="${accent}" /><circle cx="15" cy="-83" r="6.5" fill="${accent}" /><circle cx="-13" cy="-85" r="2.4" fill="#ffffff" /><circle cx="17" cy="-85" r="2.4" fill="#ffffff" />`;
   const svg = `<g transform="translate(${tx} ${ty}) scale(${s})">
-    <line x1="0" y1="-104" x2="0" y2="-126" stroke="${accent}" stroke-width="6" stroke-linecap="round" />
-    <circle cx="0" cy="-130" r="7" fill="${accent}" />
-    <rect x="-38" y="-104" width="76" height="58" rx="16" fill="${body}" />
-    <circle cx="-14" cy="-76" r="8" fill="${accent}" />
-    <circle cx="14" cy="-76" r="8" fill="${accent}" />
-    <rect x="-44" y="-44" width="88" height="68" rx="18" fill="${body}" />
-    <path d="M26 -24 A15 15 0 1 0 26 6" fill="none" stroke="${accent}" stroke-width="7" stroke-linecap="round" />
-    <path d="M-18 24 L-22 50" stroke="${body}" stroke-width="15" stroke-linecap="round" />
-    <path d="M18 24 L26 48" stroke="${body}" stroke-width="15" stroke-linecap="round" />
+    ${armSets[arms]}
+    <rect x="-46" y="-46" width="92" height="70" rx="20" fill="${body}" />
+    <rect x="-30" y="-34" width="60" height="46" rx="12" fill="${belly}" opacity="0.5" />
+    <path d="M24 -22 A15 15 0 1 0 24 8" fill="none" stroke="${accent}" stroke-width="7" stroke-linecap="round" />
+    <path d="M-20 24 L-24 50" stroke="${body}" stroke-width="16" stroke-linecap="round" />
+    <path d="M20 24 L28 48" stroke="${body}" stroke-width="16" stroke-linecap="round" />
+    <line x1="0" y1="-106" x2="0" y2="-130" stroke="#94a3b8" stroke-width="6" stroke-linecap="round" />
+    <circle cx="0" cy="-134" r="8" fill="${accent}" />
+    <rect x="-40" y="-108" width="80" height="62" rx="19" fill="${body}" />
+    <rect x="-28" y="-98" width="56" height="30" rx="13" fill="${visor}" />
+    ${eyeOpen}
+    <circle cx="-27" cy="-60" r="6" fill="${accent}" opacity="0.3" />
+    <circle cx="27" cy="-60" r="6" fill="${accent}" opacity="0.3" />
+    ${mouths[expr]}
   </g>`;
-  return { svg, collar: { x: tx, y: ty - 104 * s } };
+  return { svg, collar: { x: tx, y: ty - 106 * s } };
 }
 
 function stickerFrame(size, l1, l2, scene) {
@@ -301,11 +334,13 @@ function rocket(cx, cy, s) {
     <path d="M0 -96 C18 -78 26 -52 29 -34 L-29 -34 C-26 -52 -18 -78 0 -96 Z" fill="${a}" />
     <path d="M-24 26 L-50 72 L-24 60 Z" fill="${a}" />
     <path d="M24 26 L50 72 L24 60 Z" fill="${a}" />
-    <circle cx="0" cy="-6" r="21" fill="#05080f" />
+    <circle cx="0" cy="-6" r="21" fill="#0e1a30" />
     <circle cx="0" cy="-6" r="21" fill="none" stroke="${a}" stroke-width="4" />
-    <circle cx="-7" cy="-8" r="4.5" fill="${a}" />
-    <circle cx="7" cy="-8" r="4.5" fill="${a}" />
-    <path d="M-6 3 h12" stroke="${a}" stroke-width="3" stroke-linecap="round" />
+    <circle cx="-7" cy="-8" r="5" fill="${a}" />
+    <circle cx="7" cy="-8" r="5" fill="${a}" />
+    <circle cx="-5.5" cy="-9.5" r="1.7" fill="#ffffff" />
+    <circle cx="8.5" cy="-9.5" r="1.7" fill="#ffffff" />
+    <path d="M-6 2 Q0 8 6 2" fill="none" stroke="${a}" stroke-width="3" stroke-linecap="round" />
     <path d="M0 26 l15 5 v11 c0 11 -9 17 -15 20 c-6 -3 -15 -9 -15 -20 v-11 Z" fill="${a}" />
     <path d="M-6 42 l4 4 l9 -10" fill="none" stroke="#05080f" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
   </g>`;
@@ -326,17 +361,19 @@ function noIncident(cx, cy, s) {
 function shipStickerSVG(size) {
   const a = PALETTES.dark.accent;
   const scene =
+    `<defs>${softHalo('shipHalo', size * 0.57, size * 0.5, size * 0.34, a)}</defs>` +
+    `<circle cx="${(size * 0.57).toFixed(1)}" cy="${(size * 0.5).toFixed(1)}" r="${(size * 0.34).toFixed(1)}" fill="url(#shipHalo)" />` +
     sparkles(
       [
         [size * 0.3, size * 0.44, 4],
-        [size * 0.74, size * 0.42, 5],
-        [size * 0.8, size * 0.6, 3],
-        [size * 0.68, size * 0.72, 3],
+        [size * 0.78, size * 0.4, 5],
+        [size * 0.82, size * 0.58, 3],
+        [size * 0.7, size * 0.72, 3],
       ],
       a,
     ) +
-    rocket(size * 0.57, size * 0.56, size / 440) +
-    noIncident(size * 0.27, size * 0.66, size / 620);
+    rocket(size * 0.57, size * 0.55, size / 440) +
+    noIncident(size * 0.26, size * 0.66, size / 620);
   return stickerFrame(size, 'SHIP AGENTS,', 'NOT INCIDENTS', scene);
 }
 
@@ -360,23 +397,30 @@ function clockFace(cx, cy, r, color, accent) {
 
 function curfewStickerSVG(size) {
   const p = PALETTES.dark;
-  const rs = size / 500;
+  const rs = size / 520;
   const cx = size * 0.5;
-  const bot = agentRobot(cx, size * 0.74, rs, '#8a97ad', p.accent);
-  const bx0 = cx - size * 0.13;
-  const bx1 = cx + size * 0.13;
-  const bTop = size * 0.5;
-  const bBot = size * 0.8;
-  let bars = `<line x1="${bx0.toFixed(1)}" y1="${bTop}" x2="${bx1.toFixed(1)}" y2="${bTop}" stroke="#64748b" stroke-width="7" stroke-linecap="round" /><line x1="${bx0.toFixed(1)}" y1="${bBot}" x2="${bx1.toFixed(1)}" y2="${bBot}" stroke="#64748b" stroke-width="7" stroke-linecap="round" />`;
-  for (let x = bx0; x <= bx1 + 1; x += size * 0.052) {
-    bars += `<line x1="${x.toFixed(1)}" y1="${bTop}" x2="${x.toFixed(1)}" y2="${bBot}" stroke="#64748b" stroke-width="7" stroke-linecap="round" />`;
+  const groundY = size * 0.72;
+  const bot = agentRobot(cx, groundY, rs, '#8a97ad', p.accent, { expr: 'sleepy', arms: 'grip' });
+  const bx0 = cx - size * 0.14;
+  const bx1 = cx + size * 0.14;
+  const bTop = size * 0.46;
+  const bBot = size * 0.79;
+  let bars = `<line x1="${bx0.toFixed(1)}" y1="${bTop}" x2="${bx1.toFixed(1)}" y2="${bTop}" stroke="#5b6675" stroke-width="7" stroke-linecap="round" /><line x1="${bx0.toFixed(1)}" y1="${bBot}" x2="${bx1.toFixed(1)}" y2="${bBot}" stroke="#5b6675" stroke-width="7" stroke-linecap="round" />`;
+  for (let x = bx0; x <= bx1 + 1; x += size * 0.056) {
+    bars += `<line x1="${x.toFixed(1)}" y1="${bTop}" x2="${x.toFixed(1)}" y2="${bBot}" stroke="#5b6675" stroke-width="7" stroke-linecap="round" />`;
   }
+  const zzzRun = glyphRun(spaceGrotesk, 'z z', Math.round(size * 0.03), 1);
+  const zzz = textGroup(zzzRun, '#94a3b8', cx + size * 0.11, size * 0.5);
   const scene =
-    crescentMoon(size * 0.24, size * 0.4, size * 0.052, '#e2e8f0', p.background) +
-    sparkles([[size * 0.33, size * 0.34, 3], [size * 0.68, size * 0.34, 4], [size * 0.82, size * 0.46, 3]], '#e2e8f0') +
+    `<defs>${softHalo('curfewHalo', cx, size * 0.62, size * 0.3, p.accent)}</defs>` +
+    `<circle cx="${cx.toFixed(1)}" cy="${(size * 0.62).toFixed(1)}" r="${(size * 0.3).toFixed(1)}" fill="url(#curfewHalo)" />` +
+    crescentMoon(size * 0.23, size * 0.39, size * 0.052, '#e2e8f0', p.background) +
+    sparkles([[size * 0.32, size * 0.33, 3], [size * 0.69, size * 0.33, 4], [size * 0.82, size * 0.45, 3]], '#e2e8f0') +
+    groundShadow(cx, groundY + 54 * rs, size * 0.12) +
     bot.svg +
     bars +
-    clockFace(size * 0.76, size * 0.42, size * 0.058, '#94a3b8', p.accent);
+    zzz +
+    clockFace(size * 0.77, size * 0.4, size * 0.056, '#94a3b8', p.accent);
   return stickerFrame(size, 'MY AGENT HAS', 'A CURFEW', scene);
 }
 
@@ -386,14 +430,15 @@ function sandboxStickerSVG(size) {
   const rs = size / 500;
   const cx = size * 0.5;
   const sandTop = size * 0.6;
-  const bot = agentRobot(cx, sandTop - 4 * rs, rs, '#8a97ad', p.accent);
+  const bot = agentRobot(cx, sandTop - 4 * rs, rs, '#8a97ad', p.accent, { expr: 'grin', arms: 'up' });
   const sand = '#d6b98c';
   const sandDark = '#b8965f';
+  const halo = `<defs>${softHalo('sandHalo', cx, size * 0.46, size * 0.3, p.accent)}</defs><circle cx="${cx.toFixed(1)}" cy="${(size * 0.46).toFixed(1)}" r="${(size * 0.3).toFixed(1)}" fill="url(#sandHalo)" />`;
   const backRim = `<ellipse cx="${cx}" cy="${sandTop.toFixed(1)}" rx="${(size * 0.25).toFixed(1)}" ry="${(size * 0.05).toFixed(1)}" fill="${sandDark}" />`;
   const front = `<path d="M${(size * 0.25).toFixed(1)} ${(size * 0.82).toFixed(1)} L${(size * 0.3).toFixed(1)} ${sandTop.toFixed(1)} L${(size * 0.7).toFixed(1)} ${sandTop.toFixed(1)} L${(size * 0.75).toFixed(1)} ${(size * 0.82).toFixed(1)} Z" fill="${sand}" stroke="${sandDark}" stroke-width="4" stroke-linejoin="round" />`;
   const castle = `<g transform="translate(${(size * 0.58).toFixed(1)} ${(size * 0.7).toFixed(1)})"><rect x="0" y="0" width="46" height="34" rx="3" fill="${sandDark}" /><rect x="-3" y="-12" width="14" height="14" fill="${sandDark}" /><rect x="16" y="-16" width="14" height="18" fill="${sandDark}" /><rect x="35" y="-12" width="14" height="14" fill="${sandDark}" /><path d="M23 -16 l0 -12 l10 5 Z" fill="${p.accent}" /></g>`;
   const bucket = `<g transform="translate(${(size * 0.33).toFixed(1)} ${(size * 0.72).toFixed(1)})"><path d="M0 2 L30 2 L26 32 L4 32 Z" fill="${p.accent}" /><path d="M0 2 a15 5 0 0 1 30 0" fill="#1d4ed8" /><path d="M2 -2 a13 9 0 0 1 26 0" fill="none" stroke="#1d4ed8" stroke-width="3" /></g>`;
-  const scene = backRim + bot.svg + front + castle + bucket;
+  const scene = halo + backRim + bot.svg + front + castle + bucket;
   return stickerFrame(size, 'IT WORKED IN', 'THE SANDBOX', scene);
 }
 
