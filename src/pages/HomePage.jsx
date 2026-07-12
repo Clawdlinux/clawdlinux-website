@@ -246,7 +246,7 @@ export default function HomePage() {
             </motion.p>
             <motion.div variants={itemVariants} className="flex gap-3 flex-wrap">
               <motion.div whileHover={{ y: -2, scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                <a href="mailto:007ssancheti@gmail.com?subject=Clawdlinux%20production%20pilot" className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold" style={{ background: `linear-gradient(135deg, ${t.accent.teal} 0%, #2563EB 100%)`, color: '#03231d', fontFamily: "'DM Sans', sans-serif", textDecoration: 'none' }}>
+                <a href="https://forms.gle/hPQwrtin2gYCeNDy5" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold" style={{ background: `linear-gradient(135deg, ${t.accent.teal} 0%, #2563EB 100%)`, color: '#03231d', fontFamily: "'DM Sans', sans-serif", textDecoration: 'none' }}>
                   <Mail size={16} /> Contact
                 </a>
               </motion.div>

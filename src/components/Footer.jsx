@@ -362,7 +362,9 @@ export default function Footer() {
                 </li>
                 <li>
                   <a
-                    href="mailto:007ssancheti@gmail.com"
+                    href="https://forms.gle/hPQwrtin2gYCeNDy5"
+                    target="_blank"
+                    rel="noreferrer"
                     className="text-sm transition-colors duration-200"
                     style={{ color: currentTheme.text.tertiary, fontFamily: "'DM Sans', sans-serif", textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px' }}
                     onMouseEnter={(e) => { e.currentTarget.style.color = currentTheme.accent.teal; }}

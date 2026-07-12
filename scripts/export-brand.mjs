@@ -210,39 +210,38 @@ function stickerMarkSVG(size) {
 </svg>`;
 }
 
-// ── Portrait standee: mark + wordmark + tagline + features + QR + url ──
+// ── Portrait standee: single wordmark lockup + tagline + features + QR + url ──
 function standeeSVG(w, h) {
   const p = PALETTES.dark;
-  const wordScale = (w * 0.64) / 360;
+  const wordScale = (w * 0.82) / 360;
   const lockW = 360 * wordScale;
   const wtx = (w - lockW) / 2;
-  const wty = h * 0.27;
+  const wty = h * 0.2;
   const fFs = Math.round(w * 0.033);
   const qrModule = w * 0.34;
   const qrPad = qrModule * 0.06;
   const qrCardW = qrModule + qrPad * 2;
   const qrX = (w - qrCardW) / 2;
-  const qrY = h * 0.63;
+  const qrY = h * 0.635;
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
   <defs>
-    <radialGradient id="g2" cx="50%" cy="22%" r="55%">
+    <radialGradient id="g2" cx="50%" cy="20%" r="55%">
       <stop offset="0%" stop-color="${p.accent}" stop-opacity="0.2" />
       <stop offset="100%" stop-color="${p.accent}" stop-opacity="0" />
     </radialGradient>
   </defs>
   <rect width="${w}" height="${h}" fill="${p.background}" />
   <rect width="${w}" height="${h}" fill="url(#g2)" />
-  ${centerText(spaceGrotesk, 'OPEN SOURCE   \u00b7   APACHE 2.0', Math.round(w * 0.024), 6, p.accent, w, h * 0.085)}
-  ${placeMark(p.accent, w / 2, h * 0.185, (w * 0.26) / 96)}
+  ${centerText(spaceGrotesk, 'OPEN SOURCE   \u00b7   APACHE 2.0', Math.round(w * 0.024), 6, p.accent, w, h * 0.11)}
   <g transform="translate(${wtx} ${wty}) scale(${wordScale})">${wordmarkInner('dark')}</g>
-  ${centerText(dmSans, 'governance for AI agents on Kubernetes', Math.round(w * 0.038), 0, '#94a3b8', w, h * 0.365)}
-  <rect x="${(w / 2 - 150).toFixed(2)}" y="${(h * 0.4).toFixed(2)}" width="300" height="2" fill="${p.accent}" opacity="0.35" />
-  ${bulletLine('Auditable events for every agent action', fFs, '#cbd5e1', p.accent, w, h * 0.455)}
-  ${bulletLine('One brain for your entire company', fFs, '#cbd5e1', p.accent, w, h * 0.485)}
-  ${bulletLine('Coming soon: single shareable context', fFs, '#cbd5e1', p.accent, w, h * 0.515)}
-  ${centerText(spaceGrotesk, 'Scan to join the waitlist', Math.round(w * 0.036), -0.5, p.accent, w, h * 0.6)}
+  ${centerText(dmSans, 'governance for AI agents on Kubernetes', Math.round(w * 0.038), 0, '#94a3b8', w, h * 0.34)}
+  <rect x="${(w / 2 - 150).toFixed(2)}" y="${(h * 0.385).toFixed(2)}" width="300" height="2" fill="${p.accent}" opacity="0.35" />
+  ${bulletLine('Auditable events for every agent action', fFs, '#cbd5e1', p.accent, w, h * 0.45)}
+  ${bulletLine('One brain for your entire company', fFs, '#cbd5e1', p.accent, w, h * 0.48)}
+  ${bulletLine('Coming soon: single shareable context', fFs, '#cbd5e1', p.accent, w, h * 0.51)}
+  ${centerText(spaceGrotesk, 'Scan to onboard as a pilot', Math.round(w * 0.036), -0.5, p.accent, w, h * 0.6)}
   ${qrCard(WAITLIST_URL, qrX, qrY, qrModule)}
-  ${centerText(dmSans, 'Early access to Clawdlinux', Math.round(w * 0.026), 0, '#94a3b8', w, h * 0.865)}
+  ${centerText(dmSans, 'Now onboarding pilot customers', Math.round(w * 0.026), 0, '#94a3b8', w, h * 0.87)}
   ${centerText(spaceGrotesk, 'clawdlinux.org', Math.round(w * 0.05), -1, p.accent, w, h * 0.93)}
 </svg>`;
 }
