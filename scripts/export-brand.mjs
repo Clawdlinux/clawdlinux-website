@@ -272,6 +272,7 @@ function agentRobot(tx, ty, s, body, accent, opts = {}) {
     grin: `<path d="M-11 -59 Q0 -47 11 -59 Z" fill="${ink}" />`,
     flat: `<path d="M-8 -55 L8 -55" stroke="${ink}" stroke-width="4" stroke-linecap="round" />`,
     sleepy: `<path d="M-7 -55 Q0 -51 7 -55" fill="none" stroke="${ink}" stroke-width="4" stroke-linecap="round" />`,
+    dead: `<ellipse cx="0" cy="-55" rx="4.5" ry="5.5" fill="${ink}" />`,
   };
   const armSets = {
     rest: `<path d="M-46 -16 q-18 6 -20 24" fill="none" stroke="${body}" stroke-width="16" stroke-linecap="round" /><path d="M46 -16 q18 6 20 24" fill="none" stroke="${body}" stroke-width="16" stroke-linecap="round" />`,
@@ -280,6 +281,8 @@ function agentRobot(tx, ty, s, body, accent, opts = {}) {
   };
   const eyeOpen = expr === 'sleepy'
     ? `<path d="M-20 -83 q5 4 10 0" fill="none" stroke="${accent}" stroke-width="4" stroke-linecap="round" /><path d="M10 -83 q5 4 10 0" fill="none" stroke="${accent}" stroke-width="4" stroke-linecap="round" />`
+    : expr === 'dead'
+    ? `<path d="M-20 -88 L-10 -78 M-20 -78 L-10 -88" stroke="${accent}" stroke-width="4" stroke-linecap="round" /><path d="M10 -88 L20 -78 M10 -78 L20 -88" stroke="${accent}" stroke-width="4" stroke-linecap="round" />`
     : `<circle cx="-15" cy="-83" r="6.5" fill="${accent}" /><circle cx="15" cy="-83" r="6.5" fill="${accent}" /><circle cx="-13" cy="-85" r="2.4" fill="#ffffff" /><circle cx="17" cy="-85" r="2.4" fill="#ffffff" />`;
   const svg = `<g transform="translate(${tx} ${ty}) scale(${s})">
     ${armSets[arms]}
@@ -442,10 +445,40 @@ function sandboxStickerSVG(size) {
   return stickerFrame(size, 'IT WORKED IN', 'THE SANDBOX', scene);
 }
 
+// Scene 4: token limit. The agent is maxed out; context meter pegged at 100%.
+function tokenLimitStickerSVG(size) {
+  const p = PALETTES.dark;
+  const rs = size / 520;
+  const cx = size * 0.5;
+  const groundY = size * 0.76;
+  const bot = agentRobot(cx, groundY, rs, '#8a97ad', p.accent, { expr: 'dead', arms: 'rest' });
+  // context meter, pegged full with an overflow tick
+  const mw = size * 0.42;
+  const mh = size * 0.05;
+  const mx = cx - mw / 2;
+  const my = size * 0.44;
+  const label = glyphRun(spaceGrotesk, 'context', Math.round(size * 0.026), 0);
+  const meter =
+    textGroup(label, '#94a3b8', mx, my - size * 0.018) +
+    `<rect x="${mx.toFixed(1)}" y="${my.toFixed(1)}" width="${mw.toFixed(1)}" height="${mh.toFixed(1)}" rx="${(mh / 2).toFixed(1)}" fill="#1e293b" stroke="#334155" stroke-width="2" />` +
+    `<rect x="${mx.toFixed(1)}" y="${my.toFixed(1)}" width="${mw.toFixed(1)}" height="${mh.toFixed(1)}" rx="${(mh / 2).toFixed(1)}" fill="#ef4444" />` +
+    `<rect x="${(mx + mw + 8).toFixed(1)}" y="${(my + mh * 0.15).toFixed(1)}" width="${(mh * 0.7).toFixed(1)}" height="${(mh * 0.7).toFixed(1)}" rx="3" fill="#ef4444" opacity="0.8" />` +
+    `<rect x="${(mx + mw + 8 + mh).toFixed(1)}" y="${(my + mh * 0.15).toFixed(1)}" width="${(mh * 0.55).toFixed(1)}" height="${(mh * 0.7).toFixed(1)}" rx="3" fill="#ef4444" opacity="0.5" />`;
+  const sweat = `<path transform="translate(${(cx + 46 * rs).toFixed(1)} ${(groundY - 118 * rs).toFixed(1)})" d="M0 0 c7 10 7 17 0 17 c-7 0 -7 -7 0 -17 Z" fill="${p.accent}" />`;
+  const scene =
+    `<defs>${softHalo('tokHalo', cx, size * 0.62, size * 0.3, '#ef4444')}</defs>` +
+    `<circle cx="${cx.toFixed(1)}" cy="${(size * 0.62).toFixed(1)}" r="${(size * 0.3).toFixed(1)}" fill="url(#tokHalo)" />` +
+    meter +
+    groundShadow(cx, groundY + 54 * rs, size * 0.12) +
+    bot.svg +
+    sweat;
+  return stickerFrame(size, 'I HIT THE', 'TOKEN LIMIT', scene);
+}
+
 // ── Emit ──
-async function png(svg, out, width) {
+async function png(svg, out, width, density = 384) {
   const buf = Buffer.from(svg);
-  await sharp(buf, { density: 384 }).resize({ width }).png().toFile(out);
+  await sharp(buf, { density }).resize({ width }).png().toFile(out);
   console.log('png  ', out.replace(root + '/', ''), `${width}px`);
 }
 function svgFile(svg, out) {
@@ -483,9 +516,37 @@ async function main() {
   await png(standeeSVG(1200, 2400), join(brandDir, 'standee-1200x2400.png'), 1200);
 
   // Community stickers (sarcastic, dev-friendly scenes)
-  await png(shipStickerSVG(1024), join(brandDir, 'sticker-ship-agents-1024.png'), 1024);
-  await png(curfewStickerSVG(1024), join(brandDir, 'sticker-curfew-1024.png'), 1024);
-  await png(sandboxStickerSVG(1024), join(brandDir, 'sticker-sandbox-1024.png'), 1024);
+  const stickers = [
+    ['sticker-ship-agents', shipStickerSVG(1024)],
+    ['sticker-curfew', curfewStickerSVG(1024)],
+    ['sticker-sandbox', sandboxStickerSVG(1024)],
+    ['sticker-token-limit', tokenLimitStickerSVG(1024)],
+  ];
+  for (const [name, svg] of stickers) {
+    await png(svg, join(brandDir, `${name}-1024.png`), 1024);
+    svgFile(svg, join(brandDir, `${name}.svg`));
+  }
+
+  // Print-ready set for a booth/printer (set PRINT_DIR to an output folder).
+  // Example: PRINT_DIR=~/Downloads/clawdlinux-print node scripts/export-brand.mjs
+  const printDir = process.env.PRINT_DIR;
+  if (printDir) {
+    mkdirSync(printDir, { recursive: true });
+    const kit = [
+      ...stickers,
+      ['sticker-badge', stickerSVG(1024)],
+      ['sticker-mark-diecut', stickerMarkSVG(1024)],
+    ];
+    for (const [name, svg] of kit) {
+      svgFile(svg, join(printDir, `${name}.svg`));
+      await png(svg, join(printDir, `${name}-2048.png`), 2048);
+    }
+    svgFile(standeeSVG(1200, 2400), join(printDir, 'standee.svg'));
+    await png(standeeSVG(1200, 2400), join(printDir, 'standee-2400.png'), 2400, 220);
+    svgFile(wordmarkSVG('dark'), join(printDir, 'wordmark-dark.svg'));
+    svgFile(wordmarkSVG('mono'), join(printDir, 'wordmark-mono.svg'));
+    console.log(`\nprint kit written to ${printDir}`);
+  }
 
   console.log('\ndone');
 }
