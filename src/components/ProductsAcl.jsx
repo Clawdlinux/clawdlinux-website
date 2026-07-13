@@ -12,11 +12,11 @@ import { useTheme } from '../hooks/useTheme';
 const ACL_GITHUB = 'https://github.com/Clawdlinux/agent-contract-protocol';
 const OPERATOR_GITHUB = 'https://github.com/Clawdlinux/agentic-operator-core';
 
-const PRODUCTS = [
+const CAPABILITIES = [
   {
-    badge: 'PRODUCT 01',
+    badge: 'CORE CAPABILITY',
     icon: Boxes,
-    name: 'Clawdlinux Operator',
+    name: 'Runtime governance',
     tag: 'Control agents in Kubernetes',
     summary:
       'Regulated control layer for agent workloads. gVisor injection, Cilium policy, OPA guardrails, audit trails, and per-tenant budgets.',
@@ -26,11 +26,11 @@ const PRODUCTS = [
       { icon: CheckCircle2, text: 'Tamper-evident audit chain' },
       { icon: CheckCircle2, text: 'Per-workload OpenMeter cost attribution' },
     ],
-    cta: { label: 'Operator on GitHub', href: OPERATOR_GITHUB },
+    cta: { label: 'Runtime code on GitHub', href: OPERATOR_GITHUB },
     accentKey: 'teal',
   },
   {
-    badge: 'PRODUCT 02 · NEW',
+    badge: 'CONTEXT CAPABILITY',
     icon: Code2,
     name: 'ANF — Agent Native Format',
     tag: 'Feed agents 90% fewer tokens',
@@ -49,19 +49,19 @@ const PRODUCTS = [
 
 const SHARED_THESIS = [
   {
-    title: 'Same audience',
+    title: 'One audience',
     detail:
       'Platform teams shipping agents into regulated environments — finance, healthcare, government, sovereign cloud.',
   },
   {
-    title: 'Same thesis',
+    title: 'One thesis',
     detail:
       'Agents need controls existing platform tools were not built to prove.',
   },
   {
-    title: 'Same control plane',
+    title: 'One system',
     detail:
-      'ACL compresses tool and system context. The Operator enforces runtime controls around it.',
+      'ANF compresses tool and system context. Runtime governance enforces controls around agent execution.',
   },
 ];
 
@@ -106,7 +106,7 @@ export default function ProductsAcl() {
               fontFamily: 'IBM Plex Mono, monospace',
             }}
           >
-            TWO PRODUCTS · ONE STACK
+            ONE PRODUCT · COMPOSABLE CAPABILITIES
           </span>
         </div>
         <h2
@@ -119,9 +119,9 @@ export default function ProductsAcl() {
             lineHeight: 1.15,
           }}
         >
-          Run agents. Feed agents.
+          One Clawdlinux system.
           <br />
-          <span style={{ color: t.accent.teal }}>Same problem, two layers.</span>
+          <span style={{ color: t.accent.teal }}>Capabilities that work together.</span>
         </h2>
         <p
           style={{
@@ -132,21 +132,21 @@ export default function ProductsAcl() {
             lineHeight: 1.6,
           }}
         >
-          Clawdlinux ships the controls layer and the data compression layer for
+          Clawdlinux combines runtime governance and agent-native context for
           production AI agents in regulated environments.
         </p>
       </motion.div>
 
-      {/* Two product cards */}
+      {/* Capability cards */}
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(420px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 360px), 1fr))',
           gap: 24,
           marginBottom: 64,
         }}
       >
-        {PRODUCTS.map((p, i) => {
+        {CAPABILITIES.map((p, i) => {
           const Icon = p.icon;
           return (
             <motion.a

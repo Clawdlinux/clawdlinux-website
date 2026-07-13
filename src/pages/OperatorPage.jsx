@@ -18,7 +18,7 @@ export default function OperatorPage() {
 
   return (
     <div style={{ paddingTop: 80 }}>
-      {/* Back-to-products breadcrumb */}
+      {/* Back-to-capabilities breadcrumb */}
       <div
         style={{
           maxWidth: 1200,
@@ -46,7 +46,7 @@ export default function OperatorPage() {
             onMouseLeave={(e) => (e.currentTarget.style.color = t.text.secondary)}
           >
             <ArrowLeft size={14} />
-            Products / Operator
+            Capabilities / Runtime controls
           </Link>
         </motion.div>
       </div>

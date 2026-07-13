@@ -90,7 +90,7 @@ export default function AclPage() {
           onMouseLeave={(e) => (e.currentTarget.style.color = t.text.secondary)}
         >
           <ArrowLeft size={14} />
-          Products / ANF — Agent Native Format
+          Capabilities / ANF — Agent Native Format
         </Link>
       </div>
 

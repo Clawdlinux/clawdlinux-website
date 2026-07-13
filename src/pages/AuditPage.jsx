@@ -81,7 +81,7 @@ export default function AuditPage() {
             fontSize: 14,
           }}
         >
-          <ArrowLeft size={16} /> All products
+          <ArrowLeft size={16} /> All capabilities
         </Link>
       </div>
 

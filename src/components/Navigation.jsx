@@ -8,9 +8,9 @@ import ClawdlinuxLogo from '../brand/ClawdlinuxLogo';
 
 const NAV_LINKS = [
   { label: 'Home', to: '/' },
-  { label: 'Products', to: '/products' },
-  { label: 'Operator', to: '/products/operator' },
-  { label: 'ACL', to: '/products/acl' },
+  { label: 'Capabilities', to: '/products' },
+  { label: 'Runtime', to: '/products/operator' },
+  { label: 'ANF', to: '/products/acl' },
   { label: 'Audit', to: '/products/audit' },
 ];
 

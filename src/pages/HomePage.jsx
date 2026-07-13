@@ -12,9 +12,9 @@ const VALUE_PROPS = [
   { icon: Boxes, title: 'Runtime compatible', text: 'Use the built-in AgentWorkload path or add controls around any labeled agent pods.' },
 ];
 
-const PRODUCT_PREVIEWS = [
-  { to: '/products/operator', icon: Boxes, tag: 'Operator', title: 'Control agents in Kubernetes', text: 'gVisor injection, Cilium policy, OPA guardrails, audit trails, and per-workload cost attribution.' },
-  { to: '/products/acl', icon: Code2, tag: 'ACL', title: 'Feed agents 90% fewer tokens', text: 'Compact agent-native representation format. Three translators ship today: Kubernetes (132\u00d7), OpenAPI (68\u00d7), Postgres (3.5\u00d7).' },
+const CAPABILITY_PREVIEWS = [
+  { to: '/products/operator', icon: Boxes, tag: 'Runtime controls', title: 'Control agents in Kubernetes', text: 'gVisor injection, Cilium policy, OPA guardrails, audit trails, and per-workload cost attribution.' },
+  { to: '/products/acl', icon: Code2, tag: 'Agent-native context', title: 'Feed agents 90% fewer tokens', text: 'ANF is Clawdlinux\u2019s compact representation for structured data. Kubernetes ships today; OpenAPI and Postgres are benchmarked.' },
 ];
 
 const SIGNALS = ['Self-hostable', 'gVisor', 'Runtime-neutral', 'Agent-native data'];
@@ -104,7 +104,7 @@ export default function HomePage() {
           <motion.div variants={itemVariants} className="flex gap-3 justify-center flex-wrap mb-10">
             <motion.div whileHover={{ y: -2, scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Link to="/products" className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-bold" style={{ background: 'linear-gradient(135deg, #3b82f6 0%, #2563EB 100%)', color: '#fff', fontFamily: "'DM Sans', sans-serif", textDecoration: 'none' }}>
-                See the products <ArrowRight size={16} />
+                Explore capabilities <ArrowRight size={16} />
               </Link>
             </motion.div>
             <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
@@ -174,10 +174,10 @@ export default function HomePage() {
         </div>
       </motion.section>
 
-      {/* ── Divider: Values → Products ── */}
+      {/* ── Divider: Values → Capabilities ── */}
       <SectionDivider currentTheme={t} />
 
-      {/* ─── Products Preview ─── */}
+      {/* ─── Capabilities Preview ─── */}
       <section className="relative px-6 py-24" style={{ maxWidth: 1100, margin: '0 auto' }}>
         {/* Section glow accent */}
         <motion.div
@@ -195,12 +195,12 @@ export default function HomePage() {
             </div>
           </motion.div>
           <motion.h2 variants={itemVariants} className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight" style={{ fontFamily: "'Space Grotesk', sans-serif", color: t.text.primary }}>
-            Two{' '}<span style={{ background: `linear-gradient(135deg, ${t.accent.teal}, ${t.accent.indigo})`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>open-source</span>{' '}products.
+            One{' '}<span style={{ background: `linear-gradient(135deg, ${t.accent.teal}, ${t.accent.indigo})`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>open-source</span>{' '}system.
           </motion.h2>
         </motion.div>
 
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} variants={containerVariants} className="relative z-10 grid gap-5" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 360px), 1fr))' }}>
-          {PRODUCT_PREVIEWS.map((p) => {
+          {CAPABILITY_PREVIEWS.map((p) => {
             const Icon = p.icon;
             return (
               <motion.div key={p.to} variants={itemVariants} whileHover={{ y: -6, boxShadow: theme === 'dark' ? `0 28px 70px rgba(0,0,0,0.45), 0 0 40px ${withAlpha(t.accent.teal, '0C')}` : '0 28px 60px rgba(15,23,42,0.14)' }} transition={{ duration: 0.3 }}>
@@ -213,7 +213,7 @@ export default function HomePage() {
                   </div>
                   <h3 className="text-xl font-bold mb-2" style={{ fontFamily: "'Space Grotesk', sans-serif", color: t.text.primary, lineHeight: 1.2 }}>{p.title}</h3>
                   <p className="text-sm leading-relaxed mb-5" style={{ fontFamily: "'DM Sans', sans-serif", color: t.text.tertiary }}>{p.text}</p>
-                  <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold transition-all duration-200 group-hover:gap-2.5" style={{ color: t.accent.teal, fontFamily: "'IBM Plex Mono', monospace" }}>Read more <ArrowRight size={14} /></span>
+                  <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold transition-all duration-200 group-hover:gap-2.5" style={{ color: t.accent.teal, fontFamily: "'IBM Plex Mono', monospace" }}>Explore capability <ArrowRight size={14} /></span>
                 </Link>
               </motion.div>
             );
@@ -221,7 +221,7 @@ export default function HomePage() {
         </motion.div>
       </section>
 
-      {/* ── Divider: Products → CTA ── */}
+      {/* ── Divider: Capabilities → CTA ── */}
       <SectionDivider currentTheme={t} />
 
       {/* ─── CTA ─── */}
@@ -242,7 +242,7 @@ export default function HomePage() {
               Put regulated controls around your agents.
             </motion.h2>
             <motion.p variants={itemVariants} className="text-base sm:text-lg mb-8" style={{ fontFamily: "'DM Sans', sans-serif", color: t.text.tertiary, lineHeight: 1.65, maxWidth: 760 }}>
-              Evaluate Clawdlinux controls, ANF, or both against a real regulated workload. Start with the smallest useful pilot.
+              Evaluate Clawdlinux against a real regulated workload. Start with the smallest useful capability set.
             </motion.p>
             <motion.div variants={itemVariants} className="flex gap-3 flex-wrap">
               <motion.div whileHover={{ y: -2, scale: 1.02 }} whileTap={{ scale: 0.98 }}>
@@ -252,7 +252,7 @@ export default function HomePage() {
               </motion.div>
               <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
                 <Link to="/products" className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold" style={{ background: theme === 'dark' ? withAlpha(t.bg.secondary, 'D9') : withAlpha(t.bg.secondary, 'F2'), border: `1px solid ${t.border.light}`, color: t.text.primary, fontFamily: "'DM Sans', sans-serif", textDecoration: 'none' }}>
-                  Products <ArrowRight size={16} />
+                  Capabilities <ArrowRight size={16} />
                 </Link>
               </motion.div>
             </motion.div>
