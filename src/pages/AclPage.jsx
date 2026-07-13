@@ -12,10 +12,10 @@ import {
 import { useTheme } from '../hooks/useTheme';
 import AclHero from '../components/AclHero';
 
-const ACL_GITHUB = 'https://github.com/Clawdlinux/agent-contract-protocol';
-const ACL_SPEC = 'https://github.com/Clawdlinux/agent-contract-protocol/blob/main/FORMAT.md';
-const ACL_BENCH = 'https://github.com/Clawdlinux/agent-contract-protocol/blob/main/benchmark/agent_accuracy/results/2026-05-09-094833/summary.md';
-const ACP_FRONTIER_BENCH = 'https://github.com/Clawdlinux/agent-contract-protocol/tree/main/benchmark/frontier';
+const ACL_GITHUB = 'https://github.com/Clawdlinux/agent-native-format';
+const ACL_SPEC = 'https://github.com/Clawdlinux/agent-native-format/blob/main/FORMAT.md';
+const ACL_BENCH = 'https://github.com/Clawdlinux/agent-native-format/blob/main/benchmark/agent_accuracy/results/2026-05-09-094833/summary.md';
+const ACP_FRONTIER_BENCH = 'https://github.com/Clawdlinux/agent-native-format/tree/main/benchmark/frontier';
 const BFCL_URL = 'https://gorilla.cs.berkeley.edu/leaderboard.html';
 
 const COMPRESSION_ROWS = [
@@ -229,8 +229,8 @@ export default function AclPage() {
             }}
           >
             <code>{`import (
-    "github.com/Clawdlinux/agent-contract-protocol/pkg/anf"
-    k8stranslator "github.com/Clawdlinux/agent-contract-protocol/translators/kubernetes"
+    "github.com/Clawdlinux/agent-native-format/pkg/anf"
+    k8stranslator "github.com/Clawdlinux/agent-native-format/translators/kubernetes"
 )
 
 doc := k8stranslator.Translate(namespaceView, time.Now())

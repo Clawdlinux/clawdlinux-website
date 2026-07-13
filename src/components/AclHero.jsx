@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Github, ArrowRight, BookOpen, TrendingDown } from 'lucide-react';
 import { useTheme } from '../hooks/useTheme';
 
-const ACL_GITHUB = 'https://github.com/Clawdlinux/agent-contract-protocol';
-const ACL_SPEC = 'https://github.com/Clawdlinux/agent-contract-protocol/blob/main/FORMAT.md';
+const ACL_GITHUB = 'https://github.com/Clawdlinux/agent-native-format';
+const ACL_SPEC = 'https://github.com/Clawdlinux/agent-native-format/blob/main/FORMAT.md';
 
 /* ── The raw → ACL compression demo ── */
 const RAW_JSON = `{
