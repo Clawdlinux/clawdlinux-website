@@ -1,15 +1,12 @@
 import { motion } from 'framer-motion';
 import {
   Boxes,
-  Code2,
+  Shield,
   ArrowRight,
   CheckCircle2,
-  TrendingDown,
   Github,
 } from 'lucide-react';
 import { useTheme } from '../hooks/useTheme';
-
-const ACL_GITHUB = 'https://github.com/Clawdlinux/agent-native-format';
 const OPERATOR_GITHUB = 'https://github.com/Clawdlinux/agentic-operator-core';
 
 const CAPABILITIES = [
@@ -30,19 +27,19 @@ const CAPABILITIES = [
     accentKey: 'teal',
   },
   {
-    badge: 'CONTEXT CAPABILITY',
-    icon: Code2,
-    name: 'ANF — Agent Native Format',
-    tag: 'Feed agents 90% fewer tokens',
+    badge: 'CORE CAPABILITY',
+    icon: Shield,
+    name: 'Audit and evidence',
+    tag: 'Prove what agents did',
     summary:
-      'A compact, machine-native representation of structured data, designed for LLM agents instead of humans. Kubernetes translator ships today; OpenAPI and Postgres compression measured in benchmark, translators in progress. Same fact-extraction accuracy at one-tenth the prompt tokens, validated on a 1,620-trial Anthropic benchmark.',
+      'Tamper-evident action ledger with an offline verifier, deterministic replay of any agent decision, and OpenTelemetry GenAI traces for cost and failure analysis.',
     highlights: [
-      { icon: TrendingDown, text: '132× on live K8s namespace (shipped translator)' },
-      { icon: TrendingDown, text: '68× on the GitHub OpenAPI spec (benchmarked)' },
-      { icon: TrendingDown, text: '3.5× on realistic pg_dump output (benchmarked)' },
-      { icon: CheckCircle2, text: 'Spec CC BY 4.0 · Go library Apache 2.0' },
+      { icon: CheckCircle2, text: 'Hash-chained audit log plus audit-verify binary' },
+      { icon: CheckCircle2, text: 'Deterministic replay of historical decisions' },
+      { icon: CheckCircle2, text: 'OpenTelemetry GenAI spans, cost and latency rollups' },
+      { icon: CheckCircle2, text: 'Air-gapped, offline-verifiable evidence' },
     ],
-    cta: { label: 'ANF on GitHub', href: ACL_GITHUB },
+    cta: { label: 'Operator on GitHub', href: OPERATOR_GITHUB },
     accentKey: 'teal',
   },
 ];
@@ -61,7 +58,7 @@ const SHARED_THESIS = [
   {
     title: 'One system',
     detail:
-      'ANF compresses tool and system context. Runtime governance enforces controls around agent execution.',
+      'Runtime governance and a tamper-evident audit ledger enforce controls around agent execution.',
   },
 ];
 
@@ -132,7 +129,7 @@ export default function ProductsAcl() {
             lineHeight: 1.6,
           }}
         >
-          Clawdlinux combines runtime governance and agent-native context for
+          Clawdlinux combines runtime governance and tamper-evident audit for
           production AI agents in regulated environments.
         </p>
       </motion.div>

@@ -10,7 +10,6 @@ const NAV_LINKS = [
   { label: 'Home', to: '/' },
   { label: 'Capabilities', to: '/products' },
   { label: 'Runtime', to: '/products/operator' },
-  { label: 'ANF', to: '/products/acl' },
   { label: 'Audit', to: '/products/audit' },
 ];
 

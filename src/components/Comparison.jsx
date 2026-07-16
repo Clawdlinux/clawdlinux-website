@@ -51,11 +51,6 @@ const Comparison = () => {
       clawdlinux: 'Tamper-evident action ledger',
     },
     {
-      name: 'Context Compression',
-      description: 'Lower prompt cost for tool-heavy installs',
-      clawdlinux: 'ACP wrapper for MCP tool discovery',
-    },
-    {
       name: 'Deployment Model',
       description: 'Air-gapped and offline-first',
       clawdlinux: 'Self-hosted controls with zero-egress path',
