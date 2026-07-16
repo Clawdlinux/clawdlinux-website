@@ -14,10 +14,10 @@ const VALUE_PROPS = [
 
 const CAPABILITY_PREVIEWS = [
   { to: '/products/operator', icon: Boxes, tag: 'Runtime controls', title: 'Control agents in Kubernetes', text: 'gVisor injection, Cilium policy, OPA guardrails, audit trails, and per-workload cost attribution.' },
-  { to: '/products/acl', icon: Code2, tag: 'Agent-native context', title: 'Feed agents 90% fewer tokens', text: 'ANF is Clawdlinux\u2019s compact representation for structured data. Kubernetes ships today; OpenAPI and Postgres are benchmarked.' },
+  { to: '/products/audit', icon: Shield, tag: 'Audit', title: 'Prove what agents did', text: 'Tamper-evident action ledger, deterministic replay, and compliance-native traces.' },
 ];
 
-const SIGNALS = ['Self-hostable', 'gVisor', 'Runtime-neutral', 'Agent-native data'];
+const SIGNALS = ['Self-hostable', 'gVisor', 'Runtime-neutral', 'Air-gapped'];
 
 const containerVariants = { hidden: {}, visible: { transition: { staggerChildren: 0.12 } } };
 const itemVariants = {

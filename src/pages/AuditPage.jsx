@@ -36,7 +36,7 @@ const PILLARS = [
     icon: FileLock2,
     title: 'Compliance-native traces',
     body:
-      'OpenTelemetry GenAI semantic conventions on every span — gen_ai.system, gen_ai.usage.input_tokens, gen_ai.tool.name — plus clawd.* extensions for AgentWorkload, ACP manifest, and LangGraph node attribution.',
+      'OpenTelemetry GenAI semantic conventions on every span — gen_ai.system, gen_ai.usage.input_tokens, gen_ai.tool.name — plus clawd.* extensions for AgentWorkload and LangGraph node attribution.',
     cta: { label: 'Span schema', href: `${REPO_URL}/tree/main/pkg/otel/genai` },
   },
   {
@@ -52,7 +52,7 @@ const STACK = [
   { name: 'OpenTelemetry Collector', role: 'OTLP receiver, tail sampling, secret redaction' },
   { name: 'Grafana Tempo', role: 'Distributed trace store' },
   { name: 'Prometheus', role: 'Metrics store; cost & latency rollups' },
-  { name: 'Grafana', role: 'Curated dashboards: cost, ACP cache, tool failures, LangGraph latency' },
+  { name: 'Grafana', role: 'Curated dashboards: cost, tool cache, tool failures, LangGraph latency' },
   { name: 'ClickHouse', role: 'Analytical trace queries + tamper-evident audit_v1 table' },
   { name: 'Qdrant', role: 'Vector store for clustering and similarity search' },
 ];
