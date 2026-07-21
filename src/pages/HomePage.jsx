@@ -7,17 +7,17 @@ import ShaderCanvas from '../components/ShaderCanvas';
 const GITHUB_ORG = 'https://github.com/Clawdlinux';
 
 const VALUE_PROPS = [
-  { icon: Shield, title: 'Regulated controls', text: 'gVisor isolation, audit trails, and policy gates for agents that touch private data.' },
+  { icon: Shield, title: 'In-cluster controls', text: 'gVisor mutation, generated network policy, and policy gates for agent workloads.' },
   { icon: Lock, title: 'Open source first', text: 'Apache 2.0 operator core. Open specs (CC BY 4.0) and SDKs. Self-host, fork, audit. No surprise vendor lock-in.' },
-  { icon: Boxes, title: 'Runtime compatible', text: 'Use the built-in AgentWorkload path or add controls around any labeled agent pods.' },
+  { icon: Boxes, title: 'Runtime compatible', text: 'Use registered adapters for Argo, bring-your-own pods, and kagent.' },
 ];
 
 const CAPABILITY_PREVIEWS = [
-  { to: '/products/operator', icon: Boxes, tag: 'Runtime controls', title: 'Control agents in Kubernetes', text: 'gVisor injection, Cilium policy, OPA guardrails, audit trails, and per-workload cost attribution.' },
-  { to: '/products/audit', icon: Shield, tag: 'Audit', title: 'Prove what agents did', text: 'Tamper-evident action ledger, deterministic replay, and compliance-native traces.' },
+  { to: '/products/operator', icon: Boxes, tag: 'Runtime controls', title: 'Control agents in Kubernetes', text: 'Runtime adapters, gVisor mutation, generated network policy, in-process policy evaluation, and cost attribution.' },
+  { to: '/products/audit', icon: Shield, tag: 'Audit', title: 'Verify audit records', text: 'Hash-chain, HMAC, and offline JSONL verification primitives. Deterministic replay remains target work.' },
 ];
 
-const SIGNALS = ['Self-hostable', 'gVisor', 'Runtime-neutral', 'Air-gapped'];
+const SIGNALS = ['Self-hostable', 'gVisor', 'Runtime-neutral', 'Offline licensing'];
 
 const containerVariants = { hidden: {}, visible: { transition: { staggerChildren: 0.12 } } };
 const itemVariants = {
@@ -98,7 +98,7 @@ export default function HomePage() {
           </motion.h1>
 
           <motion.p variants={itemVariants} className="text-lg sm:text-xl max-w-2xl mx-auto mb-10" style={{ color: t.text.secondary, lineHeight: 1.65, fontFamily: "'DM Sans', sans-serif" }}>
-            Add isolation, audit, and cost controls to agents in your cluster. Works with any Kubernetes-native agent runtime.
+            Add governance and evidence controls to agents in your cluster. Registered adapters cover Argo, pods, and kagent.
           </motion.p>
 
           <motion.div variants={itemVariants} className="flex gap-3 justify-center flex-wrap mb-10">

@@ -30,7 +30,7 @@ const AUDIENCES = [
     id: 3,
     phase: 'Security Teams',
     title: 'Policy-Aware Egress',
-    description: 'Restrict outbound traffic with Cilium FQDN policies and keep agent traffic inside approved destinations.',
+    description: 'Generate optional Cilium FQDN policy templates. Enablement, selectors, and packet enforcement depend on the customer cluster.',
     icon: Shield,
     color: '#8b5cf6',
   },
@@ -46,7 +46,7 @@ const AUDIENCES = [
     id: 5,
     phase: 'Multi-Tenant SaaS',
     title: 'Tenant Isolation',
-    description: 'Run many customer workloads per cluster without credential bleed, namespace collisions, or noisy-neighbor drift.',
+    description: 'Provision tenant namespaces, namespaced RBAC, copied provider Secrets, and CPU, memory, and pod quotas. Review the resulting isolation model.',
     icon: Layers,
     color: '#f59e0b',
   },
@@ -94,7 +94,7 @@ export default function Features() {
                 color: currentTheme.text.primary,
               }}
             >
-              Who Deploys Clawdlinux
+              Who Clawdlinux Is For
             </h2>
             <p className="text-lg max-w-2xl mx-auto" style={{ color: currentTheme.text.tertiary }}>
               From platform engineering to security review, Clawdlinux fits teams standardizing how autonomous agents run on Kubernetes.

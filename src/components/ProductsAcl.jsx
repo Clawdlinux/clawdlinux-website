@@ -16,12 +16,12 @@ const CAPABILITIES = [
     name: 'Runtime governance',
     tag: 'Control agents in Kubernetes',
     summary:
-      'Regulated control layer for agent workloads. gVisor injection, Cilium policy, OPA guardrails, audit trails, and per-tenant budgets.',
+      'In-cluster governance for agent workloads. Runtime adapters, gVisor mutation, generated network policy, in-process policy evaluation, and cost controls.',
     highlights: [
-      { icon: CheckCircle2, text: 'AgentWorkload path plus external pod compatibility' },
-      { icon: CheckCircle2, text: 'Cilium FQDN egress + OPA admission' },
-      { icon: CheckCircle2, text: 'Tamper-evident audit chain' },
-      { icon: CheckCircle2, text: 'Per-workload OpenMeter cost attribution' },
+      { icon: CheckCircle2, text: 'Registered Argo, pod, and kagent adapters' },
+      { icon: CheckCircle2, text: 'Generated NetworkPolicy and gVisor mutation' },
+      { icon: CheckCircle2, text: 'Cluster CNI and runsc provide enforcement' },
+      { icon: CheckCircle2, text: 'CostReporter interface and demo estimates' },
     ],
     cta: { label: 'Runtime code on GitHub', href: OPERATOR_GITHUB },
     accentKey: 'teal',
@@ -30,14 +30,14 @@ const CAPABILITIES = [
     badge: 'CORE CAPABILITY',
     icon: Shield,
     name: 'Audit and evidence',
-    tag: 'Prove what agents did',
+    tag: 'Verify audit records',
     summary:
-      'Tamper-evident action ledger with an offline verifier, deterministic replay of any agent decision, and OpenTelemetry GenAI traces for cost and failure analysis.',
+      'Hash-chain, HMAC, and JSONL verification primitives are implemented. Same-run signed artifact capture is not connected, and deterministic replay remains target work.',
     highlights: [
-      { icon: CheckCircle2, text: 'Hash-chained audit log plus audit-verify binary' },
-      { icon: CheckCircle2, text: 'Deterministic replay of historical decisions' },
+      { icon: CheckCircle2, text: 'Hash-chain and HMAC verification primitives' },
+      { icon: CheckCircle2, text: 'Offline audit-verify CLI' },
       { icon: CheckCircle2, text: 'OpenTelemetry GenAI spans, cost and latency rollups' },
-      { icon: CheckCircle2, text: 'Air-gapped, offline-verifiable evidence' },
+      { icon: CheckCircle2, text: 'Exported JSONL records verified offline' },
     ],
     cta: { label: 'Operator on GitHub', href: OPERATOR_GITHUB },
     accentKey: 'teal',
@@ -58,7 +58,7 @@ const SHARED_THESIS = [
   {
     title: 'One system',
     detail:
-      'Runtime governance and a tamper-evident audit ledger enforce controls around agent execution.',
+      'Runtime governance applies controls while audit primitives support offline evidence verification.',
   },
 ];
 
@@ -129,8 +129,8 @@ export default function ProductsAcl() {
             lineHeight: 1.6,
           }}
         >
-          Clawdlinux combines runtime governance and tamper-evident audit for
-          production AI agents in regulated environments.
+          Clawdlinux combines runtime-governance components with offline audit
+          verification primitives for Kubernetes agent workloads.
         </p>
       </motion.div>
 

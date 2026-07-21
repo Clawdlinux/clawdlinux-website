@@ -20,30 +20,30 @@ const ANALYZER_PATH = `${REPO_URL}/tree/main/agents/audit_analyzer`;
 const PILLARS = [
   {
     icon: ShieldCheck,
-    title: 'Tamper-evident audit log',
+    title: 'Audit integrity primitives',
     body:
-      'Every consequential agent action — LLM call, tool execution, HITL approval, state transition — recorded in an append-only, hash-chained, HMAC-signed ledger. The whole chain can be re-verified offline by a regulator.',
+      'The audit package provides ordered hash-chain entries, HMAC integrity, JSONL records, and an offline verifier. Same-run signed artifact capture is not connected yet.',
     cta: { label: 'Audit log spec', href: AUDIT_LOG_PATH },
   },
   {
     icon: Repeat,
-    title: 'Deterministic replay',
+    title: 'Replay design target',
     body:
-      'Reproduce any historical agent decision bit-for-bit: same prompt, same model version, same RNG seed, same tool outputs as observed at decision time. Answer SEC inquiries without guessing.',
-    cta: { label: 'Replay design', href: `${REPO_URL}/blob/main/docs/audit-replay.md` },
+      'Deterministic replay remains target work. Current code verifies existing JSONL chains but does not reproduce historical agent decisions.',
+    cta: { label: 'Project roadmap', href: `${REPO_URL}/blob/main/ROADMAP.md` },
   },
   {
     icon: FileLock2,
-    title: 'Compliance-native traces',
+    title: 'Trace schema assets',
     body:
-      'OpenTelemetry GenAI semantic conventions on every span — gen_ai.system, gen_ai.usage.input_tokens, gen_ai.tool.name — plus clawd.* extensions for AgentWorkload and LangGraph node attribution.',
+      'The repository includes OpenTelemetry GenAI semantic-convention assets plus clawd.* extensions for AgentWorkload and node attribution.',
     cta: { label: 'Span schema', href: `${REPO_URL}/tree/main/pkg/otel/genai` },
   },
   {
     icon: GitBranch,
-    title: 'Autonomous failure clustering',
+    title: 'Failure analysis assets',
     body:
-      'Nightly clustering job groups failing traces into named issue cards using a local embedding model and the on-cluster LLM. Each card cites the source traces; no guesses, no hallucinated patches.',
+      'Analyzer assets group failing traces for investigation. Operators must validate deployment, model configuration, and data paths in their cluster.',
     cta: { label: 'Analyzer source', href: ANALYZER_PATH },
   },
 ];
@@ -53,15 +53,15 @@ const STACK = [
   { name: 'Grafana Tempo', role: 'Distributed trace store' },
   { name: 'Prometheus', role: 'Metrics store; cost & latency rollups' },
   { name: 'Grafana', role: 'Curated dashboards: cost, tool cache, tool failures, LangGraph latency' },
-  { name: 'ClickHouse', role: 'Analytical trace queries + tamper-evident audit_v1 table' },
+  { name: 'ClickHouse', role: 'Analytical trace and audit queries' },
   { name: 'Qdrant', role: 'Vector store for clustering and similarity search' },
 ];
 
-const COMPLIANCE_TARGETS = [
-  { tag: 'SR 11-7', body: 'Federal Reserve model risk management — AI agents are models. Drift, change control, validation evidence.' },
-  { tag: 'SEC 17a-4 / FINRA 4511', body: 'WORM-compliant retention of agent decision records and the inputs that produced them.' },
-  { tag: 'GDPR Art. 30', body: 'Records of processing activity for every byte of personal data the agent reads.' },
-  { tag: 'SOC 2 / ISO 27001', body: 'Tamper-evident audit logs satisfying access-and-change-control controls A.12.4 and CC7.' },
+const EVIDENCE_USE_CASES = [
+  { tag: 'Integrity review', body: 'Recompute a JSONL chain and its HMAC values without trusting the running cluster.' },
+  { tag: 'Incident review', body: 'Inspect recorded sequence, timestamps, actors, actions, and payload hashes.' },
+  { tag: 'Control mapping', body: 'Map exported evidence to your own controls without treating the software as a certification.' },
+  { tag: 'Release gates', body: 'Track same-run capture, deterministic replay, and full air-gap installation proof as explicit gates.' },
 ];
 
 export default function AuditPage() {
@@ -111,7 +111,7 @@ export default function AuditPage() {
               marginBottom: 16,
             }}
           >
-            New · Apache 2.0 · air-gapped
+            Apache 2.0 · self-managed · offline verifier
           </div>
           <h1
             style={{
@@ -123,9 +123,9 @@ export default function AuditPage() {
               color: t.text.primary,
             }}
           >
-            Reproduce any agent decision.
+            Verify an audit chain.
             <br />
-            <span style={{ color: t.accent.primary }}>Prove it to your regulator.</span>
+            <span style={{ color: t.accent.primary }}>Inspect the records offline.</span>
           </h1>
           <p
             style={{
@@ -136,11 +136,10 @@ export default function AuditPage() {
               maxWidth: 760,
             }}
           >
-            Clawdlinux Audit is the compliance-native observability layer for AI agents
-            running in regulated environments. OpenTelemetry GenAI traces, a tamper-evident
-            ledger of every consequential action, deterministic replay, and an autonomous
-            failure-clustering analyzer — all running entirely inside your cluster, zero
-            external network calls.
+            Clawdlinux Audit provides hash-chain, HMAC, and JSONL verifier primitives.
+            Same-run signed artifact capture is not connected. Deterministic replay remains
+            target work. Self-managed deployment and offline licensing are available, while
+            full air-gap installation proof remains a release gate.
           </p>
 
           <div style={{ marginTop: 28, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
@@ -200,7 +199,7 @@ export default function AuditPage() {
             letterSpacing: '-0.01em',
           }}
         >
-          Four primitives. One install.
+          Current audit building blocks.
         </h2>
         <div
           style={{
@@ -287,7 +286,7 @@ export default function AuditPage() {
           }}
         >
           The bundle ships as a single Helm subchart. Lite mode runs in &lt;2 GiB on a kind
-          cluster; full mode scales horizontally on a real bank deployment.
+          cluster. Full mode adds storage and query services; validate sizing in your cluster.
         </p>
         <div
           style={{
@@ -338,7 +337,7 @@ export default function AuditPage() {
             margin: '0 0 8px',
           }}
         >
-          What your compliance team gets.
+          Evidence building blocks.
         </h2>
         <p
           style={{
@@ -348,12 +347,11 @@ export default function AuditPage() {
             maxWidth: 720,
           }}
         >
-          The audit log schema and report templates were designed against the controls these
-          frameworks demand. The OSS bundle ships the primitives; the commercial Audit tier
-          ships the report generators and the regulator-friendly UI.
+          These primitives can support your evidence process. They do not certify compliance
+          with any law, standard, or control framework.
         </p>
         <div style={{ display: 'grid', gap: 12 }}>
-          {COMPLIANCE_TARGETS.map(({ tag, body }) => (
+          {EVIDENCE_USE_CASES.map(({ tag, body }) => (
             <div
               key={tag}
               style={{
@@ -427,9 +425,9 @@ helm install clawd ./charts \\
 # 2. Point your AgentWorkload pods at the collector
 export OTEL_EXPORTER_OTLP_ENDPOINT=clawd-clawdlinux-observability-otel-collector:4317
 
-# 3. Verify the audit log
-kubectl port-forward svc/clawd-clawdlinux-observability-clickhouse 8123 &
-./bin/audit-verify --source clickhouse --key $CLAWD_AUDIT_KID=$CLAWD_AUDIT_KEY_B64
+# 3. Verify an exported JSONL audit log
+./bin/audit-verify --source jsonl --path ./ledger.jsonl \
+  --key $CLAWD_AUDIT_KID=$CLAWD_AUDIT_KEY_B64
 
 # 4. Open Grafana
 kubectl port-forward svc/clawd-clawdlinux-observability-grafana 3000 &
@@ -458,11 +456,11 @@ open http://localhost:3000`}</pre>
               margin: 0,
             }}
           >
-            Pilot the commercial Audit tier with your compliance team.
+            Evaluate the audit primitives with your compliance team.
           </h3>
           <p style={{ color: t.text.secondary, fontSize: 15, marginTop: 8 }}>
-            90-day design-partner pilots include the regulator-ready report templates and
-            the proprietary replay engine.
+            Pilot scope can validate exported records and offline verification. It does not
+            include deterministic replay or claim compliance certification.
           </p>
         </div>
         <a

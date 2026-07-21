@@ -41,10 +41,10 @@ export default function Trust() {
   const trustSignals = [
     {
       icon: Shield,
-      title: 'SOC 2 Type II',
-      metric: 'In Progress',
-      badge: 'Q2 2026',
-      description: 'Enterprise-grade security certification roadmapped',
+      title: 'Runtime Adapters',
+      metric: '3',
+      badge: 'Registered',
+      description: 'Argo, pod, and kagent behind one runtime registry',
       color: 'from-blue-500/20 to-blue-500/5',
       accentColor: '#6366f1',
     },
@@ -53,34 +53,34 @@ export default function Trust() {
       title: 'Open Source',
       metric: 'Apache 2.0',
       badge: 'Licensed',
-      description: 'Fully compliant, SBOM available, OSI-approved',
+      description: 'Auditable operator core with an OSI-approved license',
       color: 'from-blue-500/20 to-blue-500/5',
       accentColor: '#3B82F6',
     },
     {
       icon: Cpu,
-      title: 'Enterprise-Ready',
-      metric: 'Multi-Tenant',
-      badge: 'RBAC Ready',
-      description: 'Isolation, RBAC, and comprehensive audit logs',
+      title: 'Enforcement Model',
+      metric: 'Cluster',
+      badge: 'CNI + runsc',
+      description: 'Generated controls rely on cluster enforcement',
       color: 'from-indigo-500/20 to-indigo-500/5',
       accentColor: '#6366f1',
     },
     {
       icon: Users,
-      title: 'Production Scale',
-      metric: '100+',
-      badge: 'Clusters',
-      description: 'Deployed across enterprises managing thousands of agents',
+      title: 'Audit Primitives',
+      metric: 'Hash + HMAC',
+      badge: 'JSONL',
+      description: 'Offline verification for exported audit records',
       color: 'from-blue-500/20 to-blue-500/5',
       accentColor: '#3B82F6',
     },
     {
       icon: AlertCircle,
-      title: '24/7 Support',
-      metric: 'Available',
-      badge: 'On Demand',
-      description: 'Enterprise SLA options, community channels, expert assistance',
+      title: 'Offline Licensing',
+      metric: 'Self-Managed',
+      badge: 'No Callback',
+      description: 'Full air-gap installation proof remains a release gate',
       color: 'from-blue-500/20 to-blue-500/5',
       accentColor: '#6366f1',
     },
@@ -112,10 +112,10 @@ export default function Trust() {
           viewport={{ once: true, margin: '-100px' }}
         >
           <h2 className="text-4xl sm:text-5xl font-bold mb-4" style={{ color: currentTheme.text.primary }}>
-            Trusted by Teams in Production
+            Built for verifiable agent operations
           </h2>
           <p className="text-lg sm:text-xl" style={{ color: currentTheme.text.tertiary }}>
-            Enterprise-ready infrastructure built for scale, security, and compliance
+            Current implementation boundaries, stated without certification or adoption claims
           </p>
         </motion.div>
 
@@ -209,7 +209,7 @@ export default function Trust() {
           viewport={{ once: true, margin: '-100px' }}
         >
           <p className="text-sm" style={{ color: currentTheme.text.muted }}>
-            All components open-source · No phone-home telemetry · Full transparency
+            Open-source core · Self-managed deployment · Offline licensing available
           </p>
         </motion.div>
       </div>
