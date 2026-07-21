@@ -37,31 +37,30 @@ const Comparison = () => {
   const capabilities = [
     {
       name: 'Runtime Isolation',
-      description: 'Syscall-level boundary for regulated workloads',
-      clawdlinux: 'gVisor RuntimeClass injection for labeled pods',
+      description: 'Enforcement requires runsc on the target cluster',
+      clawdlinux: 'gVisor RuntimeClass mutation for labeled pods',
     },
     {
       name: 'Cost Attribution',
-      description: 'Chargeback to business units',
-      clawdlinux: 'Per-workload cost tracking and budget controls',
+      description: 'Durable chargeback requires an external reporter',
+      clawdlinux: 'CostReporter interface and volatile demo estimates',
     },
     {
       name: 'Audit Evidence',
-      description: 'SOC 2 and regulator response',
-      clawdlinux: 'Tamper-evident action ledger',
+      description: 'Offline verification of exported records',
+      clawdlinux: 'Hash-chain, HMAC, and JSONL verifier primitives',
     },
     {
       name: 'Deployment Model',
-      description: 'Air-gapped and offline-first',
-      clawdlinux: 'Self-hosted controls with zero-egress path',
+      description: 'Full air-gap installation proof remains a release gate',
+      clawdlinux: 'Self-managed deployment with offline licensing',
     },
   ];
 
   const runtimes = [
-    { name: 'Clawdlinux AgentWorkload', supported: true },
-    { name: 'CNCF agent runtimes (kagent, etc.)', supported: true },
-    { name: 'Custom agent pods', supported: true },
-    { name: 'Kubeflow pipelines', supported: true },
+    { name: 'Argo adapter', supported: true },
+    { name: 'Pod adapter', supported: true },
+    { name: 'kagent adapter', supported: true },
   ];
 
   return (
@@ -110,7 +109,7 @@ const Comparison = () => {
             </span>
           </h2>
           <p className="text-lg max-w-2xl mx-auto" style={{ color: currentTheme.text.tertiary }}>
-            Clawdlinux is a governance plane. It adds regulated controls around any Kubernetes agent runtime.
+            Clawdlinux is building a runtime-agnostic governance plane with registered adapters for Argo, pods, and kagent.
           </p>
         </motion.div>
 
@@ -187,7 +186,7 @@ const Comparison = () => {
             ))}
           </div>
           <p className="text-xs mt-4" style={{ color: currentTheme.text.muted }}>
-            The runtime handles agent lifecycle and tools. Clawdlinux handles multi-tenancy, audit, spend, and air-gapped compliance. Use both.
+            The runtime handles agent lifecycle and tools. Clawdlinux adds in-cluster governance, evidence primitives, and cost controls.
           </p>
         </motion.div>
 
@@ -251,7 +250,7 @@ const Comparison = () => {
           }}
         >
           <p className="text-sm" style={{ color: currentTheme.text.muted }}>
-            Regulated controls for{' '}
+            In-cluster components for{' '}
             <span className="font-semibold" style={{ color: currentTheme.accent.teal }}>agent runtime isolation</span>,{' '}
             <span className="font-semibold" style={{ color: currentTheme.accent.teal }}>audit evidence</span>, and{' '}
             <span className="font-semibold" style={{ color: currentTheme.accent.teal }}>cost attribution</span>

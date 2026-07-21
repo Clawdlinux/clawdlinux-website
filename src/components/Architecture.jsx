@@ -20,8 +20,8 @@ const steps = [
     icon: Package,
     title: "Controller Reconciles",
     description:
-      "The operator provisions namespaces, RBAC, policies, and runtime wiring to match the workload contract.",
-    details: ["Namespace creation", "RBAC and service accounts", "Policy objects applied", "Secrets and storage mounted"],
+      "The operator provisions namespaces and RBAC, then generates policy resources and runtime wiring for the workload contract.",
+    details: ["Namespace creation", "RBAC and service accounts", "Policy objects generated", "Secrets and storage mounted"],
     color: "#6366f1",
     colorAlpha: "rgba(99, 102, 241, 0.12)",
     colorBorder: "rgba(99, 102, 241, 0.25)",
@@ -29,10 +29,10 @@ const steps = [
   {
     number: "03",
     icon: Shield,
-    title: "Argo DAG Executes",
+    title: "Runtime Adapter Executes",
     description:
-      "Argo Workflows converts the workload graph into a DAG so every step executes with retries and status visibility.",
-    details: ["Step dependency graph", "Retry semantics", "Pod-level observability", "Deterministic workflow history"],
+      "The runtime registry selects the Argo, pod, or kagent adapter without changing the governance layer.",
+    details: ["Registered adapter selection", "Adapter-specific lifecycle", "Governance parity in progress", "Pod-level observability"],
     color: "#f59e0b",
     colorAlpha: "rgba(245, 158, 11, 0.12)",
     colorBorder: "rgba(245, 158, 11, 0.25)",
@@ -40,10 +40,10 @@ const steps = [
   {
     number: "04",
     icon: Activity,
-    title: "Artifacts & Audit Trail",
+    title: "Audit Primitives Available",
     description:
-      "Outputs land in MinIO and logs stay attached to the run, giving operators an auditable record of each agent execution.",
-    details: ["Artifact retention", "Prompt and output capture", "Log export hooks", "Post-run inspection"],
+      "Hash-chain, HMAC, and JSONL verifier primitives support exported records. Same-run signed artifact capture is not connected.",
+    details: ["Hash-chain primitives", "HMAC integrity", "Offline JSONL verifier", "Replay remains target work"],
     color: "#22c55e",
     colorAlpha: "rgba(34, 197, 94, 0.12)",
     colorBorder: "rgba(34, 197, 94, 0.25)",
@@ -247,7 +247,7 @@ export default function Architecture() {
               color: currentTheme.text.primary,
             }}
           >
-            From Target to{" "}
+            From Manifest to{" "}
             <span
               style={{
                 background: `linear-gradient(135deg, ${currentTheme.accent.teal}, ${currentTheme.accent.indigo})`,
@@ -256,9 +256,8 @@ export default function Architecture() {
                 backgroundClip: "text",
               }}
             >
-              Running Agent
+              Governed Workload
             </span>
-            {" "}in Seconds
           </h2>
           <p
             className="mt-4 text-base max-w-xl mx-auto"
@@ -267,7 +266,7 @@ export default function Architecture() {
               color: currentTheme.text.tertiary,
             }}
           >
-            Four reconciliation stages turn a declarative manifest into an isolated, observable AI workload on Kubernetes.
+            Four stages turn a declarative manifest into a governance-ready AI workload on Kubernetes.
           </p>
         </motion.div>
 
@@ -331,7 +330,7 @@ export default function Architecture() {
                 color: currentTheme.text.tertiary,
               }}
             >
-              From kubectl apply to running agent:
+              From manifest to runtime resources:
             </span>
             <span
               className="text-sm font-bold"
@@ -340,7 +339,7 @@ export default function Architecture() {
                 color: currentTheme.accent.teal,
               }}
             >
-              one manifest, zero custom glue
+              one contract, registered adapters
             </span>
           </div>
         </motion.div>

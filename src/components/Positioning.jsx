@@ -5,15 +5,15 @@ import { useTheme } from '../hooks/useTheme';
 const PILLARS = [
   {
     icon: Shield,
-    title: 'Air-Gapped by Default',
-    desc: 'Cilium FQDN egress policies, OPA guardrails, persona tool allowlists. Every agent is sandboxed. No data leaves without explicit policy.',
-    stat: 'Zero egress',
+    title: 'Self-Managed and Offline-Licensed',
+    desc: 'NetworkPolicy objects and gVisor mutation are generated in cluster. Enforcement requires a compatible CNI and runsc. Full air-gap installation proof remains a release gate.',
+    stat: 'No license callback',
   },
   {
     icon: DollarSign,
     title: 'Agent FinOps',
-    desc: 'Per-workload, per-task cost attribution. Budget enforcement before every LLM call. Cost-aware model routing sends triage to cheap models, reasoning to expensive ones.',
-    stat: '$0.001 → $0.02',
+    desc: 'The CostReporter interface supports usage and estimated-cost integrations. The default reporter is no-op, and the in-memory reporter is for local evaluation.',
+    stat: 'Pluggable reporter',
   },
   {
     icon: Layers,
@@ -23,9 +23,9 @@ const PILLARS = [
   },
   {
     icon: Zap,
-    title: 'Pluggable Workflows',
-    desc: 'Register any LangGraph DAG as a workflow. Ship research-swarm, code-review, doc-processor, or bring your own. One operator runs them all.',
-    stat: '3+ built-in',
+    title: 'Runtime Adapters',
+    desc: 'Registered adapters cover Argo DAGs, bring-your-own pods, and kagent. Governance-label parity is still being completed across every path.',
+    stat: '3 registered',
   },
 ];
 
@@ -33,22 +33,22 @@ const TIMELINE = [
   {
     phase: 'Now',
     title: 'Every company needs agents',
-    detail: 'LLMs can reason. Tools exist. But deploying autonomous agents in production — with isolation, governance, and cost control — is still manual kubectl + glue code.',
+    detail: 'LLMs can reason. Tools exist. Deploying autonomous agents with isolation, governance, and cost control still needs cluster-level integration.',
   },
   {
     phase: 'Problem',
-    title: 'No operational layer',
-    detail: 'LangGraph, CrewAI, AutoGen are application frameworks. Ray Serve, KServe are generic ML infra. Neither speaks "agent" — no agent CRDs, no A2A protocol, no per-agent budgets.',
+    title: 'Controls sit below the framework',
+    detail: 'Agent frameworks focus on agent logic. Governance must still be applied at the pod, network, policy, and evidence layers.',
   },
   {
     phase: 'Solution',
-    title: 'Kubernetes for agents',
-    detail: 'Clawdlinux is the operational layer. It sits between your agent framework and your K8s cluster. One CRD to deploy, one protocol for agents to talk, one bill per workload.',
+    title: 'Governance around agent runtimes',
+    detail: 'Clawdlinux is a runtime-agnostic, in-cluster governance and evidence plane. Runtime selection stays behind registered adapters.',
   },
   {
     phase: 'Moat',
-    title: 'Air-gap + FinOps + governance',
-    detail: 'The only operator with: offline licensing, Cilium FQDN egress, OPA policy evaluation, autoApproveThreshold gating, and cost-aware model routing. Built for regulated industries.',
+    title: 'In-cluster governance and evidence',
+    detail: 'Direct actions use an in-process Go evaluator. Rego assets exist, but real OPA execution is not yet proven. Offline licensing supports self-managed deployments.',
   },
 ];
 
@@ -114,8 +114,8 @@ export default function Positioning() {
             lineHeight: 1.6,
           }}
         >
-          Every agent framework lets you build. None of them let you deploy, govern, and bill in production.
-          Clawdlinux fills that gap. The Kubernetes-native control plane for autonomous AI agents.
+          Agent runtimes focus on execution. Clawdlinux adds workload, policy, cost, and evidence
+          components without becoming the runtime.
         </p>
       </motion.div>
 
@@ -331,7 +331,7 @@ export default function Positioning() {
             color: t.accent.teal,
           }}
         >
-          First 3 regulated enterprises get a free assisted pilot deployment.
+          Assisted pilots are available for regulated workload evaluations.
         </p>
       </motion.div>
     </section>

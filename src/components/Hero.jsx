@@ -5,11 +5,11 @@ import ParticleNetwork from '../utils/particleNetwork';
 import { useTheme } from '../hooks/useTheme';
 
 const USE_CASES = [
-  'Add gVisor isolation to agent pods without forking the runtime.',
-  'Know exactly what every agent costs per team, per workload, per month.',
-  'Keep audit trails for every action, approval, and model call.',
-  'Label any agent pod for gVisor injection, egress policy, and audit controls.',
-  'One Helm chart. Policy, sandbox, audit, and FinOps. Apache 2.0.',
+  'Generate gVisor RuntimeClass mutation for labeled agent pods.',
+  'Attribute model spend by team, workload, and task.',
+  'Verify hash-chained JSONL audit records offline.',
+  'Select Argo, pod, or kagent through one runtime registry.',
+  'One Helm chart. Runtime governance, audit primitives, and FinOps. Apache 2.0.',
 ];
 
 const QUICKSTART_URL = 'https://github.com/Clawdlinux/agentic-operator-core/blob/main/docs/01-quickstart.md';
@@ -19,10 +19,10 @@ const TERMINAL_LINES = [
   { prompt: '$ ', text: 'kubectl apply -f agentworkload.yaml', delay: 0 },
   { prompt: '', text: 'agentworkload.agentic.clawdlinux.io/research-run created', delay: 1200, teal: true },
   { prompt: '', text: '✓ namespace aw-research-run provisioned', delay: 2600, teal: true },
-  { prompt: '', text: '✓ cilium policy restricted egress to github.com and api.openai.com', delay: 4100, teal: true },
+  { prompt: '', text: '✓ network policy generated for github.com and api.openai.com', delay: 4100, teal: true },
   { prompt: '$ ', text: 'kubectl get agentworkload research-run -w', delay: 5600 },
-  { prompt: '', text: '[reconcile] argo workflow started · minio bucket mounted', delay: 7100, teal: true },
-  { prompt: '', text: '[ready] run complete · logs and artifacts retained for audit', delay: 8600, teal: true },
+  { prompt: '', text: '[reconcile] runtime adapter selected · workload resources created', delay: 7100, teal: true },
+  { prompt: '', text: '[ready] workload reconciled · audit verifier available offline', delay: 8600, teal: true },
 ];
 
 const headingVariants = {
@@ -125,7 +125,7 @@ function TerminalWindow({ currentTheme, theme }) {
             color: currentTheme.text.muted,
           }}
         >
-          agentic-operator-core · regulated controls
+          agentic-operator-core · runtime governance
         </span>
       </div>
 
@@ -273,7 +273,7 @@ export default function Hero() {
             }}
           >
             <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: currentTheme.accent.teal }} />
-            gVisor · Audit · FinOps · Apache 2.0
+            Runtime-neutral · In-cluster · Apache 2.0
           </div>
         </motion.div>
 
@@ -413,7 +413,7 @@ export default function Hero() {
             fontWeight: 500,
           }}
         >
-          First 3 regulated enterprises get a free assisted pilot deployment.
+          Assisted pilots are available for regulated workload evaluations.
         </motion.p>
 
         {/* Technical capability ticker */}
@@ -434,7 +434,7 @@ export default function Hero() {
               color: currentTheme.text.muted,
             }}
           >
-            Apache 2.0 · Runtime-neutral · gVisor injection · Cilium egress guardrails
+            Apache 2.0 · Runtime-neutral · gVisor mutation · NetworkPolicy generation
           </span>
         </motion.div>
 
