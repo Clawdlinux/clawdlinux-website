@@ -32,7 +32,7 @@ To the maximum extent permitted by law, the project maintainers shall not be lia
 We may update these terms from time to time. Continued use after publication of changes constitutes acceptance of the revised terms.
 
 8. Contact
-For questions about these terms, contact: 007ssancheti@gmail.com`,
+For questions about these terms, contact: clawdlinux@agentmail.to`,
   },
   privacy: {
     title: 'Privacy Policy',
@@ -54,10 +54,10 @@ This website does not knowingly collect personal telemetry from your cluster wor
 Links to GitHub and other external services are governed by those services' own privacy policies.
 
 5. Data Requests
-You may request deletion of support correspondence by emailing: 007ssancheti@gmail.com
+You may request deletion of support correspondence by emailing: clawdlinux@agentmail.to
 
 6. Contact
-Email: 007ssancheti@gmail.com`,
+Email: clawdlinux@agentmail.to`,
   },
   conduct: {
     title: 'Code of Conduct',
@@ -81,7 +81,7 @@ Enforcement
 Violations may result in a warning, temporary ban, or permanent exclusion from community spaces, at the discretion of the maintainers.
 
 Reporting
-If you experience or witness unacceptable behaviour, please report it to: 007ssancheti@gmail.com. All reports will be reviewed and investigated promptly and confidentially.
+If you experience or witness unacceptable behaviour, please report it to: clawdlinux@agentmail.to. All reports will be reviewed and investigated promptly and confidentially.
 
 This Code of Conduct is adapted from the Contributor Covenant, version 2.1.`,
   },
