@@ -9,6 +9,7 @@ import LegacyHashRedirect from './components/LegacyHashRedirect';
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
 import OperatorPage from './pages/OperatorPage';
+import AgentGatePage from './pages/AgentGatePage';
 import AuditPage from './pages/AuditPage';
 import BrandStudioPage from './pages/BrandStudioPage';
 import NotFoundPage from './pages/NotFoundPage';
@@ -36,6 +37,7 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/products/operator" element={<OperatorPage />} />
+          <Route path="/products/agentgate" element={<AgentGatePage />} />
           <Route path="/products/audit" element={<AuditPage />} />
           {import.meta.env.DEV && <Route path="/brand-studio" element={<BrandStudioPage />} />}
           <Route path="*" element={<NotFoundPage />} />

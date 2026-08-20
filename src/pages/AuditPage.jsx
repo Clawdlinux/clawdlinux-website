@@ -11,6 +11,7 @@ import {
   Network,
 } from 'lucide-react';
 import { useTheme } from '../hooks/useTheme';
+import DesignPartnerCTA from '../components/DesignPartnerCTA';
 
 const REPO_URL = 'https://github.com/Clawdlinux/agentic-operator-core';
 const HELM_PATH = `${REPO_URL}/tree/main/charts/charts/clawdlinux-observability`;
@@ -482,6 +483,7 @@ open http://localhost:3000`}</pre>
           <Network size={16} /> Talk to us
         </a>
       </section>
+      <DesignPartnerCTA />
     </div>
   );
 }

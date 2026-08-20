@@ -11,6 +11,7 @@ import Architecture from '../components/Architecture';
 import Features from '../components/Features';
 import OpenSource from '../components/OpenSource';
 import Waitlist from '../components/Waitlist';
+import DesignPartnerCTA from '../components/DesignPartnerCTA';
 
 export default function OperatorPage() {
   const { currentTheme } = useTheme();
@@ -58,6 +59,7 @@ export default function OperatorPage() {
       <section id="architecture"><Architecture /></section>
       <section id="features"><Features /></section>
       <section id="open-source"><OpenSource /></section>
+      <DesignPartnerCTA />
       <Waitlist />
     </div>
   );

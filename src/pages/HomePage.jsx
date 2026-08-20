@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Github, Boxes, Code2, Shield, Lock, Mail, Sparkles } from 'lucide-react';
+import { ArrowRight, Github, Boxes, Code2, Shield, Lock, Mail, Sparkles, KeyRound } from 'lucide-react';
 import { useTheme } from '../hooks/useTheme';
 import ShaderCanvas from '../components/ShaderCanvas';
+import DesignPartnerCTA from '../components/DesignPartnerCTA';
 
 const GITHUB_ORG = 'https://github.com/Clawdlinux';
 
@@ -15,6 +16,7 @@ const VALUE_PROPS = [
 const CAPABILITY_PREVIEWS = [
   { to: '/products/operator', icon: Boxes, tag: 'Runtime controls', title: 'Control agents in Kubernetes', text: 'Runtime adapters, gVisor mutation, generated network policy, in-process policy evaluation, and cost attribution.' },
   { to: '/products/audit', icon: Shield, tag: 'Audit', title: 'Verify audit records', text: 'Hash-chain, HMAC, and offline JSONL verification primitives. Deterministic replay remains target work.' },
+  { to: '/products/agentgate', icon: KeyRound, tag: 'AgentGate · separate product', title: 'Agents never see your tokens', text: 'A gateway that lets agents call SaaS APIs on a user\u2019s behalf. Every action produces a signed receipt verifiable offline.' },
 ];
 
 const SIGNALS = ['Self-hostable', 'gVisor', 'Runtime-neutral', 'Offline licensing'];
@@ -259,6 +261,8 @@ export default function HomePage() {
           </div>
         </motion.div>
       </section>
+
+      <DesignPartnerCTA />
     </>
   );
 }

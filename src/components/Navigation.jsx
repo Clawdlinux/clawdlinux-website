@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { label: 'Home', to: '/' },
   { label: 'Capabilities', to: '/products' },
   { label: 'Runtime', to: '/products/operator' },
+  { label: 'AgentGate', to: '/products/agentgate' },
   { label: 'Audit', to: '/products/audit' },
 ];
 

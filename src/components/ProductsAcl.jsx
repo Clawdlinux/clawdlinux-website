@@ -5,7 +5,9 @@ import {
   ArrowRight,
   CheckCircle2,
   Github,
+  KeyRound,
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useTheme } from '../hooks/useTheme';
 const OPERATOR_GITHUB = 'https://github.com/Clawdlinux/agentic-operator-core';
 
@@ -350,6 +352,92 @@ export default function ProductsAcl() {
             </p>
           </div>
         ))}
+      </motion.div>
+
+      {/* A second, separate product — not part of the runtime-governance thesis above */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        style={{ marginTop: 64 }}
+      >
+        <p
+          style={{
+            textAlign: 'center',
+            fontSize: 12,
+            fontWeight: 600,
+            letterSpacing: 1,
+            textTransform: 'uppercase',
+            color: t.text.tertiary,
+            fontFamily: "'IBM Plex Mono', monospace",
+            marginBottom: 20,
+          }}
+        >
+          A separate product
+        </p>
+        <Link
+          to="/products/agentgate"
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            padding: '32px 28px',
+            borderRadius: 16,
+            background: t.bg.secondary,
+            border: `1px solid ${t.border.light}`,
+            textDecoration: 'none',
+            color: 'inherit',
+            maxWidth: 480,
+            margin: '0 auto',
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 8 }}>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: 44,
+                height: 44,
+                borderRadius: 10,
+                background: `${t.accent.teal}20`,
+              }}
+            >
+              <KeyRound size={22} style={{ color: t.accent.teal }} />
+            </div>
+            <h3
+              style={{
+                fontFamily: 'Space Grotesk, sans-serif',
+                fontSize: 22,
+                fontWeight: 700,
+                color: t.text.primary,
+                margin: 0,
+              }}
+            >
+              AgentGate
+            </h3>
+          </div>
+          <p style={{ fontSize: 14, color: t.text.secondary, lineHeight: 1.6, margin: '0 0 20px' }}>
+            Agents never see your tokens. A separate gateway and repo for
+            letting AI agents call SaaS APIs (GitHub, Slack, Google Workspace,
+            Stripe) on a user&apos;s behalf, with signed receipts verifiable
+            offline.
+          </p>
+          <div
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 8,
+              fontSize: 14,
+              fontWeight: 600,
+              color: t.accent.teal,
+              fontFamily: "'IBM Plex Mono', monospace",
+            }}
+          >
+            View AgentGate
+            <ArrowRight size={14} />
+          </div>
+        </Link>
       </motion.div>
     </section>
   );
