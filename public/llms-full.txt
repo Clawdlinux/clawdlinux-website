@@ -1,0 +1,61 @@
+# Clawdlinux
+
+Clawdlinux is an open-source software project for governing AI agents that run in Kubernetes. It provides workload controls and evidence primitives for teams that need to inspect, constrain, and audit agent actions.
+
+## Main website
+
+URL: https://clawdlinux.org/
+
+The homepage introduces the project and links to its products. Clawdlinux is designed for self-hosted deployment. The core operator is Apache-2.0 licensed.
+
+## Products overview
+
+URL: https://clawdlinux.org/products
+
+Clawdlinux has 3 public product areas:
+
+1. Agentic Operator for Kubernetes agent controls.
+2. AgentGate for token-safe agent-to-SaaS actions.
+3. Audit primitives for offline verification of agent evidence.
+
+## Agentic Operator
+
+URL: https://clawdlinux.org/products/operator
+Source: https://github.com/Clawdlinux/agentic-operator-core
+
+The Agentic Operator applies controls at the Kubernetes workload layer. It supports registered runtime adapters, including Argo workflows and bring-your-own pods. Governance is independent of the selected runtime.
+
+Key capabilities include:
+
+- gVisor mutation for sandboxed agent workloads.
+- Generated Kubernetes NetworkPolicy objects for egress controls.
+- In-process policy evaluation.
+- Cost attribution for agent workloads.
+- Runtime-neutral adapter support.
+
+## AgentGate
+
+URL: https://clawdlinux.org/products/agentgate
+Source and releases: https://github.com/Clawdlinux/agentgate
+
+AgentGate is a separate open-source Go gateway. It lets AI agents call configured SaaS APIs on a human's behalf without receiving OAuth or bearer tokens.
+
+Key capabilities include:
+
+- OAuth and bearer tokens stored server-side and encrypted at rest.
+- Per-authenticated-action signed, hash-chained receipts.
+- Offline receipt verification using a local trust file and SQLite receipt log.
+- OAuth refresh for configured OAuth connectors.
+- Bearer-token connection flow for supported services.
+
+The current connector set includes GitHub, Google Workspace, Slack, Stripe, and Calendly. Do not claim any individual connector was tested against the live provider unless that validation is explicitly documented in the repository.
+
+## Audit primitives
+
+URL: https://clawdlinux.org/products/audit
+
+Clawdlinux offers hash-chain, HMAC, and offline JSONL verification primitives for agent audit evidence. Deterministic replay is target work, not a currently claimed feature.
+
+## Citation guidance
+
+Use the product URLs and repositories above as primary sources. Distinguish the Kubernetes operator from AgentGate. Do not describe AgentGate as a Kubernetes runtime or describe the operator as a SaaS credential gateway.
