@@ -34,9 +34,9 @@ function RouteMetadata({ pathname }) {
     updateMeta('meta[property="og:url"]', pageURL);
     updateMeta('meta[property="og:title"]', metadata.title);
     updateMeta('meta[property="og:description"]', metadata.description);
-    updateMeta('meta[property="twitter:url"]', pageURL);
-    updateMeta('meta[property="twitter:title"]', metadata.title);
-    updateMeta('meta[property="twitter:description"]', metadata.description);
+    updateMeta('meta[name="twitter:url"]', pageURL);
+    updateMeta('meta[name="twitter:title"]', metadata.title);
+    updateMeta('meta[name="twitter:description"]', metadata.description);
     document.querySelector('script[data-route-schema]')?.replaceChildren(
       document.createTextNode(JSON.stringify(PAGE_STRUCTURED_DATA[pathname] ?? PAGE_STRUCTURED_DATA['/'])),
     );
