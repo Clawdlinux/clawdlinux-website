@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { canonicalURL, PAGE_METADATA } from './src/seo.js'
+import { canonicalURL, PAGE_METADATA, PAGE_STRUCTURED_DATA } from './src/seo.js'
 
 const projectDirectory = dirname(fileURLToPath(import.meta.url))
 
@@ -36,6 +36,10 @@ function staticRouteMetadata() {
             html = updateMeta(html, /(<meta property="twitter:url" content=")[^"]*(" \/>)/, pageURL)
             html = updateMeta(html, /(<meta property="twitter:title" content=")[^"]*(" \/>)/, metadata.title)
             html = updateMeta(html, /(<meta property="twitter:description" content=")[^"]*(" \/>)/, metadata.description)
+            html = html.replace(
+              /(<script type="application\/ld\+json" data-route-schema>)[\s\S]*?(<\/script>)/,
+              `$1\n    ${JSON.stringify(PAGE_STRUCTURED_DATA[pathname])}\n    $2`,
+            )
 
             const routeDirectory = resolve(outputDirectory, pathname.slice(1))
             await mkdir(routeDirectory, { recursive: true })

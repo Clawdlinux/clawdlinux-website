@@ -14,7 +14,7 @@ import AgentGatePage from './pages/AgentGatePage';
 import AuditPage from './pages/AuditPage';
 import BrandStudioPage from './pages/BrandStudioPage';
 import NotFoundPage from './pages/NotFoundPage';
-import { canonicalURL, PAGE_METADATA } from './seo';
+import { canonicalURL, PAGE_METADATA, PAGE_STRUCTURED_DATA } from './seo';
 
 function RouteMetadata({ pathname }) {
   const metadata = PAGE_METADATA[pathname] ?? PAGE_METADATA['/'];
@@ -37,7 +37,10 @@ function RouteMetadata({ pathname }) {
     updateMeta('meta[property="twitter:url"]', pageURL);
     updateMeta('meta[property="twitter:title"]', metadata.title);
     updateMeta('meta[property="twitter:description"]', metadata.description);
-  }, [pageURL, metadata]);
+    document.querySelector('script[data-route-schema]')?.replaceChildren(
+      document.createTextNode(JSON.stringify(PAGE_STRUCTURED_DATA[pathname] ?? PAGE_STRUCTURED_DATA['/'])),
+    );
+  }, [pageURL, metadata, pathname]);
 
   return null;
 }

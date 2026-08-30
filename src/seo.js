@@ -23,6 +23,61 @@ export const PAGE_METADATA = {
   },
 };
 
+export const PAGE_STRUCTURED_DATA = {
+  '/': {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'Clawdlinux',
+    description: PAGE_METADATA['/'].description,
+    url: SITE_URL,
+    applicationCategory: 'DeveloperApplication',
+    operatingSystem: 'Kubernetes',
+    license: 'https://opensource.org/licenses/Apache-2.0',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    author: { '@type': 'Organization', name: 'Clawdlinux', url: 'https://github.com/Clawdlinux' },
+    codeRepository: 'https://github.com/Clawdlinux/agentic-operator-core',
+  },
+  '/products': {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: PAGE_METADATA['/products'].title,
+    description: PAGE_METADATA['/products'].description,
+    url: canonicalURL('/products'),
+    isPartOf: { '@type': 'WebSite', name: 'Clawdlinux', url: SITE_URL },
+  },
+  '/products/operator': {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'Agentic Operator',
+    description: PAGE_METADATA['/products/operator'].description,
+    url: canonicalURL('/products/operator'),
+    applicationCategory: 'DeveloperApplication',
+    operatingSystem: 'Kubernetes',
+    license: 'https://opensource.org/licenses/Apache-2.0',
+    codeRepository: 'https://github.com/Clawdlinux/agentic-operator-core',
+  },
+  '/products/agentgate': {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'AgentGate',
+    description: PAGE_METADATA['/products/agentgate'].description,
+    url: canonicalURL('/products/agentgate'),
+    applicationCategory: 'DeveloperApplication',
+    operatingSystem: 'Linux',
+    codeRepository: 'https://github.com/Clawdlinux/agentgate',
+  },
+  '/products/audit': {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'Clawdlinux Audit Primitives',
+    description: PAGE_METADATA['/products/audit'].description,
+    url: canonicalURL('/products/audit'),
+    applicationCategory: 'DeveloperApplication',
+    operatingSystem: 'Kubernetes',
+    codeRepository: 'https://github.com/Clawdlinux/agentic-operator-core',
+  },
+};
+
 export function canonicalURL(pathname) {
   return `${SITE_URL}${pathname === '/' ? '/' : pathname}`;
 }
