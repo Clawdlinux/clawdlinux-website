@@ -14,11 +14,12 @@ import AgentGatePage from './pages/AgentGatePage';
 import AuditPage from './pages/AuditPage';
 import BrandStudioPage from './pages/BrandStudioPage';
 import NotFoundPage from './pages/NotFoundPage';
-import { canonicalURL, PAGE_METADATA, PAGE_STRUCTURED_DATA } from './seo';
+import { canonicalURL, normalizePathname, PAGE_METADATA, PAGE_STRUCTURED_DATA } from './seo';
 
 function RouteMetadata({ pathname }) {
-  const metadata = PAGE_METADATA[pathname] ?? PAGE_METADATA['/'];
-  const pageURL = canonicalURL(pathname);
+  const normalizedPathname = normalizePathname(pathname);
+  const metadata = PAGE_METADATA[normalizedPathname] ?? PAGE_METADATA['/'];
+  const pageURL = canonicalURL(normalizedPathname);
 
   useEffect(() => {
     document.title = metadata.title;
@@ -38,9 +39,9 @@ function RouteMetadata({ pathname }) {
     updateMeta('meta[name="twitter:title"]', metadata.title);
     updateMeta('meta[name="twitter:description"]', metadata.description);
     document.querySelector('script[data-route-schema]')?.replaceChildren(
-      document.createTextNode(JSON.stringify(PAGE_STRUCTURED_DATA[pathname] ?? PAGE_STRUCTURED_DATA['/'])),
+      document.createTextNode(JSON.stringify(PAGE_STRUCTURED_DATA[normalizedPathname] ?? PAGE_STRUCTURED_DATA['/'])),
     );
-  }, [pageURL, metadata, pathname]);
+  }, [pageURL, metadata, normalizedPathname]);
 
   return null;
 }
