@@ -78,6 +78,10 @@ export const PAGE_STRUCTURED_DATA = {
   },
 };
 
+export function normalizePathname(pathname) {
+  return pathname === '/' ? pathname : pathname.replace(/\/+$/, '');
+}
+
 export function canonicalURL(pathname) {
-  return `${SITE_URL}${pathname === '/' ? '/' : pathname}`;
+  return `${SITE_URL}${normalizePathname(pathname)}`;
 }
