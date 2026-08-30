@@ -33,9 +33,9 @@ function staticRouteMetadata() {
             html = updateMeta(html, /(<meta property="og:url" content=")[^"]*(" \/>)/, pageURL)
             html = updateMeta(html, /(<meta property="og:title" content=")[^"]*(" \/>)/, metadata.title)
             html = updateMeta(html, /(<meta property="og:description" content=")[^"]*(" \/>)/, metadata.description)
-            html = updateMeta(html, /(<meta property="twitter:url" content=")[^"]*(" \/>)/, pageURL)
-            html = updateMeta(html, /(<meta property="twitter:title" content=")[^"]*(" \/>)/, metadata.title)
-            html = updateMeta(html, /(<meta property="twitter:description" content=")[^"]*(" \/>)/, metadata.description)
+            html = updateMeta(html, /(<meta name="twitter:url" content=")[^"]*(" \/>)/, pageURL)
+            html = updateMeta(html, /(<meta name="twitter:title" content=")[^"]*(" \/>)/, metadata.title)
+            html = updateMeta(html, /(<meta name="twitter:description" content=")[^"]*(" \/>)/, metadata.description)
             html = html.replace(
               /(<script type="application\/ld\+json" data-route-schema>)[\s\S]*?(<\/script>)/,
               `$1\n    ${JSON.stringify(PAGE_STRUCTURED_DATA[pathname])}\n    $2`,
