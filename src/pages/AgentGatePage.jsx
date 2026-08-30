@@ -15,12 +15,9 @@ import { useTheme } from '../hooks/useTheme';
 import DesignPartnerCTA from '../components/DesignPartnerCTA';
 
 const REPO_URL = 'https://github.com/Clawdlinux/agentgate';
-const RELEASE_URL = 'https://github.com/Clawdlinux/agentgate/releases/tag/v0.1.1';
+const RELEASE_URL = 'https://github.com/Clawdlinux/agentgate/releases/latest';
 const RELEASES_URL = 'https://github.com/Clawdlinux/agentgate/releases';
-// The git tag is v0.1.1, but GoReleaser's {{ .Version }} template strips the
-// "v" from the published image tag itself — ghcr.io/.../agentgate:v0.1.1
-// 404s, :0.1.1 is the one that actually pulls. Verified against ghcr.io directly.
-const INSTALL_COMMAND = 'docker run ghcr.io/clawdlinux/agentgate:0.1.1';
+const INSTALL_COMMAND = 'docker run ghcr.io/clawdlinux/agentgate:latest';
 
 const POINTS = [
   {
@@ -40,7 +37,7 @@ const POINTS = [
   },
 ];
 
-const CONNECTORS = ['GitHub', 'Slack', 'Google Workspace', 'Stripe'];
+const CONNECTORS = ['GitHub', 'Slack', 'Google Workspace', 'Stripe', 'Calendly'];
 
 const containerVariants = {
   hidden: {},

@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useTheme } from './hooks/useTheme';
 
 import Navigation from './components/Navigation';
@@ -13,6 +14,33 @@ import AgentGatePage from './pages/AgentGatePage';
 import AuditPage from './pages/AuditPage';
 import BrandStudioPage from './pages/BrandStudioPage';
 import NotFoundPage from './pages/NotFoundPage';
+import { canonicalURL, PAGE_METADATA } from './seo';
+
+function RouteMetadata({ pathname }) {
+  const metadata = PAGE_METADATA[pathname] ?? PAGE_METADATA['/'];
+  const pageURL = canonicalURL(pathname);
+
+  useEffect(() => {
+    document.title = metadata.title;
+
+    const updateMeta = (selector, content) => {
+      const element = document.querySelector(selector);
+      if (element) element.setAttribute('content', content);
+    };
+
+    document.querySelector('link[rel="canonical"]')?.setAttribute('href', pageURL);
+    updateMeta('meta[name="title"]', metadata.title);
+    updateMeta('meta[name="description"]', metadata.description);
+    updateMeta('meta[property="og:url"]', pageURL);
+    updateMeta('meta[property="og:title"]', metadata.title);
+    updateMeta('meta[property="og:description"]', metadata.description);
+    updateMeta('meta[property="twitter:url"]', pageURL);
+    updateMeta('meta[property="twitter:title"]', metadata.title);
+    updateMeta('meta[property="twitter:description"]', metadata.description);
+  }, [pageURL, metadata]);
+
+  return null;
+}
 
 export default function App() {
   const { currentTheme } = useTheme();
@@ -33,6 +61,7 @@ export default function App() {
       {!isBrandStudio && <LegacyHashRedirect />}
 
       <main>
+        <RouteMetadata pathname={location.pathname} />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/products" element={<ProductsPage />} />

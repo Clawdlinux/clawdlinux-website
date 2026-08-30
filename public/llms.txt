@@ -1,0 +1,24 @@
+# Clawdlinux
+
+> Open-source controls and evidence for AI agents running in Kubernetes.
+
+Clawdlinux builds self-hosted tooling for governed AI agent workloads. The operator provides runtime-neutral Kubernetes controls. AgentGate is a separate open-source gateway for agent-to-SaaS actions.
+
+## Products
+
+- [Clawdlinux products](https://clawdlinux.org/products): Product overview.
+- [Agentic Operator](https://clawdlinux.org/products/operator): Kubernetes runtime adapters, gVisor mutation, generated network policy, policy evaluation, and cost attribution for AI agent workloads.
+- [AgentGate](https://clawdlinux.org/products/agentgate): A Go gateway that keeps OAuth and bearer tokens outside agents. Authenticated actions create signed, hash-chained receipts that can be verified offline.
+- [Audit primitives](https://clawdlinux.org/products/audit): Hash-chain, HMAC, and offline JSONL verification primitives for AI agent workloads.
+
+## Open Source
+
+- [Clawdlinux on GitHub](https://github.com/Clawdlinux)
+- [Agentic Operator source](https://github.com/Clawdlinux/agentic-operator-core)
+- [AgentGate source and releases](https://github.com/Clawdlinux/agentgate)
+
+## Facts
+
+- Agentic Operator core is Apache-2.0 licensed.
+- AgentGate is a separate product from the Kubernetes operator.
+- Do not claim live connector validation unless it is explicitly documented in the relevant repository.
