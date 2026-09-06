@@ -13,7 +13,7 @@ const USE_CASES = [
 ];
 
 const QUICKSTART_URL = 'https://github.com/Clawdlinux/agentic-operator-core/blob/main/docs/01-quickstart.md';
-const DEMO_EMAIL_URL = 'mailto:clawdlinux@agentmail.to?subject=Agentic%20Operator%20Demo%20Request';
+const DEMO_BOOKING_URL = 'https://calendly.com/007ssancheti';
 
 const TERMINAL_LINES = [
   { prompt: '$ ', text: 'kubectl apply -f agentworkload.yaml', delay: 0 },
@@ -381,7 +381,9 @@ export default function Hero() {
             View on GitHub
           </a>
           <a
-            href={DEMO_EMAIL_URL}
+            href={DEMO_BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-2 px-6 py-3 text-sm font-semibold rounded-xl transition-all duration-200"
             style={{
               fontFamily: "'DM Sans', sans-serif",
